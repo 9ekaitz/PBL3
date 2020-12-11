@@ -2,6 +2,7 @@ package pbl;
 
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Frame;
+import com.leapmotion.leap.Hand;
 import com.leapmotion.leap.Listener;
 
 public class SampleListener extends Listener{
@@ -14,7 +15,14 @@ public class SampleListener extends Listener{
                            + ", timestamp: " + frame.timestamp()
                            + ", hands: " + frame.hands().count()
                            + ", fingers: " + frame.fingers().count());
+            for (Hand hand:frame.hands()) {
+                String handType =hand.isLeft() ? "Izquieda":"derecha";
+
+                System.out.println(handType+"posicion de la mano:"+(hand.palmPosition()));
+
+            }
     }
+    
     public void onInit(Controller controller) {
         System.out.println("Iniciado");
     }
