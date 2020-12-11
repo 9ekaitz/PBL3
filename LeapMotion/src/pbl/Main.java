@@ -1,7 +1,6 @@
 package pbl;
 
 import java.io.IOException;
-import java.security.Principal;
 
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Frame;
