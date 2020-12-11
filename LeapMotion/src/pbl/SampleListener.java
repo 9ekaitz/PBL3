@@ -15,6 +15,7 @@ public class SampleListener extends Listener{
                            + ", timestamp: " + frame.timestamp()
                            + ", hands: " + frame.hands().count()
                            + ", fingers: " + frame.fingers().count());
+
             for (Hand hand:frame.hands()) {
                 String handType =hand.isLeft() ? "Izquieda":"derecha";
 
