@@ -34,9 +34,10 @@ public class Main {
         
         controller.removeListener(listener);
         
-
+System.out.println("despues");
     }
 
+	
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Main p = new Main();
