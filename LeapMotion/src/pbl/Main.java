@@ -33,12 +33,12 @@ public class Main {
         
         controller.removeListener(listener);
         
-System.out.println("despues");
+        System.out.println("despues");
     }
 
 	
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+    	Login display = new Login();
         Main p = new Main();
     }
 }
