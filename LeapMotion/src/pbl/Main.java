@@ -32,8 +32,6 @@ public class Main {
 
         // Remove the sample listener when done
         controller.removeListener(listener);
-        
-
     }
 
     public static void main(String[] args) {
