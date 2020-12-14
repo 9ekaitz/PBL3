@@ -37,7 +37,7 @@ public class Main {
 	}
 
     public static void main(String[] args) {
-    	Login display = new Login();
+//    	Login display = new Login();
         Main p = new Main();
     }
 }
