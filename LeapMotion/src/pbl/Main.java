@@ -36,8 +36,8 @@ public class Main {
 		System.out.println("despues");
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Main p = new Main();
-	}
+    public static void main(String[] args) {
+    	Login display = new Login();
+        Main p = new Main();
+    }
 }
