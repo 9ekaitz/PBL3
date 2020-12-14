@@ -1,6 +1,11 @@
 package pbl;
 
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
 import com.leapmotion.leap.Controller;
+import com.leapmotion.leap.Finger;
 import com.leapmotion.leap.Frame;
 import com.leapmotion.leap.Hand;
 import com.leapmotion.leap.HandList;
@@ -13,6 +18,8 @@ public class SampleListener extends Listener {
 	public void onFrame(Controller controller) {
 		Frame frame = controller.frame();
 
+		float x, y;
+		
 		float inclitationHand[][] = new float[2][3];
 
 		// TODO: crear metodo
@@ -41,6 +48,10 @@ public class SampleListener extends Listener {
 					+"  Yaw: "+rightHand.direction().yaw()
 					+"  Roll: "+rightHand.direction().roll());
 		}
+		
+		
+		//Eskurekin posizioarekin lehio bat mugitu
+		
 		
 		
 //		for (Hand hand : frame.hands()) {
