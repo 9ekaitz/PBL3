@@ -1,7 +1,6 @@
 package pbl;
-
+//master2
 import java.io.IOException;
-import java.security.Principal;
 
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Frame;
@@ -31,12 +30,15 @@ public class Main {
         }
 
         // Remove the sample listener when done
+        
         controller.removeListener(listener);
+        
+        System.out.println("despues");
     }
 
+	
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        System.out.println("hola");
+    	Login display = new Login();
         Main p = new Main();
     }
 }
