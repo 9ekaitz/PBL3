@@ -1,25 +1,25 @@
 package pbl;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import java.awt.Font;
-import java.awt.Panel;
 
 public class Login extends JFrame{
 
-	Color lightGreen, darkGreen;
+	Color darkBlue;
 	private JPasswordField passwordField;
 	private JTextField usernameField;
 	
@@ -27,55 +27,62 @@ public class Login extends JFrame{
 		super("Leap Motion");
 		this.setLocation (200,200);
 		this.setSize(1024,600);
-		this.setIconImage(new ImageIcon("img/test.png").getImage());
+		this.setIconImage(new ImageIcon("img/Logo-icon.png").getImage());
+		initializeVariables();
 		this.setContentPane(createMainWindow());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
+	
+	private void initializeVariables() {
+		darkBlue = new Color(36, 123, 160);
+		passwordField = new JPasswordField();
+		usernameField = new JTextField();
+	}
+	
 	private Container createMainWindow() {
 		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBackground(Color.WHITE);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(371, 344, 208, 27);
-		panel.add(passwordField);
-		
-		usernameField = new JTextField();
-		usernameField.setBounds(371, 298, 208, 27);
-		panel.add(usernameField);
-		usernameField.setColumns(10);
-		
-		JLabel logo = new JLabel("New label");
-		logo.setIcon(new ImageIcon("img/logoPrueba.png"));
-		logo.setBounds(371, 89, 208, 187);
-		panel.add(logo);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		JButton loginButton = new JButton("Login");
-		loginButton.setBounds(371, 388, 89, 23);
-		loginButton.setBackground(new Color(25, 83, 92));
+		loginButton.setBackground(darkBlue);
 		loginButton.setForeground(Color.WHITE);
+		loginButton.setPreferredSize(new Dimension(0, 25));
+		loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JLabel logo = new JLabel();
+		logo.setIcon(new ImageIcon("img/Logo-vista.png"));
+		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JPanel panelTextFields = createLabelsPanel();
+		
+		panel.add(Box.createVerticalGlue());
+		panel.add(logo);
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
+		panel.add(panelTextFields);
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(loginButton);
+		panel.add(Box.createVerticalGlue());
 		
-		JButton registerButton = new JButton("Register");
-		registerButton.setForeground(Color.WHITE);
-		registerButton.setBounds(490, 388, 89, 23);
-		registerButton.setBackground(new Color(25, 83, 92));
-		registerButton.setForeground(Color.WHITE);
-		panel.add(registerButton);
+		return panel;
+	}
+
+	private JPanel createLabelsPanel() {
+		JPanel panel = new JPanel(new FlowLayout());
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		
-		JTextPane textUser = new JTextPane();
-		textUser.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textUser.setText("Username:");
-		textUser.setBounds(301, 298, 278, 27);
-		panel.add(textUser);
+		JLabel textUsername = new JLabel("Username: "); //300x33
+		textUsername.setSize(new Dimension(300, 33));
+//		textUsername.setBorder(BorderFactory.createEmptyBorder(0, 362, 0, 362));
 		
-		JTextPane txtpnPassword = new JTextPane();
-		txtpnPassword.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtpnPassword.setText("Password:");
-		txtpnPassword.setBounds(301, 344, 278, 27);
-		panel.add(txtpnPassword);
+		panel.add(Box.createHorizontalGlue());
+		panel.add(textUsername);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+		panel.add(usernameField);
+		panel.add(Box.createHorizontalGlue());
 		
+		panel.setBackground(darkBlue);
+
 		return panel;
 	}
 }
