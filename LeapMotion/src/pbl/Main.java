@@ -36,7 +36,10 @@ public class Main {
 		System.out.println("despues");
 	}
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+    	FirstLoad firstLoad = new FirstLoad();
+    	Thread.sleep(2000);
+    	firstLoad.dispose();
     	Login display = new Login();
         Main p = new Main();
     }

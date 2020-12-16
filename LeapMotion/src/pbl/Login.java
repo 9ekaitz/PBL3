@@ -5,8 +5,8 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -25,13 +25,18 @@ public class Login extends JFrame{
 	
 	public Login() {
 		super("Leap Motion");
-		this.setLocation (200,200);
 		this.setSize(1024,600);
+		this.setWindowCentered();
 		this.setIconImage(new ImageIcon("img/Logo-icon.png").getImage());
-		initializeVariables();
+		this.initializeVariables();
 		this.setContentPane(createMainWindow());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+	}
+	
+	private void setWindowCentered() {
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 	}
 	
 	private void initializeVariables() {
@@ -47,6 +52,7 @@ public class Login extends JFrame{
 		JButton loginButton = new JButton("Login");
 		loginButton.setBackground(darkBlue);
 		loginButton.setForeground(Color.WHITE);
+
 		loginButton.setPreferredSize(new Dimension(0, 25));
 		loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
@@ -59,8 +65,8 @@ public class Login extends JFrame{
 		panel.add(Box.createVerticalGlue());
 		panel.add(logo);
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
-		panel.add(panelTextFields);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
+//		panel.add(panelTextFields);
+//		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(loginButton);
 		panel.add(Box.createVerticalGlue());
 		
