@@ -4,7 +4,9 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+import com.leapmotion.leap.Bone;
 import com.leapmotion.leap.Controller;
+import com.leapmotion.leap.Finger;
 import com.leapmotion.leap.Frame;
 import com.leapmotion.leap.Hand;
 import com.leapmotion.leap.Listener;
@@ -54,15 +56,18 @@ public class SampleListener extends Listener {
 				rightHand = hand;
 			}
 		}
+		
 		if (leftHand != null) {
 			System.out.println("Left hand\tPitch: "+leftHand.direction().pitch()
-					+"  Yaw: "+leftHand.direction().yaw()
-					+"  Roll: "+leftHand.direction().roll());
+					+"  Yaw: "+Math.toDegrees(leftHand.direction().yaw())
+					+"  Roll: "+Math.toDegrees(leftHand.direction().roll())
+					+ "PalmPosition: "+ leftHand.palmPosition());
 		}
 		if (rightHand != null) {
 			System.out.println("Right hand\tPitch: "+rightHand.direction().pitch()
 					+"  Yaw: "+rightHand.direction().yaw()
-					+"  Roll: "+rightHand.direction().roll());
+					+"  Roll: "+rightHand.direction().roll()
+					+ "PalmPosition: "+ rightHand.palmPosition());
 		}
 		Pointable pointable = frame.pointables().frontmost();
 		if (leftHand != null) {
@@ -70,6 +75,20 @@ public class SampleListener extends Listener {
 			bola.y = (int) leftHand.palmPosition().getZ();
 		}
 		
+		for(Finger finger: frame.fingers()) {
+			
+			System.out.println("Finger Type:" + finger.type()
+								+ "Finger Lenght:" + finger.length()
+								+ "Finger Width:" + finger.width());
+			for(Bone.Type boneType : Bone.Type.values()) {
+				Bone bone = finger.bone(boneType);
+				System.out.println("Bone Type:" + bone.type()
+									+ "Start:" + bone.prevJoint()
+									+ "End:"+ bone.nextJoint()
+									+ "Direction: " + bone.direction());
+				
+			}
+		}
 		//Eskurekin posizioarekin lehio bat mugitu
 		
 		canvas.repaint();
