@@ -1,7 +1,10 @@
 package pbl;
 
+import java.awt.Container;
 //master2
 import java.io.IOException;
+
+import javax.swing.JFrame;
 
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Frame;
@@ -10,8 +13,11 @@ import com.leapmotion.leap.HandList;
 
 public class Main {
 
+	JFrame jframe;
+	
 	public Main() {
-		SampleListener listener = new SampleListener();
+		jframe = new JFrame("Proba");
+		SampleListener listener = new SampleListener(jframe);
 		Controller controller = new Controller();
 
 		Frame frame = controller.frame(); // controller is a Controller object
@@ -36,8 +42,11 @@ public class Main {
 		System.out.println("despues");
 	}
 
-    public static void main(String[] args) {
-//    	Login display = new Login();
+    private Container createMainContentPanel() {
+		return null;
+	}
+
+	public static void main(String[] args) {
         Main p = new Main();
     }
 }
