@@ -9,20 +9,23 @@ import javax.swing.JPanel;
 
 public class Canvas extends JPanel{
 
-	bola Bola;
+	Bola bola1,bola2;
 	
-	public Canvas(bola Bola) {
-		this.Bola = Bola;
+	public Canvas(Bola bola1, Bola bola2) {
+		this.bola1 = bola1;
+		this.bola2 = bola2;
 		this.setPreferredSize(new Dimension(500,500));
 	}
-	
+
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D gr = (Graphics2D) g;
 		gr.setColor(Color.white);
 		gr.fillRect(0, 0, 500, 500);
 		
-		Bola.dibujar(g);
+		bola1.dibujar(g);
+		bola2.dibujar(g);
 	}
 	
 }

@@ -14,47 +14,22 @@ import com.leapmotion.leap.Pointable;
 
 public class SampleListener extends Listener {
 
-	JFrame jframe;
-	Canvas canvas;
-	bola bola;
+	VentanaGrafica ventana;
 	
-	public SampleListener(JFrame jframe) {
-		this.jframe = jframe;
-		this.jframe.setContentPane(createMainPanel());
-		this.jframe.pack();
-		this.jframe.setLocationRelativeTo(null);
-		this.jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.jframe.setVisible(true);
-	}
-	
-	private Container createMainPanel() {
-		bola = new bola();
-		canvas = new Canvas(bola);
-		return canvas;
+	public SampleListener(JFrame frame) {
+		ventana = new VentanaGrafica(frame);
 	}
 
 	public void onFrame(Controller controller) {
 		Frame frame = controller.frame();
 
-		float x, y;
-		
-		float inclitationHand[][] = new float[2][3];
-
-		// TODO: crear metodo
 		// detectamos mano y entramos al bucle
 		
 		Hand leftHand = null, rightHand = null;
 		
 		for (Hand hand : frame.hands()) {	//Detektatutako eskuak sailkatu
-			/*
-			 * Konprobatu behar da bi ezker esku detektatu ahal diren
-			 */
-			if (hand.isLeft()) {
-				leftHand = hand;
-			}
-			else if (hand.isRight()){
-				rightHand = hand;
-			}
+			if (hand.isLeft()) leftHand = hand;
+			else if (hand.isRight())rightHand = hand;
 		}
 		
 		if (leftHand != null) {
@@ -62,49 +37,75 @@ public class SampleListener extends Listener {
 					+"  Yaw: "+Math.toDegrees(leftHand.direction().yaw())
 					+"  Roll: "+Math.toDegrees(leftHand.direction().roll())
 					+ "PalmPosition: "+ leftHand.palmPosition());
+			
+			for(Finger finger: frame.fingers()) {
+				System.out.println("--------------------------------");
+
+				System.out.println("ID"+finger.id()
+									+ "Finger Type:" + finger.type()
+									+ "Finger Lenght:" + finger.length()
+									+ "Finger Width:" + finger.width());
+				for(Bone.Type boneType : Bone.Type.values()) {
+					Bone bone = finger.bone(boneType);
+					System.out.println("Bone Type:" + bone.type()
+										+ "Start:" + bone.prevJoint()
+										+ "End:"+ bone.nextJoint()
+										+ "Direction: " + bone.direction());
+					
+					/*if(finger.type().TYPE_THUMB != null) {
+						System.out.println("jajajaajajajajajajaaajajja");
+						fingerPrueba=finger;
+					}*/
+				}
+					
+			}
 		}
+		
 		if (rightHand != null) {
 			System.out.println("Right hand\tPitch: "+rightHand.direction().pitch()
 					+"  Yaw: "+rightHand.direction().yaw()
 					+"  Roll: "+rightHand.direction().roll()
 					+ "PalmPosition: "+ rightHand.palmPosition());
-		}
-		Pointable pointable = frame.pointables().frontmost();
-		if (leftHand != null) {
-			bola.x = (int) leftHand.palmPosition().getX();
-			bola.y = (int) leftHand.palmPosition().getZ();
-		}
-		System.out.println("---------------------------------------------------------------------------------------------------");
-		Finger fingerPrueba;
-		for(Finger finger: frame.fingers()) {
-			System.out.println("--------------------------------");
+			
+			for(Finger finger: frame.fingers()) {
+				System.out.println("--------------------------------");
 
-			System.out.println("ID"+finger.id()
-								+ "Finger Type:" + finger.type()
-								+ "Finger Lenght:" + finger.length()
-								+ "Finger Width:" + finger.width());
-			for(Bone.Type boneType : Bone.Type.values()) {
-				Bone bone = finger.bone(boneType);
-				System.out.println("Bone Type:" + bone.type()
-									+ "Start:" + bone.prevJoint()
-									+ "End:"+ bone.nextJoint()
-									+ "Direction: " + bone.direction());
-				
-				System.out.println("finger Type:" + finger.type());
-				if(finger.type().TYPE_THUMB != null) {
-					System.out.println("jajajaajajajajajajaaajajja");
-					fingerPrueba=finger;
+				System.out.println("ID"+finger.id()
+									+ "Finger Type:" + finger.type()
+									+ "Finger Lenght:" + finger.length()
+									+ "Finger Width:" + finger.width());
+				for(Bone.Type boneType : Bone.Type.values()) {
+					Bone bone = finger.bone(boneType);
+					System.out.println("Bone Type:" + bone.type()
+										+ "Start:" + bone.prevJoint()
+										+ "End:"+ bone.nextJoint()
+										+ "Direction: " + bone.direction());
+					
+					/*if(finger.type().TYPE_THUMB != null) {
+						System.out.println("jajajaajajajajajajaaajajja");
+						fingerPrueba=finger;
+					}*/
 				}
+					
 			}
-				
-			}
+		}
+		
+		//Pointable pointable = frame.pointables().frontmost();
+		
+		//Peloten posizioa aldatu
+		
+		if (leftHand != null) {
+			ventana.getBola1().setX((int) leftHand.palmPosition().getX());
+			ventana.getBola1().setY((int) leftHand.palmPosition().getZ());
+		}else if(rightHand != null) {
+			ventana.getBola2().setX((int) rightHand.palmPosition().getX());
+			ventana.getBola1().setY((int) rightHand.palmPosition().getZ());
+		}
 			
 		//Eskurekin posizioarekin lehio bat mugitu
-		
+		ventana.canvas.repaint();
 		
 	//if(finger.type().equals(fingerPrueba)
-		
-		
 	
 	}
 
