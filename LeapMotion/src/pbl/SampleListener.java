@@ -28,8 +28,14 @@ public class SampleListener extends Listener {
 		Hand leftHand = null, rightHand = null;
 		
 		for (Hand hand : frame.hands()) {	//Detektatutako eskuak sailkatu
-			if (hand.isLeft()) leftHand = hand;
-			else if (hand.isRight())rightHand = hand;
+			if (hand.isLeft()) {
+				leftHand = hand;
+				brazoExtendido(frame);
+			}
+			else if (hand.isRight()) {
+				rightHand = hand;
+				brazoExtendido(frame);
+			}
 		}
 		
 		if (leftHand != null) {
@@ -110,6 +116,15 @@ public class SampleListener extends Listener {
 	
 	}
 
+	public void brazoExtendido(Frame frame) {
+		int kont = 0;
+		for(Finger finger : frame.fingers()) {
+			if(finger.isExtended()) kont++;
+		}
+		if(kont == 5) {
+			System.out.println("Brazo Extendido");
+		}
+	}
 	
 	public void onInit(Controller controller) {
 		System.out.println("Iniciado");
