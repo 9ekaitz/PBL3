@@ -74,10 +74,13 @@ public class SampleListener extends Listener {
 			bola.x = (int) leftHand.palmPosition().getX();
 			bola.y = (int) leftHand.palmPosition().getZ();
 		}
-		
+		System.out.println("---------------------------------------------------------------------------------------------------");
+		Finger fingerPrueba;
 		for(Finger finger: frame.fingers()) {
-			
-			System.out.println("Finger Type:" + finger.type()
+			System.out.println("--------------------------------");
+
+			System.out.println("ID"+finger.id()
+								+ "Finger Type:" + finger.type()
 								+ "Finger Lenght:" + finger.length()
 								+ "Finger Width:" + finger.width());
 			for(Bone.Type boneType : Bone.Type.values()) {
@@ -87,12 +90,22 @@ public class SampleListener extends Listener {
 									+ "End:"+ bone.nextJoint()
 									+ "Direction: " + bone.direction());
 				
+				System.out.println("finger Type:" + finger.type());
+				if(finger.type().equals("TYPE_THUMB")) {
+					System.out.println("jajajaajajajajajajaaajajja");
+					fingerPrueba=finger;
+				}
 			}
-		}
+				
+			}
+			
 		//Eskurekin posizioarekin lehio bat mugitu
 		
-		canvas.repaint();
-
+		
+	//if(finger.type().equals(fingerPrueba)
+		
+		
+	
 	}
 
 	public void onInit(Controller controller) {
