@@ -91,7 +91,7 @@ public class SampleListener extends Listener {
 									+ "Direction: " + bone.direction());
 				
 				System.out.println("finger Type:" + finger.type());
-				if(finger.type().equals("TYPE_THUMB")) {
+				if(finger.type().TYPE_THUMB != null) {
 					System.out.println("jajajaajajajajajajaaajajja");
 					fingerPrueba=finger;
 				}
