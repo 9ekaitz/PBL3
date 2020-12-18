@@ -1,14 +1,13 @@
 package pbl;
 
-import java.awt.Container;
-
 import javax.swing.JFrame;
 
-import com.leapmotion.leap.Bone;
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Finger;
 import com.leapmotion.leap.Frame;
+import com.leapmotion.leap.Gesture;
 import com.leapmotion.leap.Hand;
+import com.leapmotion.leap.KeyTapGesture;
 import com.leapmotion.leap.Listener;
 import com.leapmotion.leap.Pointable;
 
@@ -28,14 +27,9 @@ public class SampleListener extends Listener {
 		Hand leftHand = null, rightHand = null;
 		
 		for (Hand hand : frame.hands()) {	//Detektatutako eskuak sailkatu
-			if (hand.isLeft()) {
-				leftHand = hand;
-				brazoExtendido(frame);
-			}
-			else if (hand.isRight()) {
-				rightHand = hand;
-				brazoExtendido(frame);
-			}
+			if (hand.isLeft()) leftHand = hand;
+			else if (hand.isRight()) rightHand = hand;
+			brazoExtendido(hand, frame);
 		}
 		
 		if (leftHand != null) {
@@ -75,11 +69,12 @@ public class SampleListener extends Listener {
 			
 			for(Finger finger: frame.fingers()) {
 				System.out.println("--------------------------------");
-
+				System.out.println("Finger is finger: "+ finger.isFinger());
 				System.out.println("ID"+finger.id()
 									+ "Finger Type:" + finger.type()
 									+ "Finger Lenght:" + finger.length()
 									+ "Finger Width:" + finger.width());
+				
 				System.out.println("Abierto: " + finger.isExtended());
 				for(Bone.Type boneType : Bone.Type.values()) {
 					Bone bone = finger.bone(boneType);
@@ -97,6 +92,17 @@ public class SampleListener extends Listener {
 			}
 		}
 		
+		//cosa qu aiqu investigar
+		for(Gesture gesture : frame.gestures()){
+			  if(gesture.type() == KeyTapGesture.classType()){
+			    KeyTapGesture keytap = new KeyTapGesture(gesture);
+			    Pointable tappingPointable = keytap.pointable();
+			    if(tappingPointable.isFinger()){
+			      Finger tappingFinger = new Finger(tappingPointable);
+			      System.out.println("Tapper: " + tappingFinger.type());
+			    }
+			  }
+		}
 		//Pointable pointable = frame.pointables().frontmost();
 		
 		//Peloten posizioa aldatu
@@ -116,13 +122,17 @@ public class SampleListener extends Listener {
 	
 	}
 
-	public void brazoExtendido(Frame frame) {
+	public void brazoExtendido(Hand hand,Frame frame) {
 		int kont = 0;
-		for(Finger finger : frame.fingers()) {
-			if(finger.isExtended()) kont++;
-		}
-		if(kont == 5) {
-			System.out.println("Mano Extendido");
+		if(hand.isRight()) {
+			for(Finger finger : frame.fingers()) if(finger.isExtended()) kont++;
+			
+			if(kont == 5) System.out.println("Mano Derecha Extendida");
+			
+		}else if(hand.isLeft()) {
+			for(Finger finger : frame.fingers()) if(finger.isExtended()) kont++;
+
+			if(kont == 5) System.out.println("Mano Izquierda Extendida");
 		}
 	}
 	
