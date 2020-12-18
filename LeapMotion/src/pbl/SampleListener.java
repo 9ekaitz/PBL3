@@ -2,6 +2,7 @@ package pbl;
 
 import javax.swing.JFrame;
 
+import com.leapmotion.leap.Bone;
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Finger;
 import com.leapmotion.leap.Frame;
