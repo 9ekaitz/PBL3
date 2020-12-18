@@ -51,7 +51,7 @@ public class SampleListener extends Listener {
 										+ "Start:" + bone.prevJoint()
 										+ "End:"+ bone.nextJoint()
 										+ "Direction: " + bone.direction());
-					
+				
 					/*if(finger.type().TYPE_THUMB != null) {
 						System.out.println("jajajaajajajajajajaaajajja");
 						fingerPrueba=finger;
@@ -74,13 +74,14 @@ public class SampleListener extends Listener {
 									+ "Finger Type:" + finger.type()
 									+ "Finger Lenght:" + finger.length()
 									+ "Finger Width:" + finger.width());
+				System.out.println("Abierto: " + finger.isExtended());
 				for(Bone.Type boneType : Bone.Type.values()) {
 					Bone bone = finger.bone(boneType);
 					System.out.println("Bone Type:" + bone.type()
 										+ "Start:" + bone.prevJoint()
 										+ "End:"+ bone.nextJoint()
 										+ "Direction: " + bone.direction());
-					
+					System.out.println("Distancia: " + bone.prevJoint().distanceTo(bone.nextJoint()));
 					/*if(finger.type().TYPE_THUMB != null) {
 						System.out.println("jajajaajajajajajajaaajajja");
 						fingerPrueba=finger;
@@ -109,6 +110,7 @@ public class SampleListener extends Listener {
 	
 	}
 
+	
 	public void onInit(Controller controller) {
 		System.out.println("Iniciado");
 	}
