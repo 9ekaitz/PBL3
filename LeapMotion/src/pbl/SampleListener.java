@@ -122,7 +122,7 @@ public class SampleListener extends Listener {
 			if(finger.isExtended()) kont++;
 		}
 		if(kont == 5) {
-			System.out.println("Brazo Extendido");
+			System.out.println("Mano Extendido");
 		}
 	}
 	
