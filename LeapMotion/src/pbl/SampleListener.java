@@ -39,15 +39,15 @@ public class SampleListener extends Listener {
 					+"  Roll: "+Math.toDegrees(leftHand.direction().roll())
 					+ "PalmPosition: "+ leftHand.palmPosition());
 			
-			for(Finger finger: frame.fingers()) {
+			for(Finger leftFinger: leftHand.fingers()) {
 				System.out.println("--------------------------------");
 
-				System.out.println("ID"+finger.id()
-									+ "Finger Type:" + finger.type()
-									+ "Finger Lenght:" + finger.length()
-									+ "Finger Width:" + finger.width());
+				System.out.println("ID"+leftFinger.id()
+									+ "Finger Type:" + leftFinger.type()
+									+ "Finger Lenght:" + leftFinger.length()
+									+ "Finger Width:" + leftFinger.width());
 				for(Bone.Type boneType : Bone.Type.values()) {
-					Bone bone = finger.bone(boneType);
+					Bone bone = leftFinger.bone(boneType);
 					System.out.println("Bone Type:" + bone.type()
 										+ "Start:" + bone.prevJoint()
 										+ "End:"+ bone.nextJoint()
@@ -68,17 +68,17 @@ public class SampleListener extends Listener {
 					+"  Roll: "+rightHand.direction().roll()
 					+ "PalmPosition: "+ rightHand.palmPosition());
 			
-			for(Finger finger: frame.fingers()) {
+			for(Finger rightFinger: rightHand.fingers()) {
 				System.out.println("--------------------------------");
-				System.out.println("Finger is finger: "+ finger.isFinger());
-				System.out.println("ID"+finger.id()
-									+ "Finger Type:" + finger.type()
-									+ "Finger Lenght:" + finger.length()
-									+ "Finger Width:" + finger.width());
+				System.out.println("Finger is finger: "+ rightFinger.isFinger());
+				System.out.println("ID"+rightFinger.id()
+									+ "Finger Type:" + rightFinger.type()
+									+ "Finger Lenght:" + rightFinger.length()
+									+ "Finger Width:" + rightFinger.width());
 				
-				System.out.println("Abierto: " + finger.isExtended());
+				System.out.println("Abierto: " + rightFinger.isExtended());
 				for(Bone.Type boneType : Bone.Type.values()) {
-					Bone bone = finger.bone(boneType);
+					Bone bone = rightFinger.bone(boneType);
 					System.out.println("Bone Type:" + bone.type()
 										+ "Start:" + bone.prevJoint()
 										+ "End:"+ bone.nextJoint()
