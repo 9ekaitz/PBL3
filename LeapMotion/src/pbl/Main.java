@@ -40,7 +40,8 @@ public class Main {
     	FirstLoad firstLoad = new FirstLoad();
     	Thread.sleep(2000);
     	firstLoad.dispose();
-    	Login display = new Login();
+//    	Login display = new Login();
+    	Menu menu = new Menu();
         Main p = new Main();
     }
 }
