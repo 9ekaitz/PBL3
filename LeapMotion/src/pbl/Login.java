@@ -17,142 +17,82 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import javax.swing.SwingConstants;
+import java.awt.Insets;
+import java.awt.Font;
 
-public class Login extends JFrame{
+public class Login extends JPanel{
 
-	Color darkBlue;
-	Dimension dim;
+	ViewController controller;
 	private JPasswordField passwordField;
 	private JTextField usernameField;
+	Color darkBlue;
 	
-	public Login() {
-		super("Leap Motion");
-		this.setSize(1024,600);
-		this.setWindowCentered();
-		this.setIconImage(new ImageIcon("img/Logo-icon.png").getImage());
-		this.initializeVariables();
-		this.setContentPane(createMainWindow());
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
-	}
-	
-	private void setWindowCentered() {
-		dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-	}
-	
-	private void initializeVariables() {
-		darkBlue = new Color(36, 123, 160);
-		passwordField = new JPasswordField();
+	public Login(ViewController controller) {
+		this.controller = controller;
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0};
+		this.setLayout(gridBagLayout);
+		
+		JLabel logo = new JLabel(new ImageIcon("img/Logo-vista.png"));
+		GridBagConstraints gbc_logo = new GridBagConstraints();
+		gbc_logo.gridwidth = 2;
+		gbc_logo.insets = new Insets(0, 0, 20, 0);
+		gbc_logo.gridx = 0;
+		gbc_logo.gridy = 0;
+		this.add(logo, gbc_logo);
+		
+		JLabel lblUser = new JLabel("User: ");
+		lblUser.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_lblUser = new GridBagConstraints();
+		gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUser.anchor = GridBagConstraints.EAST;
+		gbc_lblUser.gridx = 0;
+		gbc_lblUser.gridy = 1;
+		this.add(lblUser, gbc_lblUser);
+		
 		usernameField = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 1;
+		this.add(usernameField, gbc_textField);
+		usernameField.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("Password: ");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblPassword.gridx = 0;
+		gbc_lblPassword.gridy = 2;
+		this.add(lblPassword, gbc_lblPassword);
+		
+		passwordField = new JPasswordField();
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_1.gridx = 1;
+		gbc_textField_1.gridy = 2;
+		this.add(passwordField, gbc_textField_1);
+		passwordField.setColumns(10);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setActionCommand("loginSuccess");
+		btnLogin.addActionListener(controller);
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnLogin.setForeground(Color.WHITE);
+		btnLogin.setBackground(new Color(36, 123, 160));
+		GridBagConstraints gbc_btnLogin = new GridBagConstraints();
+		gbc_btnLogin.insets = new Insets(20, 0, 0, 0);
+		gbc_btnLogin.gridwidth = 2;
+		gbc_btnLogin.gridx = 0;
+		gbc_btnLogin.gridy = 3;
+		this.add(btnLogin, gbc_btnLogin);
 	}
-	
-	private Container createMainWindow() {
-//		JPanel panel = new JPanel();
-//		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-//		
-//		JButton loginButton = new JButton("Login");
-//		loginButton.setBackground(darkBlue);
-//		loginButton.setForeground(Color.WHITE);
-//
-//		loginButton.setPreferredSize(new Dimension(0, 25));
-//		loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		
-//		JLabel logo = new JLabel();
-//		logo.setIcon(new ImageIcon("img/Logo-vista.png"));
-//		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		
-//		JButton pruebaButton = new JButton("Prueba");
-//		pruebaButton.setPreferredSize(new Dimension(150,40));
-//		pruebaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		
-//		panel.add(Box.createVerticalGlue());
-//		panel.add(logo);
-//		panel.add(Box.createRigidArea(new Dimension(0, 10)));
-//		panel.add(createWindowFields());
-//		panel.add(Box.createRigidArea(new Dimension(0, 10)));
-//		panel.add(loginButton);
-//		panel.add(Box.createVerticalGlue());
-//		
-//		return panel;
-		
-		Box boxVertical = Box.createVerticalBox();
-//		JPanel boxVertical = new JPanel(new GridLayout(4,1));
-		
-		JLabel logo = new JLabel();
-		logo.setIcon(new ImageIcon("img/Logo-vista.png"));
-		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
-		JButton loginButton = new JButton("Login");
-		loginButton.setBackground(darkBlue);
-		loginButton.setForeground(Color.WHITE);
-		loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
-		boxVertical.add(Box.createVerticalGlue());
-		boxVertical.add(logo);
-//		boxVertical.add(Box.createVerticalStrut(15));
-		boxVertical.add(createWindowFields());
-//		boxVertical.add(Box.createVerticalStrut(15));
-		boxVertical.add(createWindowFields());
-//		boxVertical.add(Box.createVerticalStrut(15));
-		boxVertical.add(loginButton);
-		boxVertical.add(Box.createVerticalGlue());
-		
-		return boxVertical;
-	}
-	
-	private JPanel createWindowFields() {
-		JPanel usernameBox = new JPanel(new FlowLayout());
-		
-		usernameBox.add(Box.createHorizontalGlue());
-		usernameBox.add(createField());
-		usernameBox.add(Box.createHorizontalGlue());
-		
-		return usernameBox;
-	}
-	
-//	private Box createWindowFields() {
-//		Box usernameBox = Box.createHorizontalBox();
-//		
-////		usernameBox.add(Box.createHorizontalStrut(300));
-//		usernameBox.add(createField());
-////		usernameBox.add(Box.createHorizontalStrut(300));
-//		
-//		return usernameBox;
-//	}
-	
-	private JPanel createField() {
-		JPanel panel = new JPanel(new FlowLayout());
-		JLabel usernameText = new JLabel("Username:  ");
-		usernameField = new JTextField(20);
-		
-		panel.add(usernameText);
-		panel.add(usernameField);
-		
-		return panel;
-	}
-	
-//	private JPanel createLabelsPanel() {
-//		JPanel panel = new JPanel(new FlowLayout());
-//		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-//		
-//		JLabel textUsername = new JLabel("Username: "); //300x33
-//		textUsername.setSize(new Dimension(300, 33));
-//		JButton pruebaButton = new JButton("Prueba");
-//		pruebaButton.setPreferredSize(new Dimension(150,40));
-//		pruebaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		textUsername.setBorder(BorderFactory.createEmptyBorder(0, 362, 0, 362));
-//		
-//		panel.add(Box.createHorizontalGlue());
-//		panel.add(textUsername);
-//		panel.add(Box.createRigidArea(new Dimension(10, 0)));
-//		panel.add(pruebaButton);
-//		panel.add(Box.createRigidArea(new Dimension(10, 0)));
-//		panel.add(usernameField);
-//		panel.add(Box.createHorizontalGlue());
-//		
-//		panel.setBackground(darkBlue);
-//
-//		return panel;
-//	}
 }
+	
