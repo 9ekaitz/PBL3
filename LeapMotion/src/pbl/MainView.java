@@ -21,6 +21,7 @@ public class MainView extends JFrame{
 	public MainView() {
 		super("Leap Motion");
 		this.setSize(1024,600);
+		this.setLocation(0, 0);
 		this.setIconImage(new ImageIcon("img/Logo-icon.png").getImage());
 		this.initializeVariables();
 		this.setJMenuBar(createMenuBar());

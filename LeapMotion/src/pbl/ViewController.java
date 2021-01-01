@@ -18,9 +18,11 @@ public class ViewController implements ActionListener{
 		
 		switch (command) {
 		case "loginSuccess":
-			view.setActualPanel(new TestPanel(this));
+			view.setActualPanel(new AppMenu(this));
 			break;
-
+		case "manualManipulation":
+			view.setActualPanel(new TestPanel(this));
+		break;
 		default:
 			break;
 		}

@@ -34,7 +34,6 @@ public class Login extends JPanel{
 		this.controller = controller;
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0};
 		this.setLayout(gridBagLayout);
 		
 		JLabel logo = new JLabel(new ImageIcon("img/Logo-vista.png"));

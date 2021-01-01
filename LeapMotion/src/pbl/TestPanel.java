@@ -34,7 +34,7 @@ public class TestPanel extends JPanel{
 		this.setBackground(new Color(235, 181, 49));
 		setLayout(new BorderLayout(0, 0));
 		
-		JLabel photo = new JLabel(new ImageIcon("img/underconstruction.png"));
+		JLabel photo = new JLabel(new ImageIcon("tmp/underconstruction.png"));
 		this.add(photo);
 	}
 }
