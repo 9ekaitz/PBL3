@@ -26,7 +26,7 @@ public class MainView extends JFrame{
 		this.setJMenuBar(createMenuBar());
 		this.setContentPane(actualPanel);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.setUndecorated(true);
+//		this.setUndecorated(true); //
 		this.setVisible(true);
 	}
 
