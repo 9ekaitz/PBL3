@@ -28,7 +28,6 @@ public class Login extends JPanel{
 	ViewController controller;
 	private JPasswordField passwordField;
 	private JTextField usernameField;
-	Color darkBlue;
 	
 	public Login(ViewController controller) {
 		this.controller = controller;
@@ -81,7 +80,7 @@ public class Login extends JPanel{
 		passwordField.setColumns(10);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setActionCommand("loginSuccess");
+		btnLogin.setActionCommand("loginAttempt");
 		btnLogin.addActionListener(controller);
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnLogin.setForeground(Color.WHITE);
@@ -93,5 +92,15 @@ public class Login extends JPanel{
 		gbc_btnLogin.gridy = 3;
 		this.add(btnLogin, gbc_btnLogin);
 	}
+
+	public String getPasswordField() {
+		return String.valueOf(passwordField.getPassword());
+	}
+
+	public String getUsernameField() {
+		return usernameField.getText();
+	}
+	
+	
 }
 	

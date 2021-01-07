@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 public class ViewController implements ActionListener{
 	
 	MainView view;
-	//necesita modelo
+	ViewModel model;
 	
 	public ViewController(MainView view) {
 		this.view = view;
+		model = new ViewModel();
 	}
 
 	@Override
@@ -17,14 +18,26 @@ public class ViewController implements ActionListener{
 		String command = arg0.getActionCommand();
 		
 		switch (command) {
-		case "loginSuccess":
-			view.setActualPanel(new AppMenu(this));
+		case "loginAttempt":
+			loginAttempt();
 			break;
 		case "manualManipulation":
 			view.setActualPanel(new TestPanel(this));
 		break;
 		default:
 			break;
+		}
+		
+	}
+
+	private void loginAttempt() {
+		String username = view.getActualPanelClass().
+		String password = "qwerty";
+		
+		if (model.authorizedUser(username, password)) {
+			view.setActualPanel(new AppMenu(this));
+		} else {
+			System.out.println("Usuario y contraseña incorrectos");
 		}
 		
 	}

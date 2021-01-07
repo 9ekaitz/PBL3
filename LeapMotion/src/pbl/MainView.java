@@ -61,9 +61,17 @@ public class MainView extends JFrame{
 		return menu;
 	}
 
-	public void setActualPanel(JPanel actualPanel) {
-		this.actualPanel = actualPanel;
+	public void setActualPanel(Object actualPanel) {
+		this.actualPanel = (JPanel) actualPanel;
 		refresh();
+	}
+	
+	public JPanel getActualPanel() {
+		return actualPanel;
+	}
+	
+	public Object getActualPanelClass() {
+		return actualPanel;
 	}
 
 	private void refresh() {

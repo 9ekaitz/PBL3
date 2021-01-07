@@ -31,7 +31,7 @@ public class AppMenu extends JPanel{
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, createButtons(), createGraph());
-		splitPane.setDividerLocation(250);
+		splitPane.setDividerLocation(300);
 		add(splitPane);
 		
 	}
@@ -51,9 +51,9 @@ public class AppMenu extends JPanel{
 		
 		GridBagLayout gbl_buttonPanel = new GridBagLayout();
 		gbl_buttonPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_buttonPanel.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_buttonPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_buttonPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_buttonPanel.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_buttonPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		buttonPanel.setLayout(gbl_buttonPanel);
 		
 		JButton btnNewButton = new JButton("Add material");
@@ -87,17 +87,22 @@ public class AppMenu extends JPanel{
 		btnManual.setIcon(new ImageIcon("icons/warning.png"));
 		btnManual.setActionCommand("manualManipulation");
 		btnManual.addActionListener(controller);
-		btnManual.setBackground(Color.ORANGE);
-		btnManual.setForeground(Color.BLACK);
 		GridBagConstraints gbc_btnManual = new GridBagConstraints();
 		gbc_btnManual.fill = GridBagConstraints.BOTH;
 		gbc_btnManual.gridwidth = 2;
-		gbc_btnManual.insets = new Insets(30, 0, 0, 5);
+		gbc_btnManual.insets = new Insets(30, 0, 0, 0);
 		gbc_btnManual.gridx = 0;
-		gbc_btnManual.gridy = 2;
+		gbc_btnManual.gridy = 3;
 		buttonPanel.add(btnManual, gbc_btnManual);
 		
-			
+		JButton btnCreateUser = new JButton("Create User");
+		GridBagConstraints gbc_btnCreateUser = new GridBagConstraints();
+		gbc_btnCreateUser.insets = new Insets(20, 0, 5, 5);
+		gbc_btnCreateUser.gridx = 0;
+		gbc_btnCreateUser.gridy = 2;
+		buttonPanel.add(btnCreateUser, gbc_btnCreateUser);
+		
+
 		return buttonPanel;
 	}
 }
