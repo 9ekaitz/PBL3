@@ -12,13 +12,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-public class MainView extends JFrame{
+public class MainViewFrame extends JFrame{
 
 	JPanel actualPanel;
 	ViewController controller;
 	MenuActions logout, exit;
 
-	public MainView() {
+	public MainViewFrame() {
 		super("Leap Motion");
 		this.setSize(1024,600);
 		this.setLocation(0, 0);
@@ -26,8 +26,8 @@ public class MainView extends JFrame{
 		this.initializeVariables();
 		this.setJMenuBar(createMenuBar());
 		this.setContentPane(actualPanel);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.setUndecorated(true); //
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setUndecorated(true);
 		this.setVisible(true);
 	}
 
@@ -35,7 +35,6 @@ public class MainView extends JFrame{
     	createActions();
     	controller = new ViewController(this);
 		actualPanel = new Login(controller);
-		
 	}
     
     private void createActions() {	
@@ -45,19 +44,15 @@ public class MainView extends JFrame{
     
     private JMenuBar createMenuBar() {
     	JMenuBar bar = new JMenuBar();
-
 		bar.add(Box.createHorizontalGlue());
 		bar.add(createExitMenu());
-		
 		return bar;
 	}
 
 	private JMenu createExitMenu() {
 		JMenu menu = new JMenu("Exit");
-		
 		menu.add(logout);
-		menu.add(exit);
-		
+		menu.add(exit);		
 		return menu;
 	}
 
@@ -66,14 +61,6 @@ public class MainView extends JFrame{
 		refresh();
 	}
 	
-	public JPanel getActualPanel() {
-		return actualPanel;
-	}
-	
-	public Object getActualPanelClass() {
-		return actualPanel;
-	}
-
 	private void refresh() {
 		this.setContentPane(actualPanel);
 		this.invalidate();
@@ -81,17 +68,21 @@ public class MainView extends JFrame{
 		this.repaint();
 	}
 	
+	public Login getActualPanel() {
+		return (Login) actualPanel;
+	}
+	
 	private class MenuActions extends AbstractAction{
-		String text;
-		public MenuActions(String text, Icon img, String desc) {
-			super(text, img);
-			this.text = text;
+		String command;
+		public MenuActions(String command, Icon img, String desc) {
+			super(command, img);
+			this.command = command;
 			this.putValue(Action.SHORT_DESCRIPTION, desc);
 		}
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			switch (text) {
+			switch (command) {
 			case "Logout":
 				setActualPanel(new Login(controller));
 				return;
@@ -106,6 +97,6 @@ public class MainView extends JFrame{
 	}
 
 	public static void main(String[] args) {
-        MainView p = new MainView();
+        MainViewFrame p = new MainViewFrame();
     }
 }

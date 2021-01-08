@@ -3,12 +3,15 @@ package pbl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 public class ViewController implements ActionListener{
 	
-	MainView view;
+	MainViewFrame view;
 	ViewModel model;
 	
-	public ViewController(MainView view) {
+	public ViewController(MainViewFrame view) {
 		this.view = view;
 		model = new ViewModel();
 	}
@@ -26,18 +29,19 @@ public class ViewController implements ActionListener{
 		break;
 		default:
 			break;
-		}
-		
+		}	
 	}
 
 	private void loginAttempt() {
-		String username = view.getActualPanelClass().
-		String password = "qwerty";
+		Login panel = view.getActualPanel();
+		
+		String username = panel.getUsernameField();
+		String password = panel.getPasswordField();
 		
 		if (model.authorizedUser(username, password)) {
 			view.setActualPanel(new AppMenu(this));
 		} else {
-			System.out.println("Usuario y contraseña incorrectos");
+			JOptionPane.showMessageDialog(view, "Username or password is incorrect,\n please try again", "Authentication failed", JOptionPane.ERROR_MESSAGE, new ImageIcon("icons/error.png"));
 		}
 		
 	}
