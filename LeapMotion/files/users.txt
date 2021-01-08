@@ -1,0 +1,4 @@
+patata$hello$false
+gorka$lertxundi$false
+user$qwerty$true
+admin$admin$true
