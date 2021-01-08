@@ -74,17 +74,21 @@ public class AppMenu extends JPanel{
 		gbc_btnNewButton_2.gridy = 0;
 		buttonPanel.add(btnNewButton_2, gbc_btnNewButton_2);
 	
-		JButton btnNewButton_1 = new JButton("See material");
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(new Color(36, 123, 160));
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 0;
-		gbc_btnNewButton_1.gridy = 1;
-		buttonPanel.add(btnNewButton_1, gbc_btnNewButton_1);
+		JButton btnSeeMaterial= new JButton("See material");
+		btnSeeMaterial.setActionCommand("seeMaterial");
+		btnSeeMaterial.addActionListener(controller);
+		btnSeeMaterial.setForeground(Color.WHITE);
+		btnSeeMaterial.setBackground(new Color(36, 123, 160));
+		GridBagConstraints gbc_btnSeeMaterial = new GridBagConstraints();
+		gbc_btnSeeMaterial.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSeeMaterial.gridx = 0;
+		gbc_btnSeeMaterial.gridy = 1;
+		buttonPanel.add(btnSeeMaterial, gbc_btnSeeMaterial);
 
 		JButton btnManual = new JButton("Manual manipulation");
 		btnManual.setIcon(new ImageIcon("icons/warning.png"));
+		btnManual.setForeground(Color.white);
+		btnManual.setBackground(new Color(36, 123, 160));
 		btnManual.setActionCommand("manualManipulation");
 		btnManual.addActionListener(controller);
 		GridBagConstraints gbc_btnManual = new GridBagConstraints();

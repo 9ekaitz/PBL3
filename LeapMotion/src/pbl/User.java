@@ -17,7 +17,7 @@ public class User {
 		this.userPassword = password;
 		this.admin = admin;
 	}
-
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -29,6 +29,12 @@ public class User {
 	public boolean isAdmin() {
 		return admin;
 	}
+
+	@Override
+	public String toString() {
+		return "User [UserName=" + userName + ", Password=" + userPassword + ", admin=" + admin + "]";
+	}
+	
 	
 	
 }

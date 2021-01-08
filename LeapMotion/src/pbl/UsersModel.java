@@ -20,7 +20,11 @@ public class UsersModel {
 	
 	public UsersModel() {
 		users = new ArrayList<>();
-		loadUsersFromFile();
+//		loadUsersFromFile();
+	}
+	
+	public void addUser(User user) {
+		users.add(user);
 	}
 	
 	public void loadUsersFromFile() {
@@ -33,6 +37,7 @@ public class UsersModel {
 				user = new User(line);
 				if (user != null){
 					users.add(user);
+					System.out.println(user);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -42,11 +47,15 @@ public class UsersModel {
 		}
 	}
 	
-	public void saveUsersOnLoad() {
-			
+	public void saveUsersOnFile() {
+		int userHash;
+		int passwordHash;
+		
 			try (BufferedWriter out = new BufferedWriter(new FileWriter(FILE_NAME))) {
 				for (User user : users) {
-					out.write(user.getUserName()+"$"+user.getUserPassword()+"$"+user.isAdmin()+"\n");
+					userHash = user.getUserName().hashCode();
+					passwordHash = user.getUserPassword().hashCode();
+					out.write(userHash+"$"+passwordHash+"$"+user.isAdmin()+"\n");
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -56,44 +65,12 @@ public class UsersModel {
 			
 	}
 	
-	public boolean authorizedUser(String username, String password) {
+	public boolean authorizedUser(String userHash, String passwordHash) {
 		for (User user : users) {
-			if (user.getUserName().equals(username) && user.getUserPassword().equals(password)) {
+			if (user.getUserName().equals(userHash) && user.getUserPassword().equals(passwordHash)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-//	public byte[] encrypt(String toEncrypt) throws Exception {
-//			byte[] bytes = toEncrypt.getBytes("UTF-8");
-//			Cipher aes = getCipher(true);
-//			byte[] cifrado = aes.doFinal(bytes);
-//			
-//			return cifrado;
-//	}
-//
-//	public String decrypt (byte[] encrypted) throws Exception {
-//			Cipher aes = getCipher(false);
-//			byte[] bytes = aes.doFinal(encrypted);
-//			String desencrypted = new String(bytes, "UTF-8");
-//			
-//			return desencrypted;
-//	}
-//
-//	private Cipher getCipher(boolean encrypt) throws Exception {
-//			final String keyString = "FraseLargaConDiferentesLetrasNumerosYCaracteresEspeciales_·¡È…ÌÕÛ”˙⁄¸‹Ò—1234567890!#%$&()=%_NO_USAR_ESTA_FRASE!_";
-//			final MessageDigest digest = MessageDigest.getInstance("SHA");
-//			digest.update(keyString.getBytes("UTF-8"));
-//			final SecretKeySpec key = new SecretKeySpec(digest.digest(), 0, 16, "AES");
-//	
-//			final Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
-//			if (encrypt) {
-//				aes.init(Cipher.ENCRYPT_MODE, key);
-//			} else {
-//				aes.init(Cipher.DECRYPT_MODE, key);
-//			}
-//	
-//			return aes;
-//	}
 }

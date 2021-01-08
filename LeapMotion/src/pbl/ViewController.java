@@ -27,6 +27,12 @@ public class ViewController implements ActionListener{
 		case "manualManipulation":
 			view.setActualPanel(new TestPanel(this));
 		break;
+		case "seeMaterial":
+			view.setActualPanel(new MaterialView(this));
+			break;
+		case "goBackFromMaterialView":
+			view.setActualPanel(new AppMenu(this));
+			break;
 		default:
 			break;
 		}	
