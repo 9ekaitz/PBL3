@@ -13,12 +13,12 @@ import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-public class ViewModel {
+public class UsersModel {
 
 	List<User> users;
 	final static String FILE_NAME = "files/users.txt";
 	
-	public ViewModel() {
+	public UsersModel() {
 		users = new ArrayList<>();
 		loadUsersFromFile();
 	}

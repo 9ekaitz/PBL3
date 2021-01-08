@@ -9,11 +9,11 @@ import javax.swing.JOptionPane;
 public class ViewController implements ActionListener{
 	
 	MainViewFrame view;
-	ViewModel model;
+	UsersModel model;
 	
 	public ViewController(MainViewFrame view) {
 		this.view = view;
-		model = new ViewModel();
+		model = new UsersModel();
 	}
 
 	@Override
