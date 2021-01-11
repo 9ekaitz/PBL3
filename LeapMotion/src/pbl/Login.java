@@ -33,24 +33,24 @@ public class Login extends JPanel{
 		gbc_logo.gridy = 0;
 		this.add(logo, gbc_logo);
 		
-		JLabel lblUser = new JLabel("User: ");
-		lblUser.setFont(new Font("Tahoma", Font.BOLD, 13));
-		GridBagConstraints gbc_lblUser = new GridBagConstraints();
-		gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUser.anchor = GridBagConstraints.EAST;
-		gbc_lblUser.gridx = 0;
-		gbc_lblUser.gridy = 1;
-		this.add(lblUser, gbc_lblUser);
+		createUserInput();	
+		createPasswordInput();
 		
-		usernameField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 1;
-		this.add(usernameField, gbc_textField);
-		usernameField.setColumns(10);
-		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setActionCommand("loginAttempt");
+		btnLogin.addActionListener(controller);
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnLogin.setForeground(Color.WHITE);
+		btnLogin.setBackground(new Color(36, 123, 160));
+		GridBagConstraints gbc_btnLogin = new GridBagConstraints();
+		gbc_btnLogin.insets = new Insets(20, 0, 0, 0);
+		gbc_btnLogin.gridwidth = 2;
+		gbc_btnLogin.gridx = 0;
+		gbc_btnLogin.gridy = 3;
+		this.add(btnLogin, gbc_btnLogin);
+	}
+
+	private void createPasswordInput() {
 		JLabel lblPassword = new JLabel("Password: ");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
@@ -69,18 +69,27 @@ public class Login extends JPanel{
 		this.add(passwordField, gbc_textField_1);
 		passwordField.setColumns(10);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.setActionCommand("loginAttempt");
-		btnLogin.addActionListener(controller);
-		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnLogin.setForeground(Color.WHITE);
-		btnLogin.setBackground(new Color(36, 123, 160));
-		GridBagConstraints gbc_btnLogin = new GridBagConstraints();
-		gbc_btnLogin.insets = new Insets(20, 0, 0, 0);
-		gbc_btnLogin.gridwidth = 2;
-		gbc_btnLogin.gridx = 0;
-		gbc_btnLogin.gridy = 3;
-		this.add(btnLogin, gbc_btnLogin);
+	}
+
+	private void createUserInput() {
+		JLabel lblUser = new JLabel("User: ");
+		lblUser.setFont(new Font("Tahoma", Font.BOLD, 13));
+		GridBagConstraints gbc_lblUser = new GridBagConstraints();
+		gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUser.anchor = GridBagConstraints.EAST;
+		gbc_lblUser.gridx = 0;
+		gbc_lblUser.gridy = 1;
+		this.add(lblUser, gbc_lblUser);
+		
+		usernameField = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 1;
+		this.add(usernameField, gbc_textField);
+		usernameField.setColumns(10);
+		
 	}
 
 	public String getPasswordField() {
