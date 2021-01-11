@@ -20,7 +20,7 @@ public class UsersModel {
 	
 	public UsersModel() {
 		users = new ArrayList<>();
-//		loadUsersFromFile();
+		loadUsersFromFile();
 	}
 	
 	public void addUser(User user) {
@@ -37,7 +37,6 @@ public class UsersModel {
 				user = new User(line);
 				if (user != null){
 					users.add(user);
-					System.out.println(user);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -53,8 +52,8 @@ public class UsersModel {
 		
 			try (BufferedWriter out = new BufferedWriter(new FileWriter(FILE_NAME))) {
 				for (User user : users) {
-					userHash = user.getUserName().hashCode();
-					passwordHash = user.getUserPassword().hashCode();
+					userHash = user.getUserNameHash();
+					passwordHash = user.getUserPasswordHash();
 					out.write(userHash+"$"+passwordHash+"$"+user.isAdmin()+"\n");
 				}
 			} catch (FileNotFoundException e) {
@@ -65,9 +64,9 @@ public class UsersModel {
 			
 	}
 	
-	public boolean authorizedUser(String userHash, String passwordHash) {
+	public boolean authorizedUser(int userHash, int passwordHash) {
 		for (User user : users) {
-			if (user.getUserName().equals(userHash) && user.getUserPassword().equals(passwordHash)) {
+			if ((user.getUserNameHash() == userHash) && (user.getUserPasswordHash() == passwordHash)) {
 				return true;
 			}
 		}

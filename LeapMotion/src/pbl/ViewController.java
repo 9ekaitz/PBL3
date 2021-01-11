@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class ViewController implements ActionListener{
+public class ViewController implements ActionListener, ListSelectionListener{
 	
 	MainViewFrame view;
 	UsersModel model;
@@ -33,16 +35,28 @@ public class ViewController implements ActionListener{
 		case "goBackFromMaterialView":
 			view.setActualPanel(new AppMenu(this));
 			break;
+		case "createProduct":
+			/**
+			 * TODO: Coger los materiales seleccionados y meterle al contructor en forma de Lista
+			 */
+			view.setActualPanel(new ProcessView(this));
+			break;
 		default:
 			break;
 		}	
 	}
 
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void loginAttempt() {
 		Login panel = view.getActualPanel();
 		
-		String username = panel.getUsernameField();
-		String password = panel.getPasswordField();
+		int username = panel.getUsernameField().hashCode();
+		int password = panel.getPasswordField().hashCode();
 		
 		if (model.authorizedUser(username, password)) {
 			view.setActualPanel(new AppMenu(this));

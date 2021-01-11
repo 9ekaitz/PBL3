@@ -2,27 +2,27 @@ package pbl;
 
 public class User {
 
-	String userName, userPassword;
+	int userName, userPassword;
 	boolean admin;
 	
 	public User(String user) {
 		String[] args = user.split("[$]");
-		this.userName = args[0];
-		this.userPassword = args[1];
+		this.userName = Integer.parseInt(args[0]);
+		this.userPassword = Integer.parseInt(args[1]);
 		this.admin = Boolean.parseBoolean(args[2]);
 	}
 	
-	public User(String user, String password, boolean admin) {
+	public User(int user, int password, boolean admin) {
 		this.userName = user;
 		this.userPassword = password;
 		this.admin = admin;
 	}
 	
-	public String getUserName() {
+	public int getUserNameHash() {
 		return userName;
 	}
-
-	public String getUserPassword() {
+	
+	public int getUserPasswordHash() {
 		return userPassword;
 	}
 

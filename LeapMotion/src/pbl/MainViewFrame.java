@@ -98,25 +98,5 @@ public class MainViewFrame extends JFrame{
 
 	public static void main(String[] args) {
         MainViewFrame p = new MainViewFrame();
-        
-        UsersModel model = new UsersModel();
-        int usernameString = "user".hashCode() * 243583606;
-        int passwordString = "qwerty".hashCode() * 243583606;
-        model.addUser(new User(String.valueOf(usernameString), String.valueOf(passwordString), true));
-        
-        usernameString = "admin".hashCode() * 243583606;
-        passwordString = "admin".hashCode() * 243583606;
-        model.addUser(new User(String.valueOf(usernameString), String.valueOf(passwordString), true));
-        
-        usernameString = "gorka".hashCode() * 243583606;
-        passwordString = "12345".hashCode() * 243583606;
-        model.addUser(new User(String.valueOf(usernameString), String.valueOf(passwordString), true));
-        
-        
-        model.saveUsersOnFile();
-        
-        System.out.println("Leyendo del fichero encryptado");
-        
-        model.loadUsersFromFile();
     }
 }
