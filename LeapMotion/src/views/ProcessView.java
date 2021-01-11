@@ -1,4 +1,4 @@
-package pbl;
+package views;
 
 import java.awt.Dimension;
 
@@ -8,6 +8,11 @@ import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
+
+import models.MaterialList;
+import pbl.ListRenderer;
+import pbl.ViewController;
+
 import javax.swing.JList;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;

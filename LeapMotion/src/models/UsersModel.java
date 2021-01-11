@@ -1,4 +1,4 @@
-package pbl;
+package models;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+
+import pbl.User;
 
 public class UsersModel {
 

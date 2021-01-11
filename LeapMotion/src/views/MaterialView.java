@@ -1,4 +1,4 @@
-package pbl;
+package views;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,6 +16,11 @@ import javax.swing.ListSelectionModel;
 
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
+
+import models.MaterialList;
+import pbl.ListRenderer;
+import pbl.ViewController;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;

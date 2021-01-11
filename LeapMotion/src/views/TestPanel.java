@@ -1,4 +1,4 @@
-package pbl;
+package views;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -20,6 +20,9 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.SwingConstants;
+
+import pbl.ViewController;
+
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.BorderLayout;

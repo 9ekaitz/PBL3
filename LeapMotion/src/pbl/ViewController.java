@@ -8,6 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import models.UsersModel;
+import views.AppMenu;
+import views.Login;
+import views.MaterialView;
+import views.ProcessView;
+import views.TestPanel;
+
 public class ViewController implements ActionListener, ListSelectionListener{
 	
 	MainViewFrame view;

@@ -12,6 +12,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import views.Login;
+
 public class MainViewFrame extends JFrame{
 
 	JPanel actualPanel;

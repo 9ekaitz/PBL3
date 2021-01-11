@@ -1,4 +1,4 @@
-package pbl;
+package views;
 
 import java.awt.Color;
 
@@ -6,6 +6,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import pbl.ViewController;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;

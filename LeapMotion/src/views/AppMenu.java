@@ -1,4 +1,4 @@
-package pbl;
+package views;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -19,6 +19,8 @@ import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
+
+import pbl.ViewController;
 
 public class AppMenu extends JPanel{
 

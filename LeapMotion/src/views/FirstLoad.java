@@ -1,4 +1,4 @@
-package pbl;
+package views;
 
 import java.awt.Color;
 import java.awt.Component;
