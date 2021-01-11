@@ -11,11 +11,11 @@ import javax.swing.event.ListSelectionListener;
 public class ViewController implements ActionListener, ListSelectionListener{
 	
 	MainViewFrame view;
-	UsersModel model;
+	UsersModel usersmodel;
 	
 	public ViewController(MainViewFrame view) {
 		this.view = view;
-		model = new UsersModel();
+		usersmodel = new UsersModel();
 	}
 
 	@Override
@@ -34,6 +34,9 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			break;
 		case "goBackFromMaterialView":
 			view.setActualPanel(new AppMenu(this));
+			break;
+		case "goBackFromProcessView":
+			view.setActualPanel(new MaterialView(this));
 			break;
 		case "createProduct":
 			/**
@@ -58,7 +61,7 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		int username = panel.getUsernameField().hashCode();
 		int password = panel.getPasswordField().hashCode();
 		
-		if (model.authorizedUser(username, password)) {
+		if (usersmodel.authorizedUser(username, password)) {
 			view.setActualPanel(new AppMenu(this));
 		} else {
 			JOptionPane.showMessageDialog(view, "Username or password is incorrect,\n please try again", "Authentication failed", JOptionPane.ERROR_MESSAGE, new ImageIcon("icons/error.png"));

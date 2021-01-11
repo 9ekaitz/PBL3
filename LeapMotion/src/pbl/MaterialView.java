@@ -26,7 +26,7 @@ public class MaterialView extends JPanel{
 	MaterialList materialListModel;
 	ListRenderer renderer;
 	Color darkBlue;
-	private JTextField textField;
+	JTextField textField;
 	
 	public MaterialView(ViewController controller) {
 		initializeVariables();

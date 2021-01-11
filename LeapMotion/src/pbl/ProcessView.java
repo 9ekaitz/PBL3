@@ -10,17 +10,27 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
 import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 
 public class ProcessView extends JPanel{
 
 	ViewController controller;
+	MaterialList materialListModel;
+	ListRenderer renderer;
 	
-	public ProcessView(ViewController controller) {
+	public ProcessView(ViewController controller) {	
+		initializeVariables();
+		createPanel(controller);			
+	}
+
+	private void createPanel(ViewController controller) {
 		setBorder(new EmptyBorder(30, 30, 30, 30));
 		this.controller = controller;
 		setPreferredSize(new Dimension(1024, 600));
@@ -94,13 +104,14 @@ public class ProcessView extends JPanel{
 		gbc_lblTimeCount.gridy = 3;
 		add(lblTimeCount, gbc_lblTimeCount);
 		
-		JList<String> list = new JList<>();
-		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.insets = new Insets(0, 0, 20, 5);
-		gbc_list.fill = GridBagConstraints.BOTH;
-		gbc_list.gridx = 1;
-		gbc_list.gridy = 4;
-		add(list, gbc_list);
+		JScrollPane listPanel = new JScrollPane(createProcessList());
+		
+		GridBagConstraints gbc_listPanel = new GridBagConstraints();
+		gbc_listPanel.insets = new Insets(0, 0, 20, 5);
+		gbc_listPanel.fill = GridBagConstraints.BOTH;
+		gbc_listPanel.gridx = 1;
+		gbc_listPanel.gridy = 4;
+		add(listPanel, gbc_listPanel);
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(3, 1, 0, 20));
@@ -141,8 +152,11 @@ public class ProcessView extends JPanel{
 		add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JProgressBar progressBar = new JProgressBar();
+		progressBar.setValue(45);
+		progressBar.setStringPainted(true);
 		progressBar.setForeground(new Color(36, 123, 160));
-		progressBar.setIndeterminate(true);
+		progressBar.setIndeterminate(false);
+		
 		GridBagConstraints gbc_progressBar = new GridBagConstraints();
 		gbc_progressBar.gridwidth = 2;
 		gbc_progressBar.fill = GridBagConstraints.HORIZONTAL;
@@ -154,10 +168,28 @@ public class ProcessView extends JPanel{
 		JButton btnBack = new JButton("Back");
 		btnBack.setBackground(new Color(36, 123, 160));
 		btnBack.setForeground(Color.WHITE);
+		btnBack.setActionCommand("goBackFromProcessView");
+		btnBack.addActionListener(controller);
+		
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.gridx = 3;
 		gbc_btnBack.gridy = 5;
 		add(btnBack, gbc_btnBack);
 		
+	}
+
+	private void initializeVariables() {
+		materialListModel = new MaterialList();
+		renderer = new ListRenderer();
+		
+	}
+
+	private Component createProcessList() {
+		JList<String> processList = new JList<>();
+		processList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		processList.addListSelectionListener(controller);
+		processList.setModel(materialListModel);
+		processList.setCellRenderer(renderer);
+		return processList;
 	}
 }
