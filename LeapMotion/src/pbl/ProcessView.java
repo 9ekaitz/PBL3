@@ -103,6 +103,7 @@ public class ProcessView extends JPanel{
 		add(list, gbc_list);
 		
 		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridLayout(3, 1, 0, 20));
 		GridBagConstraints gbc_buttonPanel = new GridBagConstraints();
 		gbc_buttonPanel.gridwidth = 2;
 		gbc_buttonPanel.fill = GridBagConstraints.BOTH;
@@ -112,38 +113,24 @@ public class ProcessView extends JPanel{
 		gbc_buttonPanel.gridy = 4;
 		add(buttonPanel, gbc_buttonPanel);
 		
-		GridBagLayout gbl_buttonPanel = new GridBagLayout();
-		gbl_buttonPanel.columnWeights = new double[]{1.0, 0.0};
-		gbl_buttonPanel.rowWeights = new double[]{0.0, 0.0};
-		buttonPanel.setLayout(gbl_buttonPanel);
 		
 		JButton btnStart = new JButton("Start");
-		GridBagConstraints gbc_btnStart = new GridBagConstraints();
-		gbc_btnStart.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnStart.anchor = GridBagConstraints.NORTH;
-		gbc_btnStart.insets = new Insets(0, 0, 5, 5);
-		gbc_btnStart.gridx = 0;
-		gbc_btnStart.gridy = 0;
-		buttonPanel.add(btnStart, gbc_btnStart);
+		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnStart.setForeground(Color.WHITE);
+		btnStart.setBackground(new Color(36, 123, 160));
+		buttonPanel.add(btnStart);
+		
+		JButton btnNextProcess = new JButton("Newt Step");
+		btnNextProcess.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNextProcess.setForeground(Color.WHITE);
+		btnNextProcess.setBackground(new Color(36, 123, 160));
+		buttonPanel.add(btnNextProcess);
 		
 		JButton btnCancel = new JButton("Cancel");
-		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
-		gbc_btnCancel.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnCancel.anchor = GridBagConstraints.NORTH;
-		gbc_btnCancel.insets = new Insets(0, 0, 5, 0);
-		gbc_btnCancel.gridx = 1;
-		gbc_btnCancel.gridy = 0;
-		buttonPanel.add(btnCancel, gbc_btnCancel);
-		
-		JButton btnNextProcess = new JButton("Next process");
-		GridBagConstraints gbc_btnNextProcess = new GridBagConstraints();
-		gbc_btnNextProcess.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNextProcess.anchor = GridBagConstraints.NORTH;
-		gbc_btnNextProcess.gridwidth = 2;
-		gbc_btnNextProcess.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNextProcess.gridx = 0;
-		gbc_btnNextProcess.gridy = 1;
-		buttonPanel.add(btnNextProcess, gbc_btnNextProcess);
+		btnCancel.setBackground(new Color(36, 123, 160));
+		btnCancel.setForeground(Color.WHITE);
+		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buttonPanel.add(btnCancel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Progress: ");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
