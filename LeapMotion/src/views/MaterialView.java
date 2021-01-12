@@ -33,13 +33,13 @@ public class MaterialView extends JPanel{
 	Color darkBlue;
 	JTextField textField;
 	
-	public MaterialView(ViewController controller) {
-		initializeVariables();
+	public MaterialView(ViewController controller, MaterialList list) {
+		initializeVariables(list);
 		createPanel(controller);		
 	}
 
-	private void initializeVariables() {
-		materialListModel = new MaterialList();
+	private void initializeVariables(MaterialList list) {
+		materialListModel = list;
 		renderer = new ListRenderer();
 	}
 	

@@ -20,6 +20,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
+import chart.ChartView;
 import pbl.ViewController;
 
 public class AppMenu extends JPanel{
@@ -41,8 +42,7 @@ public class AppMenu extends JPanel{
 	private JScrollPane createGraph() {
 		JScrollPane scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		JLabel graph = new JLabel(new ImageIcon("tmp/graph.png"));
-		scrollPane.setViewportView(graph);
+		scrollPane.setViewportView(new ChartView());
 		
 		return scrollPane;
 	}

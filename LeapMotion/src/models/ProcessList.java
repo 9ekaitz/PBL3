@@ -8,6 +8,7 @@ import javax.swing.AbstractListModel;
 public class ProcessList extends AbstractListModel<String>{
 
 	List<String> processList;
+	int processIndex = 0;
 	
 	public ProcessList() {
 		processList = new ArrayList<>();
@@ -18,13 +19,17 @@ public class ProcessList extends AbstractListModel<String>{
 		addMaterial("Óxido nitroso");
 		addMaterial("Bromuro de potasio");
 		addMaterial("Agua");
-		addMaterial("Óxido nitroso");
 		
 	}
 
 	public void addMaterial(String materialName) {
 		processList.add(materialName);
 		this.fireContentsChanged(processList, 0, processList.size());
+	}
+	
+	public List<String> getList() {
+		
+		return processList;
 	}
 	
 	@Override

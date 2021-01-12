@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import models.MaterialList;
+import models.ProcessList;
 import models.UsersModel;
 import views.AppMenu;
 import views.Login;
@@ -19,10 +21,14 @@ public class ViewController implements ActionListener, ListSelectionListener{
 	
 	MainViewFrame view;
 	UsersModel usersmodel;
+	MaterialList materialListModel;
+	ProcessList processListModel;
 	
 	public ViewController(MainViewFrame view) {
 		this.view = view;
 		usersmodel = new UsersModel();
+		materialListModel = new MaterialList();
+		processListModel = new ProcessList();
 	}
 
 	@Override
@@ -35,21 +41,21 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			break;
 		case "manualManipulation":
 			view.setActualPanel(new TestPanel(this));
-		break;
+			break;
 		case "seeMaterial":
-			view.setActualPanel(new MaterialView(this));
+			view.setActualPanel(new MaterialView(this, materialListModel));
 			break;
 		case "goBackFromMaterialView":
 			view.setActualPanel(new AppMenu(this));
 			break;
 		case "goBackFromProcessView":
-			view.setActualPanel(new MaterialView(this));
+			view.setActualPanel(new MaterialView(this, materialListModel));
 			break;
 		case "createProduct":
 			/**
 			 * TODO: Coger los materiales seleccionados y meterle al contructor en forma de Lista
 			 */
-			view.setActualPanel(new ProcessView(this));
+			view.setActualPanel(new ProcessView(this, processListModel));
 			break;
 		default:
 			break;
@@ -58,7 +64,13 @@ public class ViewController implements ActionListener, ListSelectionListener{
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getValueIsAdjusting()) return;
+			if (e.getSource() instanceof MaterialList){
+ 				MaterialList lista = (MaterialList) e.getSource();
+ 				System.out.println("MaterialList");
+			} else if (e.getSource() instanceof ProcessList) {
+				System.out.println("ProcessList");
+			}
 		
 	}
 

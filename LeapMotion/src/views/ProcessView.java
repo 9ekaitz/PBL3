@@ -10,6 +10,7 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
 import models.MaterialList;
+import models.ProcessList;
 import pbl.ListRenderer;
 import pbl.ViewController;
 
@@ -27,11 +28,11 @@ import javax.swing.ImageIcon;
 public class ProcessView extends JPanel{
 
 	ViewController controller;
-	MaterialList materialListModel;
+	ProcessList processListModel;
 	ListRenderer renderer;
 	
-	public ProcessView(ViewController controller) {	
-		initializeVariables();
+	public ProcessView(ViewController controller, ProcessList list) {	
+		initializeVariables(list);
 		createPanel(controller);			
 	}
 
@@ -183,8 +184,8 @@ public class ProcessView extends JPanel{
 		
 	}
 
-	private void initializeVariables() {
-		materialListModel = new MaterialList();
+	private void initializeVariables(ProcessList list) {
+		processListModel = list;
 		renderer = new ListRenderer();
 		
 	}
@@ -193,7 +194,7 @@ public class ProcessView extends JPanel{
 		JList<String> processList = new JList<>();
 		processList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		processList.addListSelectionListener(controller);
-		processList.setModel(materialListModel);
+		processList.setModel(processListModel);
 		processList.setCellRenderer(renderer);
 		return processList;
 	}

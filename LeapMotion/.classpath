@@ -16,7 +16,7 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="LeapMotion/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="jfreechart-1.0.19-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gorka/Documents/Repostiorios/PBL-3/PBL3/LeapMotion/lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gorka/Documents/Repostiorios/PBL-3/PBL3/LeapMotion/lib/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
