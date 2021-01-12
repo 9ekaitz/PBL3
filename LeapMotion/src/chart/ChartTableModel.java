@@ -27,17 +27,17 @@ public class ChartTableModel extends AbstractTableModel implements TableModel {
     public String getColumnName(int i)    {   
         switch(i) {   
         case 0: 
-            return "Series:";   
+            return "Data:";   
 		case 1:  
-            return "Hour:";   
+            return "Day:";   
         case 2:  
             return "Products:";   
         case 3:
-            return "Hour (prev)";   
+            return "Day (prev)";   
         case 4:   
             return "Products (prev):";   
         case 5:  
-            return "Hour (next):";   
+            return "Day (next):";   
         case 6:   
             return "Products (next):";   
         }   

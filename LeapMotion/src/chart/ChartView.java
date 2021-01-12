@@ -24,7 +24,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.Range;
-import org.jfree.data.time.Minute;
+import org.jfree.data.time.Day;
 import org.jfree.data.time.RegularTimePeriod;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -42,8 +42,8 @@ public class ChartView extends JPanel implements ChangeListener, ChartProgressLi
     JFreeChart chart;   
     JSlider slider;   
 
-    private JFreeChart createChart()  {   
-        XYDataset xydataset = createDataset("Production", 100D, new Minute(), 200);   
+    private JFreeChart createChart()  {
+        XYDataset xydataset = createDataset("Production", 100D, new Day(), 200);   
         JFreeChart jfreechart = ChartFactory.createTimeSeriesChart("Production", "Time of Day", "Products", xydataset, true, true, false);   
         jfreechart.setBackgroundPaint(Color.white);   
         XYPlot xyplot = jfreechart.getXYPlot();   
@@ -103,7 +103,7 @@ public class ChartView extends JPanel implements ChangeListener, ChartProgressLi
                 model.setValueAt(comparable, 0, 0);   
                 long l = (long)d;   
                 model.setValueAt(new Long(l), 0, 1);   
-                int i = series.getIndex(new Minute(new Date(l)));   
+                int i = series.getIndex(new Day(new Date(l)));   
                 if(i >= 0)   
                 {   
                     TimeSeriesDataItem timeseriesdataitem = series.getDataItem(Math.min(199, Math.max(0, i)));   
@@ -138,6 +138,7 @@ public class ChartView extends JPanel implements ChangeListener, ChartProgressLi
         javax.swing.border.CompoundBorder compoundborder = BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4), BorderFactory.createEtchedBorder());   
         chartPanel.setBorder(compoundborder);   
         add(chartPanel);   
+        
         JPanel jpanel = new JPanel(new BorderLayout());   
         jpanel.setPreferredSize(new Dimension(400, 60));   
         jpanel.setBorder(BorderFactory.createEmptyBorder(0, 4, 4, 4));   
@@ -148,9 +149,10 @@ public class ChartView extends JPanel implements ChangeListener, ChartProgressLi
         model.setValueAt(new Double("0.00"), 0, 3);   
         model.setValueAt(new Double("0.00"), 0, 4);   
         model.setValueAt(new Double("0.00"), 0, 5);   
-        model.setValueAt(new Double("0.00"), 0, 6);   
+        model.setValueAt(new Double("0.00"), 0, 6);  
+        
         JTable jtable = new JTable(model);   
-        DateCellRenderer datecellrenderer = new DateCellRenderer(new SimpleDateFormat("HH:mm"));   
+        DateCellRenderer datecellrenderer = new DateCellRenderer(new SimpleDateFormat("yyyy MMM dd"));   
         NumberCellRenderer numbercellrenderer = new NumberCellRenderer();   
         jtable.getColumnModel().getColumn(1).setCellRenderer(datecellrenderer);   
         jtable.getColumnModel().getColumn(2).setCellRenderer(numbercellrenderer);   
@@ -159,7 +161,7 @@ public class ChartView extends JPanel implements ChangeListener, ChartProgressLi
         jtable.getColumnModel().getColumn(5).setCellRenderer(datecellrenderer);   
         jtable.getColumnModel().getColumn(6).setCellRenderer(numbercellrenderer);   
         jpanel.add(new JScrollPane(jtable));   
-        slider = new JSlider(0, 100, 50);   
+        slider = new JSlider(0, 100, 10);   
         slider.addChangeListener(this);   
         jpanel.add(slider, "South");   
         add(jpanel, "South");   
