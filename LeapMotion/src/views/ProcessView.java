@@ -30,9 +30,11 @@ public class ProcessView extends JPanel{
 	ViewController controller;
 	ProcessList processListModel;
 	ListRenderer renderer;
+	String productName;
+	int materialQuantity;
 	
-	public ProcessView(ViewController controller, ProcessList list) {	
-		initializeVariables(list);
+	public ProcessView(ViewController controller, ProcessList list, String productName, int materialQuantity) {	
+		initializeVariables(list, productName, materialQuantity);
 		createPanel(controller);			
 	}
 
@@ -65,7 +67,7 @@ public class ProcessView extends JPanel{
 		gbc_lblNewLabel.gridy = 1;
 		add(lblNewLabel, gbc_lblNewLabel);
 		
-		JLabel lblProductName = new JLabel("Anestesia local");
+		JLabel lblProductName = new JLabel(productName);
 		lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblProductName = new GridBagConstraints();
 		gbc_lblProductName.anchor = GridBagConstraints.SOUTHWEST;
@@ -184,8 +186,10 @@ public class ProcessView extends JPanel{
 		
 	}
 
-	private void initializeVariables(ProcessList list) {
-		processListModel = list;
+	private void initializeVariables(ProcessList list, String productName, int materialQuantity) {
+		this.processListModel = list;
+		this.productName = productName;
+		this.materialQuantity = materialQuantity;
 		renderer = new ListRenderer();
 		
 	}

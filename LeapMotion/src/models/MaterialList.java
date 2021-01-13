@@ -1,60 +1,73 @@
 package models;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractListModel;
 
+import pbl.User;
+
 public class MaterialList extends AbstractListModel<String>{
 
-	List<String> materialsList;
+	List<String> materialList;
+	final static String FILE_NAME = "files/materials.txt";
 	
 	public MaterialList() {
-		materialsList = new ArrayList<>();
-		pruebas();
+		materialList = new ArrayList<>();
+		loadUsersFromFile();
 	}
 	
-	private void pruebas() {
-		addMaterial("Óxido nitroso");
-		addMaterial("Bromuro de potasio");
-		addMaterial("Agua");
-		addMaterial("Óxido nitroso");
-		addMaterial("Bromuro de potasio");
-		addMaterial("Agua");
-		addMaterial("Óxido nitroso");
-		addMaterial("Bromuro de potasio");
-		addMaterial("Agua");
-		addMaterial("Óxido nitroso");
-		addMaterial("Bromuro de potasio");
-		addMaterial("Agua");
-		addMaterial("Óxido nitroso");
-		addMaterial("Bromuro de potasio");
-		addMaterial("Agua");
-		addMaterial("Óxido nitroso");
-		addMaterial("Bromuro de potasio");
-		addMaterial("Agua");
-		addMaterial("Óxido nitroso");
-		addMaterial("Bromuro de potasio");
-		addMaterial("Agua");
-		addMaterial("Óxido nitroso");
-		addMaterial("Bromuro de potasio");
-		addMaterial("Agua");
+	public void loadUsersFromFile() {
+		String line = null;
+		User user = null;
 		
+		
+		try (BufferedReader in = new BufferedReader(new FileReader(FILE_NAME))) {
+			while((line = in.readLine())!=null){
+				if (!line.isEmpty()){
+					materialList.add(line);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
+	public void saveOnFile() {
+			try (BufferedWriter out = new BufferedWriter(new FileWriter(FILE_NAME))) {
+				for (String material : materialList) {
+					out.write(material+"\n");
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+			
+	}
+	
 	public void addMaterial(String materialName) {
-		materialsList.add(materialName);
-		this.fireContentsChanged(materialsList, 0, materialsList.size());
+		materialList.add(materialName);
+		this.fireContentsChanged(materialList, 0, materialList.size());
+		saveOnFile();
 	}
 	
 	@Override
 	public int getSize() {
-		return materialsList.size();
+		return materialList.size();
 	}
 
 	@Override
 	public String getElementAt(int index) {
-		return materialsList.get(index);
+		return materialList.get(index);
 	}
 
 	

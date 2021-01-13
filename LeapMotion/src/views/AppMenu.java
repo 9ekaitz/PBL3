@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.ListSelectionModel;
+
 import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
@@ -21,16 +23,18 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
 import chart.ChartView;
+import models.MaterialList;
 import pbl.ViewController;
 import javax.swing.JList;
 
 public class AppMenu extends JPanel{
 
 	ViewController controller;
+	MaterialList materialList;
 	Color darkBlue;
 	
-	public AppMenu(ViewController controller) {
-		this.controller = controller;
+	public AppMenu(ViewController controller, MaterialList materialList) {
+		initializeVariables(controller, materialList);
 		setPreferredSize(new Dimension(1024, 600));
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -38,6 +42,11 @@ public class AppMenu extends JPanel{
 		splitPane.setDividerLocation(300);
 		add(splitPane);
 		
+	}
+
+	private void initializeVariables(ViewController controller, MaterialList materialList) {
+		this.controller = controller;
+		this.materialList = materialList;
 	}
 
 	private JScrollPane createGraph() {
@@ -126,8 +135,10 @@ public class AppMenu extends JPanel{
 		gbc_scrollPane.gridy = 4;
 		menuPanel.add(scrollPane, gbc_scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
+		JList<String> materialJList = new JList<>();
+		materialJList.setModel(materialList);
+//		materialJList.setSelectionMode();
+		scrollPane.setViewportView(materialJList);
 
 		JLabel lblLast50products = new JLabel("Last 50 products");
 		GridBagConstraints gbc_lblLast50products = new GridBagConstraints();
@@ -138,8 +149,8 @@ public class AppMenu extends JPanel{
 		menuPanel.add(lblLast50products, gbc_lblLast50products);
 
 		JButton btnCreateProduct = new JButton("Create Product");
-		btnCreateAccount.setActionCommand("createProduct");
-		btnCreateAccount.addActionListener(controller);
+		btnCreateProduct.setActionCommand("startcreateProduct");
+		btnCreateProduct.addActionListener(controller);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
