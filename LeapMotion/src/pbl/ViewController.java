@@ -2,6 +2,7 @@ package pbl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -39,8 +40,26 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		case "loginAttempt":
 			loginAttempt();
 			break;
-		case "manualManipulation":
-			view.setActualPanel(new TestPanel(this));
+		case "createAccount":
+			/**
+			 * TODO: Create account dialog
+			 */
+			break;
+		case "logout":
+			view.setActualPanel(new Login(this));
+			break;
+		case "addMaterial":
+			/**
+			 * TODO: Material add dialog
+			 */
+			break;
+		case "removeMaterial":
+			/**
+			 * TODO: Selected material remove from list
+			 */
+			break;
+		case "shutdown":
+			shutdownMachine();	
 			break;
 		case "seeMaterial":
 			view.setActualPanel(new MaterialView(this, materialListModel));
@@ -87,4 +106,15 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		}
 		
 	}
+	
+	private void shutdownMachine() {
+		Runtime runtime = Runtime.getRuntime();
+		try {
+			Process proc = runtime.exec("shutdown -s");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.exit(0);	
+	}
+
 }
