@@ -101,9 +101,11 @@ public class ViewController implements ActionListener, ListSelectionListener{
 
 	private void createAccount() {
 		CreateAccountDialog dialog = new CreateAccountDialog(view, "Create user", true);
-		User user = dialog.getUser();
-		usersmodel.addUser(user);
-		usersmodel.saveUsersOnFile();
+		if (dialog.userIsCreated()) {
+			User user = dialog.getUser();
+			usersmodel.addUser(user);
+			usersmodel.saveUsersOnFile();
+		}	
 	}
 
 	@Override

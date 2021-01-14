@@ -39,9 +39,12 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 	int userHash;
 	int passHash;
 	
+	boolean userIsCreated;
+	
 	public CreateAccountDialog(JFrame frame, String title, boolean mode) {
 		super(frame, title, mode);
 		this.frame = frame;
+		this.userIsCreated = false;
 		this.setSize(400,320);
 		this.setLocation(352,150); ///////// TODO: PONER EN EL CENTRO DEL JPANEL
 		this.setContentPane(createDialogPanel());
@@ -172,14 +175,17 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 		String passw2 = String.valueOf(repeatPasswordField.getPassword());
 
 		if (passw1.equals(passw2)) {
-			System.out.println("Equals");
 			saveUserCredentials();
+			userIsCreated = true;
 			JOptionPane.showMessageDialog(frame, "The user \""+user+"\" was successfully added!", "Success", JOptionPane.INFORMATION_MESSAGE);
 			this.dispose();
 		} else {
 			JOptionPane.showMessageDialog(frame, "The passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
+	public boolean userIsCreated() {
+		return userIsCreated;
+	}
 	
 }
