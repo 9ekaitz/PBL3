@@ -167,12 +167,14 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 	}
 
 	private void checkPasswordsEquals() {	
+		String user = usernameField.getText();
 		String passw1 = String.valueOf(passwordField.getPassword());
 		String passw2 = String.valueOf(repeatPasswordField.getPassword());
 
 		if (passw1.equals(passw2)) {
 			System.out.println("Equals");
 			saveUserCredentials();
+			JOptionPane.showMessageDialog(frame, "The user \""+user+"\" was successfully added!", "Success", JOptionPane.INFORMATION_MESSAGE);
 			this.dispose();
 		} else {
 			JOptionPane.showMessageDialog(frame, "The passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);

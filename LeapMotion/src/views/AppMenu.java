@@ -137,7 +137,6 @@ public class AppMenu extends JPanel{
 		
 		JList<String> materialJList = new JList<>();
 		materialJList.setModel(materialList);
-//		materialJList.setSelectionMode();
 		scrollPane.setViewportView(materialJList);
 
 		JLabel lblLast50products = new JLabel("Last 50 products");

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import dialogs.AddMaterialDialog;
 import dialogs.CreateAccountDialog;
 import models.MaterialList;
 import models.ProcessList;
@@ -49,9 +50,7 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			view.setActualPanel(new Login(this));
 			break;
 		case "addMaterial":
-			/**
-			 * TODO: Material add dialog
-			 */
+			addMaterial();
 			break;
 		case "removeMaterial":
 			/**
@@ -66,7 +65,6 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			break;
 		case "createProduct":
 			createProductWithMaterials();
-			
 			break;
 		case "goBackFromMaterialView":
 			view.setActualPanel(new AppMenu(this, materialListModel));
@@ -77,6 +75,14 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		default:
 			break;
 		}	
+	}
+
+	private void addMaterial() {
+		AddMaterialDialog dialog = new AddMaterialDialog(view, "Add material", true);
+		String material = dialog.getMaterial();
+		if (material != null) {
+			materialListModel.addMaterial(material);
+		}
 	}
 
 	private void createProductWithMaterials() {
@@ -127,13 +133,18 @@ public class ViewController implements ActionListener, ListSelectionListener{
 	}
 	
 	private void shutdownMachine() {
-		Runtime runtime = Runtime.getRuntime();
-		try {
-			Process proc = runtime.exec("shutdown -s -t 1");
-		} catch (IOException e) {
-			e.printStackTrace();
+		int option = JOptionPane.showConfirmDialog(view, "Are you sure you want to shutdown the machine?");
+		
+		if (option == JOptionPane.YES_OPTION) {
+			Runtime runtime = Runtime.getRuntime();
+			try {
+				Process proc = runtime.exec("shutdown -s -t 0");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			System.exit(0);	
 		}
-		System.exit(0);	
+		
 	}
 
 }
