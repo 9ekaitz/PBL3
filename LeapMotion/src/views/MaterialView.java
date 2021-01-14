@@ -117,4 +117,8 @@ public class MaterialView extends JPanel{
 		return materialList;
 	}
 	
+	public String getProductName() {
+		return textField.getText();
+	}
+	
 }

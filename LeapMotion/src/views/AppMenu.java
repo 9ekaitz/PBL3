@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.ListSelectionModel;
+
 import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
@@ -21,22 +23,30 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
 import chart.ChartView;
+import models.MaterialList;
 import pbl.ViewController;
+import javax.swing.JList;
 
 public class AppMenu extends JPanel{
 
 	ViewController controller;
+	MaterialList materialList;
 	Color darkBlue;
 	
-	public AppMenu(ViewController controller) {
-		this.controller = controller;
+	public AppMenu(ViewController controller, MaterialList materialList) {
+		initializeVariables(controller, materialList);
 		setPreferredSize(new Dimension(1024, 600));
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, createButtons(), createGraph());
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, createMenu(), createGraph());
 		splitPane.setDividerLocation(300);
 		add(splitPane);
 		
+	}
+
+	private void initializeVariables(ViewController controller, MaterialList materialList) {
+		this.controller = controller;
+		this.materialList = materialList;
 	}
 
 	private JScrollPane createGraph() {
@@ -47,68 +57,136 @@ public class AppMenu extends JPanel{
 		return scrollPane;
 	}
 
-	private JPanel createButtons() {
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBorder(new EmptyBorder(30, 20, 30, 20));
-		
+	private JPanel createMenu() {
+		JPanel menuPanel = new JPanel();
+		menuPanel.setBorder(new EmptyBorder(30, 20, 30, 20));
 		GridBagLayout gbl_buttonPanel = new GridBagLayout();
-		gbl_buttonPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_buttonPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_buttonPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_buttonPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		buttonPanel.setLayout(gbl_buttonPanel);
-		
-		JButton btnNewButton = new JButton("Add material");
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBackground(new Color(36, 123, 160));
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 0;
-		buttonPanel.add(btnNewButton, gbc_btnNewButton);
-	
-		JButton btnNewButton_2 = new JButton("Delete material");
-		btnNewButton_2.setForeground(Color.WHITE);
-		btnNewButton_2.setBackground(new Color(36, 123, 160));
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_2.gridx = 1;
-		gbc_btnNewButton_2.gridy = 0;
-		buttonPanel.add(btnNewButton_2, gbc_btnNewButton_2);
-	
-		JButton btnSeeMaterial= new JButton("See material");
-		btnSeeMaterial.setActionCommand("seeMaterial");
-		btnSeeMaterial.addActionListener(controller);
-		btnSeeMaterial.setForeground(Color.WHITE);
-		btnSeeMaterial.setBackground(new Color(36, 123, 160));
-		GridBagConstraints gbc_btnSeeMaterial = new GridBagConstraints();
-		gbc_btnSeeMaterial.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSeeMaterial.gridx = 0;
-		gbc_btnSeeMaterial.gridy = 1;
-		buttonPanel.add(btnSeeMaterial, gbc_btnSeeMaterial);
+		gbl_buttonPanel.columnWidths = new int[]{0, 134};
+		gbl_buttonPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0};
+		gbl_buttonPanel.columnWeights = new double[]{1.0, 0.0};
+		menuPanel.setLayout(gbl_buttonPanel);
 
-		JButton btnManual = new JButton("Manual manipulation");
-		btnManual.setIcon(new ImageIcon("icons/warning.png"));
-		btnManual.setForeground(Color.white);
-		btnManual.setBackground(new Color(36, 123, 160));
-		btnManual.setActionCommand("manualManipulation");
-		btnManual.addActionListener(controller);
-		GridBagConstraints gbc_btnManual = new GridBagConstraints();
-		gbc_btnManual.fill = GridBagConstraints.BOTH;
-		gbc_btnManual.gridwidth = 2;
-		gbc_btnManual.insets = new Insets(30, 0, 0, 0);
-		gbc_btnManual.gridx = 0;
-		gbc_btnManual.gridy = 3;
-		buttonPanel.add(btnManual, gbc_btnManual);
-		
-		JButton btnCreateUser = new JButton("Create User");
-		GridBagConstraints gbc_btnCreateUser = new GridBagConstraints();
-		gbc_btnCreateUser.insets = new Insets(20, 0, 5, 5);
-		gbc_btnCreateUser.gridx = 0;
-		gbc_btnCreateUser.gridy = 2;
-		buttonPanel.add(btnCreateUser, gbc_btnCreateUser);
-		
+		JLabel lbAccount = new JLabel("Account");
+		GridBagConstraints gbc_lbAccount = new GridBagConstraints();
+		gbc_lbAccount.gridwidth = 2;
+		gbc_lbAccount.insets = new Insets(0, 0, 5, 0);
+		gbc_lbAccount.gridx = 0;
+		gbc_lbAccount.gridy = 0;
+		menuPanel.add(lbAccount, gbc_lbAccount);
 
-		return buttonPanel;
+		JButton btnCreateAccount = new JButton("Create Account");
+		btnCreateAccount.setActionCommand("createAccount");
+		btnCreateAccount.addActionListener(controller);
+		
+		GridBagConstraints gbc_btnCreateAccount = new GridBagConstraints();
+		gbc_btnCreateAccount.fill = GridBagConstraints.BOTH;
+		gbc_btnCreateAccount.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCreateAccount.gridx = 0;
+		gbc_btnCreateAccount.gridy = 1;
+		menuPanel.add(btnCreateAccount, gbc_btnCreateAccount);
+
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setActionCommand("logout");
+		btnLogout.addActionListener(controller);
+		
+		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
+		gbc_btnLogout.fill = GridBagConstraints.BOTH;
+		gbc_btnLogout.insets = new Insets(0, 0, 5, 0);
+		gbc_btnLogout.gridx = 1;
+		gbc_btnLogout.gridy = 1;
+		menuPanel.add(btnLogout, gbc_btnLogout);
+
+		JLabel lblMaterials = new JLabel("Materials");
+		GridBagConstraints gbc_lblMaterials = new GridBagConstraints();
+		gbc_lblMaterials.gridwidth = 2;
+		gbc_lblMaterials.insets = new Insets(0, 0, 5, 0);
+		gbc_lblMaterials.gridx = 0;
+		gbc_lblMaterials.gridy = 2;
+		menuPanel.add(lblMaterials, gbc_lblMaterials);
+
+		JButton btnAddMaterial = new JButton("Add Material");
+		btnAddMaterial.setActionCommand("addMaterial");
+		btnAddMaterial.addActionListener(controller);
+
+		GridBagConstraints gbc_btnAddMaterial = new GridBagConstraints();
+		gbc_btnAddMaterial.fill = GridBagConstraints.BOTH;
+		gbc_btnAddMaterial.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAddMaterial.gridx = 0;
+		gbc_btnAddMaterial.gridy = 3;
+		menuPanel.add(btnAddMaterial, gbc_btnAddMaterial);
+
+		JButton btnRemoveMaterial = new JButton("Remove Material");
+		btnRemoveMaterial.setActionCommand("removeMaterial");
+		btnRemoveMaterial.addActionListener(controller);
+		
+		GridBagConstraints gbc_btnRemoveMaterial = new GridBagConstraints();
+		gbc_btnRemoveMaterial.fill = GridBagConstraints.BOTH;
+		gbc_btnRemoveMaterial.insets = new Insets(0, 0, 5, 0);
+		gbc_btnRemoveMaterial.gridx = 1;
+		gbc_btnRemoveMaterial.gridy = 3;
+		menuPanel.add(btnRemoveMaterial, gbc_btnRemoveMaterial);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 4;
+		menuPanel.add(scrollPane, gbc_scrollPane);
+		
+		JList<String> materialJList = new JList<>();
+		materialJList.setModel(materialList);
+//		materialJList.setSelectionMode();
+		scrollPane.setViewportView(materialJList);
+
+		JLabel lblLast50products = new JLabel("Last 50 products");
+		GridBagConstraints gbc_lblLast50products = new GridBagConstraints();
+		gbc_lblLast50products.gridwidth = 2;
+		gbc_lblLast50products.insets = new Insets(0, 0, 5, 0);
+		gbc_lblLast50products.gridx = 0;
+		gbc_lblLast50products.gridy = 5;
+		menuPanel.add(lblLast50products, gbc_lblLast50products);
+
+		JButton btnCreateProduct = new JButton("Create Product");
+		btnCreateProduct.setActionCommand("startcreateProduct");
+		btnCreateProduct.addActionListener(controller);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
+		gbc_scrollPane_1.gridwidth = 2;
+		gbc_scrollPane_1.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane_1.gridx = 0;
+		gbc_scrollPane_1.gridy = 6;
+		menuPanel.add(scrollPane_1, gbc_scrollPane_1);
+		
+		JList list_1 = new JList();
+		scrollPane_1.setViewportView(list_1);
+		
+		GridBagConstraints gbc_btnCreateProduct = new GridBagConstraints();
+		gbc_btnCreateProduct.insets = new Insets(0, 0, 5, 0);
+		gbc_btnCreateProduct.fill = GridBagConstraints.BOTH;
+		gbc_btnCreateProduct.gridheight = 2;
+		gbc_btnCreateProduct.gridwidth = 2;
+		gbc_btnCreateProduct.gridx = 0;
+		gbc_btnCreateProduct.gridy = 7;
+		menuPanel.add(btnCreateProduct, gbc_btnCreateProduct);
+
+		JButton btnShutdown = new JButton();
+		btnShutdown.setActionCommand("shutdown");
+		btnShutdown.addActionListener(controller);
+		btnShutdown.setOpaque(false);
+		btnShutdown.setContentAreaFilled(false);
+		btnShutdown.setBorderPainted(false);
+		btnShutdown.setIcon(new ImageIcon("icons/shutdown.png"));
+		
+		GridBagConstraints gbc_btnShutdown = new GridBagConstraints();
+		gbc_btnShutdown.anchor = GridBagConstraints.EAST;
+		gbc_btnShutdown.gridx = 1;
+		gbc_btnShutdown.gridy = 9;
+		menuPanel.add(btnShutdown, gbc_btnShutdown);
+		
+		return menuPanel;
 	}
 }

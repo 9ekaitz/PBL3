@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import views.Login;
+import views.MaterialView;
 
 public class MainViewFrame extends JFrame{
 
@@ -72,6 +73,10 @@ public class MainViewFrame extends JFrame{
 	
 	public Login getActualPanel() {
 		return (Login) actualPanel;
+	}
+	
+	public MaterialView getActualPanelMaterial() {
+		return (MaterialView) actualPanel;
 	}
 	
 	private class MenuActions extends AbstractAction{
