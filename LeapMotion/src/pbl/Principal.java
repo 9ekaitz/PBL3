@@ -19,7 +19,7 @@ public class Principal {
 		while(commports.hasMoreElements())
 		{
 			 myCPI= (CommPortIdentifier) commports.nextElement();
-			if(myCPI.getName().equals("COM4")) break;
+			if(myCPI.getName().equals("COM14")) break;
 			
 			
 		}
