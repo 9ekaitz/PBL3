@@ -35,7 +35,7 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		super(frame, title, mode);
 		this.frame = frame;
 		this.setContentPane(createDialogPanel());
-		this.setPreferredSize(new Dimension(200, 50));
+//		this.setPreferredSize(new Dimension(200, 50));
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
@@ -101,7 +101,7 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 	public void testFieldInput() {	
 		String material = materialField.getText();
 		
-		if (material.isBlank()) {
+		if (material.trim().isEmpty()) {
 			JOptionPane.showMessageDialog(frame, "You should enter a valid name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			JOptionPane.showConfirmDialog(frame, "The material \""+material+"\" was successfully added!", "Success", JOptionPane.OK_OPTION);
