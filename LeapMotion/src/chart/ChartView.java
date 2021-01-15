@@ -161,8 +161,9 @@ public class ChartView extends JPanel implements ChangeListener, ChartProgressLi
         jtable.getColumnModel().getColumn(5).setCellRenderer(datecellrenderer);   
         jtable.getColumnModel().getColumn(6).setCellRenderer(numbercellrenderer);   
         jpanel.add(new JScrollPane(jtable));   
+        
         slider = new JSlider(0, 100, 10);   
-        slider.addChangeListener(this);   
+        slider.addChangeListener(this); 
         jpanel.add(slider, "South");   
         add(jpanel, "South");   
     }   

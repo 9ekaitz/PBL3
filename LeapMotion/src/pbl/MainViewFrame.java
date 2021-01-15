@@ -75,6 +75,10 @@ public class MainViewFrame extends JFrame{
 		return (Login) actualPanel;
 	}
 	
+	public Object getActualObject() {
+		return actualPanel;
+	}
+	
 	public MaterialView getActualPanelMaterial() {
 		return (MaterialView) actualPanel;
 	}

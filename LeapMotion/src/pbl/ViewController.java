@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -27,6 +28,8 @@ public class ViewController implements ActionListener, ListSelectionListener{
 	UsersModel usersmodel;
 	MaterialList materialListModel;
 	ProcessList processListModel;
+	
+	JList<String> materialJList;
 	
 	public ViewController(MainViewFrame view) {
 		this.view = view;
@@ -62,6 +65,7 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			break;
 		case "startcreateProduct":
 			view.setActualPanel(new MaterialView(this, materialListModel));
+			initializeMaterialJlist();
 			break;
 		case "createProduct":
 			createProductWithMaterials();
@@ -71,16 +75,23 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			break;
 		case "goBackFromProcessView":
 			view.setActualPanel(new MaterialView(this, materialListModel));
+			initializeMaterialJlist();
 			break;
 		default:
 			break;
 		}	
 	}
 
+	private void initializeMaterialJlist() {
+		MaterialView materialView = (MaterialView) view.getActualObject();
+		materialJList = materialView.getJlist();
+		
+	}
+
 	private void addMaterial() {
 		AddMaterialDialog dialog = new AddMaterialDialog(view, "Add material", true);
-		String material = dialog.getMaterial();
-		if (material != null) {
+		if (dialog.materialIsCreated()) {
+			String material = dialog.getMaterial();
 			materialListModel.addMaterial(material);
 		}
 	}
@@ -94,9 +105,7 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			JOptionPane.showMessageDialog(view, "You must enter a product name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			view.setActualPanel(new ProcessView(this, processListModel, productName, materialQuantity));
-		}
-		
-		
+		}		
 	}
 
 	private void createAccount() {
@@ -113,6 +122,8 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		if (e.getValueIsAdjusting()) return;
 			if (e.getSource() instanceof MaterialList){
  				MaterialList lista = (MaterialList) e.getSource();
+ 				
+ 				
  				System.out.println("MaterialList");
 			} else if (e.getSource() instanceof ProcessList) {
 				System.out.println("ProcessList");

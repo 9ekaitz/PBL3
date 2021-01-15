@@ -1,5 +1,6 @@
 package dialogs;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 
@@ -27,15 +28,16 @@ import java.awt.Font;
 public class AddMaterialDialog extends JDialog implements ActionListener{
 
 	JTextField materialField;
-	private JTextField textField;
 	
 	JFrame frame;
+	boolean materialCreated;
 	
 	public AddMaterialDialog(JFrame frame, String title, boolean mode) {
 		super(frame, title, mode);
+		materialCreated = false;
 		this.frame = frame;
+		this.setSize(new Dimension(300, 125));
 		this.setContentPane(createDialogPanel());
-//		this.setPreferredSize(new Dimension(200, 50));
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
@@ -46,14 +48,6 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		GridBagLayout gbl_panel = new GridBagLayout();
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.gridwidth = 2;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 40);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("Material name: ");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
@@ -62,17 +56,19 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		gbc_lblNewLabel_1.gridy = 1;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		textField = new JTextField();
+		materialField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.anchor = GridBagConstraints.WEST;
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 1;
-		panel.add(textField, gbc_textField);
-		textField.setColumns(20);
+		panel.add(materialField, gbc_textField);
+		materialField.setColumns(10);
 		
-		JButton btnAddMaterial = new JButton("Add Material");
-		btnAddMaterial.setActionCommand("crate");
+		JButton btnAddMaterial = new JButton("Add");
+		btnAddMaterial.setForeground(Color.WHITE);
+		btnAddMaterial.setBackground(new Color(36, 123, 160));
+		btnAddMaterial.setActionCommand("create");
 		btnAddMaterial.addActionListener(this);
 		
 		GridBagConstraints gbc_btnAddMaterial = new GridBagConstraints();
@@ -81,15 +77,17 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		gbc_btnAddMaterial.gridy = 2;
 		panel.add(btnAddMaterial, gbc_btnAddMaterial);
 		
-		JButton btnNewButton_1 = new JButton("Cancel");
-		btnNewButton_1.setActionCommand("cancel");
-		btnNewButton_1.addActionListener(this);
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setForeground(Color.WHITE);
+		btnCancel.setBackground(new Color(36, 123, 160));
+		btnCancel.setActionCommand("cancel");
+		btnCancel.addActionListener(this);
 		
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.anchor = GridBagConstraints.WEST;
 		gbc_btnNewButton_1.gridx = 1;
 		gbc_btnNewButton_1.gridy = 2;
-		panel.add(btnNewButton_1, gbc_btnNewButton_1);
+		panel.add(btnCancel, gbc_btnNewButton_1);
 	
 		return panel;
 	}
@@ -98,13 +96,18 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		return materialField.getText();
 	}
 	
+	public boolean materialIsCreated() {
+		return materialCreated;
+	}
+	
 	public void testFieldInput() {	
-		String material = materialField.getText();
+		String material = getMaterial();
 		
 		if (material.trim().isEmpty()) {
 			JOptionPane.showMessageDialog(frame, "You should enter a valid name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			JOptionPane.showConfirmDialog(frame, "The material \""+material+"\" was successfully added!", "Success", JOptionPane.OK_OPTION);
+			materialCreated = true;
 			this.dispose();
 		}
 	}

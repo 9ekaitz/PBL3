@@ -32,6 +32,7 @@ public class MaterialView extends JPanel{
 	ListRenderer renderer;
 	Color darkBlue;
 	JTextField textField;
+	JList<String> materialList;
 	
 	public MaterialView(ViewController controller, MaterialList list) {
 		initializeVariables(list);
@@ -109,7 +110,7 @@ public class MaterialView extends JPanel{
 	}
 
 	private JList<String> createMaterialList() {
-		JList<String> materialList = new JList<>();
+		materialList = new JList<>();
 		materialList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		materialList.addListSelectionListener(controller);
 		materialList.setModel(materialListModel);
@@ -119,6 +120,10 @@ public class MaterialView extends JPanel{
 	
 	public String getProductName() {
 		return textField.getText();
+	}
+	
+	public JList<String> getJlist() {
+		return materialList;
 	}
 	
 }
