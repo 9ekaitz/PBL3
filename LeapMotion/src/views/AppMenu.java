@@ -75,6 +75,8 @@ public class AppMenu extends JPanel{
 		menuPanel.add(lbAccount, gbc_lbAccount);
 
 		JButton btnCreateAccount = new JButton("Create Account");
+		btnCreateAccount.setForeground(Color.WHITE);
+		btnCreateAccount.setBackground(new Color(36, 123, 160));
 		btnCreateAccount.setActionCommand("createAccount");
 		btnCreateAccount.addActionListener(controller);
 		
@@ -86,6 +88,8 @@ public class AppMenu extends JPanel{
 		menuPanel.add(btnCreateAccount, gbc_btnCreateAccount);
 
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.setForeground(Color.WHITE);
+		btnLogout.setBackground(new Color(36, 123, 160));
 		btnLogout.setActionCommand("logout");
 		btnLogout.addActionListener(controller);
 		
@@ -105,6 +109,8 @@ public class AppMenu extends JPanel{
 		menuPanel.add(lblMaterials, gbc_lblMaterials);
 
 		JButton btnAddMaterial = new JButton("Add Material");
+		btnAddMaterial.setForeground(Color.WHITE);
+		btnAddMaterial.setBackground(new Color(36, 123, 160));
 		btnAddMaterial.setActionCommand("addMaterial");
 		btnAddMaterial.addActionListener(controller);
 
@@ -116,6 +122,8 @@ public class AppMenu extends JPanel{
 		menuPanel.add(btnAddMaterial, gbc_btnAddMaterial);
 
 		JButton btnRemoveMaterial = new JButton("Remove Material");
+		btnRemoveMaterial.setForeground(Color.WHITE);
+		btnRemoveMaterial.setBackground(new Color(36, 123, 160));
 		btnRemoveMaterial.setActionCommand("removeMaterial");
 		btnRemoveMaterial.addActionListener(controller);
 		
@@ -146,10 +154,6 @@ public class AppMenu extends JPanel{
 		gbc_lblLast50products.gridx = 0;
 		gbc_lblLast50products.gridy = 5;
 		menuPanel.add(lblLast50products, gbc_lblLast50products);
-
-		JButton btnCreateProduct = new JButton("Create Product");
-		btnCreateProduct.setActionCommand("startcreateProduct");
-		btnCreateProduct.addActionListener(controller);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
@@ -160,8 +164,14 @@ public class AppMenu extends JPanel{
 		gbc_scrollPane_1.gridy = 6;
 		menuPanel.add(scrollPane_1, gbc_scrollPane_1);
 		
-		JList list_1 = new JList();
+		JList list_1 = new JList<>();
 		scrollPane_1.setViewportView(list_1);
+		
+		JButton btnCreateProduct = new JButton("Create Product");
+		btnCreateProduct.setBackground(new Color(36, 123, 160));
+		btnCreateProduct.setForeground(Color.WHITE);
+		btnCreateProduct.setActionCommand("startcreateProduct");
+		btnCreateProduct.addActionListener(controller);
 		
 		GridBagConstraints gbc_btnCreateProduct = new GridBagConstraints();
 		gbc_btnCreateProduct.insets = new Insets(0, 0, 5, 0);
