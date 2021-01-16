@@ -1,51 +1,56 @@
 package pbl;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.Enumeration;
 import java.util.Scanner;
 
-import gnu.io.CommPort;
-import gnu.io.CommPortIdentifier;
-import gnu.io.PortInUseException;
-import gnu.io.SerialPort;
+import com.fazecast.jSerialComm.*;
+
 public class Principal {
 
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		Enumeration commports = CommPortIdentifier.getPortIdentifiers();
-		CommPortIdentifier myCPI= null;
-		Scanner myScanner;
-		PrintStream myPrintStream;
+	public static void main(String[] args) {
 		
-		while(commports.hasMoreElements())
-		{
-			 myCPI= (CommPortIdentifier) commports.nextElement();
-			if(myCPI.getName().equals("COM4")) break;
-			
-			
-		}
-			
-		CommPort puerto= myCPI.open("Puerto Serie", 2000);
-		SerialPort mySerialPort = (SerialPort) puerto;
+		int i = 0;	//Counter
+		int indexOfPort;
+		Scanner index = new Scanner(System.in);
+		SerialPort ports[] = SerialPort.getCommPorts();
 		
-	mySerialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+		/*	Portu guztiak zerrendatu */
 		
-		myScanner = new Scanner(mySerialPort.getInputStream());//flujo de entrada
-		myPrintStream = new PrintStream( mySerialPort.getOutputStream());//flujo de salida
-			
-		
-		while (myScanner.hasNextInt()) {//espera a que tenga un int en el puerto
-			myScanner.close();
-			myScanner=null;
-			myScanner= new Scanner(mySerialPort.getInputStream());
+		System.out.println("Ports: ");
+		for (SerialPort port : ports) {
+			System.out.println(i+": "+port.getSystemPortName());
+			i++;
 		}
 		
-		int valor = myScanner.nextInt();
+		System.out.print("Choose the port: ");
+		indexOfPort = index.nextInt();
 		
-	//	myPrintStream.print("cosas para mandar");//ESTO MANDA LAS COSAS
+		SerialPort choosedPort = ports[indexOfPort];
+		
+		if (choosedPort.openPort()) {
+			System.out.println("Succesfully opened the port!");
+		} else {
+			System.out.println("Unable to opne the port :(");
+			return;
+		}
+	
+			
+		BufferedInputStream input = new BufferedInputStream(choosedPort.getInputStream());
+		PrintStream output = new PrintStream(choosedPort.getOutputStream());
+		
+		try {
+			output.write(45);
+			System.out.println(input.read());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		
-		 System.out.println(valor);//
 	}
-
 }
