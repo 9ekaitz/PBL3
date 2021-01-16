@@ -29,7 +29,7 @@ public class MainViewFrame extends JFrame{
 		this.initializeVariables();
 		this.setJMenuBar(createMenuBar());
 		this.setContentPane(actualPanel);
-//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		this.setUndecorated(true);
 		this.setVisible(true);
 	}
