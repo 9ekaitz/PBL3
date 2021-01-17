@@ -113,7 +113,6 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		if (dialog.userIsCreated()) {
 			User user = dialog.getUser();
 			usersmodel.addUser(user);
-			usersmodel.saveUsersOnFile();
 		}	
 	}
 

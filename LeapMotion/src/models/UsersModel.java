@@ -17,26 +17,25 @@ import pbl.User;
 
 public class UsersModel {
 
+	private final static String PATH = "files/users.txt";
 	List<User> users;
-	final static String FILE_NAME = "files/users.txt";
 	
 	public UsersModel() {
 		users = new ArrayList<>();
-		loadUsersFromFile();
+		loadFromFile();
 	}
 	
 	public void addUser(User user) {
 		users.add(user);
+		saveToFile();
 	}
 	
-	public void loadUsersFromFile() {
-		String line = null;
-		User user = null;
+	private void loadFromFile() {	
+		String line;
 		
-		
-		try (BufferedReader in = new BufferedReader(new FileReader(FILE_NAME))) {
+		try (BufferedReader in = new BufferedReader(new FileReader(PATH))) {
 			while((line = in.readLine())!=null){
-				user = new User(line);
+				User user = new User(line);
 				if (user != null){
 					users.add(user);
 				}
@@ -48,11 +47,11 @@ public class UsersModel {
 		}
 	}
 	
-	public void saveUsersOnFile() {
+	private void saveToFile() {
 		int userHash;
 		int passwordHash;
 		
-			try (BufferedWriter out = new BufferedWriter(new FileWriter(FILE_NAME))) {
+			try (BufferedWriter out = new BufferedWriter(new FileWriter(PATH))) {
 				for (User user : users) {
 					userHash = user.getUserNameHash();
 					passwordHash = user.getUserPasswordHash();

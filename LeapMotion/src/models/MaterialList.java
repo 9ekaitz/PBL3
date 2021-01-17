@@ -15,20 +15,18 @@ import pbl.User;
 
 public class MaterialList extends AbstractListModel<String>{
 
+	private final static String PATH = "files/materials.txt";
 	List<String> materialList;
-	final static String FILE_NAME = "files/materials.txt";
 	
 	public MaterialList() {
 		materialList = new ArrayList<>();
-		loadUsersFromFile();
+		loadFromFile();
 	}
 	
-	public void loadUsersFromFile() {
-		String line = null;
-		User user = null;
+	private void loadFromFile() {
+		String line;
 		
-		
-		try (BufferedReader in = new BufferedReader(new FileReader(FILE_NAME))) {
+		try (BufferedReader in = new BufferedReader(new FileReader(PATH))) {
 			while((line = in.readLine())!=null){
 				if (!line.isEmpty()){
 					materialList.add(line);
@@ -41,8 +39,8 @@ public class MaterialList extends AbstractListModel<String>{
 		}
 	}
 	
-	public void saveOnFile() {
-			try (BufferedWriter out = new BufferedWriter(new FileWriter(FILE_NAME))) {
+	private void saveToFile() {
+			try (BufferedWriter out = new BufferedWriter(new FileWriter(PATH))) {
 				for (String material : materialList) {
 					out.write(material+"\n");
 				}
@@ -50,14 +48,13 @@ public class MaterialList extends AbstractListModel<String>{
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
-			
+			}		
 	}
 	
 	public void addMaterial(String materialName) {
 		materialList.add(materialName);
-		this.fireContentsChanged(materialList, 0, materialList.size());
-		saveOnFile();
+		fireContentsChanged(materialList, 0, materialList.size());
+		saveToFile();
 	}
 	
 	@Override
