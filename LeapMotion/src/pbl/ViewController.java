@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -16,17 +14,14 @@ import dialogs.CreateAccountDialog;
 import launcher.Launcher;
 import models.MaterialList;
 import models.ProcessList;
-import models.UsersModel;
+import models.UserHandler;
 import views.AppMenu;
-import views.Login;
 import views.MaterialView;
 import views.ProcessView;
-import views.TestPanel;
 
 public class ViewController implements ActionListener, ListSelectionListener{
 	
 	MainViewFrame view;
-	UsersModel usersmodel;
 	MaterialList materialListModel;
 	ProcessList processListModel;
 	
@@ -34,7 +29,6 @@ public class ViewController implements ActionListener, ListSelectionListener{
 	
 	public ViewController(MainViewFrame view) {
 		this.view = view;
-		usersmodel = new UsersModel();
 		materialListModel = new MaterialList();
 		processListModel = new ProcessList();
 	}
@@ -58,6 +52,8 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			/**
 			 * TODO: Selected material remove from list
 			 */
+			UserHandler.removeUserFromFile("test");	//Erabiltzaileak ezabatzeko funtzioa probatzeko, hemendik endu behar da,
+			//eta ezabatu nahi den erabiltzailearen izena pasatu behar zaio
 			break;
 		case "shutdown":
 			shutdownMachine();	
@@ -111,7 +107,8 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		CreateAccountDialog dialog = new CreateAccountDialog(view, "Create user", true);
 		if (dialog.userIsCreated()) {
 			User user = dialog.getUser();
-			usersmodel.addUser(user);
+			String[] data = {user.getUserName(), String.valueOf(user.getUserPasswordHash()), (user.isAdmin()?"T":"F")};
+			UserHandler.saveUserToFile(data);
 		}	
 	}
 

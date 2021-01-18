@@ -36,7 +36,7 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 	
 	User user;
 	boolean userIsAdmin;
-	int userHash;
+	String username;
 	int passHash;
 	
 	boolean userIsCreated;
@@ -145,11 +145,11 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 	}
 
 	public User getUser() {
-		return new User(userHash, passHash, userIsAdmin);
+		return new User(username, passHash, userIsAdmin);
 	}
 	
 	public void saveUserCredentials() { ///////////////////////////////////////// TODO: excepciones
-		userHash = usernameField.getText().hashCode();
+		username = usernameField.getText();
 		passHash = String.valueOf(passwordField.getPassword()).hashCode();
 		userIsAdmin = isAdminCheckBox.isSelected();
 	}

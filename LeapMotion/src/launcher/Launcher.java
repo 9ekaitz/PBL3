@@ -8,7 +8,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -19,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import pbl.MainViewFrame;
+import models.UserHandler;
 
 public class Launcher extends JFrame {
 
@@ -45,6 +44,9 @@ public class Launcher extends JFrame {
 		 * TODO: Errebisatu pantaila ezberdinetan daukan eragina erabili baino lehen
 		 */
 		if (width > 1920) width = 1920;
+		
+		/* UserHandler klaseak erbiltzaileen fitxategia aurki dezan path ezarri behar da */
+		UserHandler.setPath("files/users.txt");
 		
 		this.setContentPane(createMainContentPanel());
 		this.setSize(new Dimension((int) (width / 3), (int) (height / 2.5)));
@@ -97,6 +99,7 @@ public class Launcher extends JFrame {
 		header.add(button);
 		
 		/* Constraintak sortu */
+		
 		GridBagConstraints headerConst = new GridBagConstraints();
 		headerConst.insets = new Insets(0, 0, 0, 0);	//Marginik gabe, barruko elementuek dauzkate margin propioak
 		headerConst.gridwidth = 2;	//Panelaren luzera guztia hartzen du
@@ -107,6 +110,8 @@ public class Launcher extends JFrame {
 	}
 
 	private void createBanner(JPanel panel) {
+		/* Leihoko argazia */
+		
 		JLabel logo = new JLabel(new ImageIcon("img/Logo-vista.png"));
 		GridBagConstraints logoConst = new GridBagConstraints();
 		logoConst.gridwidth = 2;
