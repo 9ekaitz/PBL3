@@ -1,17 +1,10 @@
 package pbl;
 
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
-
 import com.leapmotion.leap.Controller;
-import com.leapmotion.leap.Finger;
 import com.leapmotion.leap.Frame;
 import com.leapmotion.leap.Hand;
-import com.leapmotion.leap.HandList;
 import com.leapmotion.leap.Listener;
 import com.leapmotion.leap.Pointable;
-import com.leapmotion.leap.PointableList;
 
 public class SampleListener extends Listener {
 

@@ -11,8 +11,6 @@ import java.util.List;
 
 import javax.swing.AbstractListModel;
 
-import pbl.User;
-
 public class MaterialList extends AbstractListModel<String>{
 
 	private final static String PATH = "files/materials.txt";

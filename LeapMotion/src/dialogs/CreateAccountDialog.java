@@ -1,16 +1,12 @@
 package dialogs;
 
 import java.awt.Container;
-import java.awt.Dimension;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import pbl.MainViewFrame;
-import pbl.User;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -34,7 +30,6 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 	
 	JFrame frame;
 	
-	User user;
 	boolean userIsAdmin;
 	String username;
 	int passHash;
@@ -144,8 +139,9 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 		return panel;
 	}
 
-	public User getUser() {
-		return new User(username, passHash, userIsAdmin);
+	public String[] getUserData() {
+		String[] data = {username, String.valueOf(passHash), (userIsAdmin?"T":"F")};
+		return data;
 	}
 	
 	public void saveUserCredentials() { ///////////////////////////////////////// TODO: excepciones

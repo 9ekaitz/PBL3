@@ -1,8 +1,6 @@
 package launcher;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 import models.UserHandler;
@@ -11,8 +9,6 @@ import pbl.Session;
 
 public class Authenticator {
 
-	private final static String PATH = "files/users.txt";
-	
 	public Session authenticate(String user, String password) {
 		
 		String line;

@@ -7,10 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import pbl.User;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -21,9 +18,6 @@ import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JCheckBox;
-import java.awt.Font;
 
 public class AddMaterialDialog extends JDialog implements ActionListener{
 
