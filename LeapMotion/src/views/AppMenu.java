@@ -39,7 +39,7 @@ public class AppMenu extends JPanel{
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, createMenu(), createGraph());
-		splitPane.setDividerLocation(300);
+		splitPane.setDividerLocation(350);
 		add(splitPane);
 		
 	}

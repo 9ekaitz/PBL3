@@ -12,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import dialogs.PortChooser;
 import launcher.Launcher;
 import models.MaterialList;
 import views.AppMenu;
@@ -22,7 +23,7 @@ public class MainViewFrame extends JFrame{
 	Session session;
 	JPanel actualPanel;
 	ViewController controller;
-	MenuActions logout, exit;
+	MenuActions logout, exit, settings;
 
 	public MainViewFrame(Session session) {
 		super("Leap Motion");
@@ -47,6 +48,7 @@ public class MainViewFrame extends JFrame{
     private void createActions() {	
 		logout = new MenuActions("Logout", new ImageIcon("icons/logout.png"), "Logout from the app");
 		exit = new MenuActions("Exit app", new ImageIcon("icons/exitapp.png"), "Exit the app");
+		settings = new MenuActions("Settings", new ImageIcon("icons/exitapp.png"), "Choose the serial port");
 	}
     
     private JMenuBar createMenuBar() {
@@ -59,7 +61,8 @@ public class MainViewFrame extends JFrame{
 	private JMenu createExitMenu() {
 		JMenu menu = new JMenu(session.getName());
 		menu.add(logout);
-		menu.add(exit);		
+		menu.add(exit);	
+		menu.add(settings);
 		return menu;
 	}
 
@@ -97,10 +100,13 @@ public class MainViewFrame extends JFrame{
 			case "Logout":
 				Launcher l = new Launcher();
 				MainViewFrame.this.dispose();	
-				return;
+				break;
 			case "Exit app":
 				System.exit(0);
-				return;
+				break;
+			case "Settings":
+				PortChooser p = new PortChooser(MainViewFrame.this, "Ports", true);
+				break;
 			default:
 				break;
 			}
