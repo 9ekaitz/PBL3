@@ -29,7 +29,9 @@ public abstract class UserHandler {
 	}
 	
 	public static void removeUserFromFile(String user) {
-		/* Emandako erabiltzialea izenarekin bilatzen du eta fitxategiatik kentzen du, probatu behar da */
+		/* Emandako erabiltzialea izenarekin bilatzen du eta fitxategiatik kentzen du
+		 * Ezabatu den edo ez adierazten duen mezu bat sortu beharko zen
+		 */
 		
 		try {
 			File srcFile = new File(PATH);	//Erabiltzaileen fitxategia
@@ -47,7 +49,7 @@ public abstract class UserHandler {
 			}
 			src.close();
 			dst.close();
-			srcFile.delete();	//
+			srcFile.delete();	//Fitxategi zaharra ezabatu
 			dstFile.renameTo(srcFile);	//Sortutako fitxategi berriari aurreko fitxategiaren izena jarri
 
 		} catch (IOException e) {
