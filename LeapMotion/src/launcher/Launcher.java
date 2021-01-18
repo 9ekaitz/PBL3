@@ -19,16 +19,21 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import pbl.MainViewFrame;
+
 public class Launcher extends JFrame {
 
+	Authenticator authenticator;
 	LauncherController launcherController;
 	JTextField username;
 	JPasswordField password;
+	JLabel errorMsg;
 	int width, height;
 
 	public Launcher() {
 		super("Login");
-		launcherController = new LauncherController(this);
+		authenticator = new Authenticator();
+		launcherController = new LauncherController(this, authenticator);
 		Toolkit toolKit = Toolkit.getDefaultToolkit();
 		width = (int) toolKit.getScreenSize().getWidth();
 		height = (int) toolKit.getScreenSize().getHeight();
@@ -60,6 +65,7 @@ public class Launcher extends JFrame {
 		createUserField(panel); // Erabiltzailea
 		createPasswordField(panel); // Pasahitza
 		createButton(panel); // Login botoia
+		createErrorMessage(panel);
 
 		return panel;
 	}
@@ -70,7 +76,9 @@ public class Launcher extends JFrame {
 		
 		JPanel header = new JPanel(new GridBagLayout());
 		
-		JButton button = new JButton(new ImageIcon("res/minimize.png"));
+		/* Panel horretan joango diren bi botoiak sortu */
+		
+		JButton button = new JButton(new ImageIcon("icons/minimize.png"));
 		button.setActionCommand("minimize");
 		button.addActionListener(launcherController);
 		button.setBackground(Color.WHITE);
@@ -79,7 +87,7 @@ public class Launcher extends JFrame {
 		button.setFocusPainted(false);
 		header.add(button);
 
-		button = new JButton(new ImageIcon("res/close.png"));
+		button = new JButton(new ImageIcon("icons/close.png"));
 		button.setActionCommand("close");
 		button.addActionListener(launcherController);
 		button.setBackground(Color.WHITE);
@@ -98,30 +106,8 @@ public class Launcher extends JFrame {
 		panel.add(header, headerConst); // Panelera nagusira gehitu
 	}
 
-	private void createButton(JPanel panel) {
-
-		/* Login botoia sortu, itzura eman eta kontroladorea gehitu */
-
-		JButton button = new JButton("Login");
-		button.setActionCommand("login");
-		button.addActionListener(launcherController);
-		button.setFont(new Font("Tahoma", Font.BOLD, 13));
-		button.setForeground(Color.WHITE);
-		button.setBackground(new Color(36, 123, 160));
-
-		/* Botoiarentzat constraint-ak sortu eta goi margina ezarri */
-
-		GridBagConstraints buttonConst = new GridBagConstraints();
-		buttonConst.insets = new Insets(20, 0, height/10, 0);
-		buttonConst.gridwidth = 2;
-		buttonConst.gridx = 0;
-		buttonConst.gridy = 4;
-
-		panel.add(button, buttonConst); // Panelera nagusira gehitu
-	}
-
 	private void createBanner(JPanel panel) {
-		JLabel logo = new JLabel(new ImageIcon("res/Logo-vista.png"));
+		JLabel logo = new JLabel(new ImageIcon("img/Logo-vista.png"));
 		GridBagConstraints logoConst = new GridBagConstraints();
 		logoConst.gridwidth = 2;
 		logoConst.insets = new Insets(0, 0, 20, 0);
@@ -137,20 +123,20 @@ public class Launcher extends JFrame {
 		
 		JLabel label = new JLabel("Password: ");
 		label.setFont(new Font("Tahoma", Font.BOLD, 13));
-		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
-		gbc_lblPassword.insets = new Insets(0, width/10, 5, 0);
-		gbc_lblPassword.anchor = GridBagConstraints.EAST;
-		gbc_lblPassword.gridx = 0;
-		gbc_lblPassword.gridy = 3;
-		panel.add(label, gbc_lblPassword);
+		GridBagConstraints labelConst = new GridBagConstraints();
+		labelConst.insets = new Insets(0, width/10, 5, 0);
+		labelConst.anchor = GridBagConstraints.EAST;
+		labelConst.gridx = 0;
+		labelConst.gridy = 3;
+		panel.add(label, labelConst);
 
 		password = new JPasswordField();
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.insets = new Insets(0, 0, 5, width/10);
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 3;
-		panel.add(password, gbc_textField_1);
+		GridBagConstraints passwordConst = new GridBagConstraints();
+		passwordConst.fill = GridBagConstraints.HORIZONTAL;
+		passwordConst.insets = new Insets(0, 0, 5, width/10);
+		passwordConst.gridx = 1;
+		passwordConst.gridy = 3;
+		panel.add(password, passwordConst);
 		
 		password.setColumns(10);
 
@@ -161,29 +147,86 @@ public class Launcher extends JFrame {
 		
 		JLabel label = new JLabel("User: ");
 		label.setFont(new Font("Tahoma", Font.BOLD, 13));
-		GridBagConstraints gbc_lblUser = new GridBagConstraints();
-		gbc_lblUser.insets = new Insets(0, width/10, 5, 0);
-		gbc_lblUser.anchor = GridBagConstraints.EAST;
-		gbc_lblUser.gridx = 0;
-		gbc_lblUser.gridy = 2;
-		panel.add(label, gbc_lblUser);
+		GridBagConstraints labelConst = new GridBagConstraints();
+		labelConst.insets = new Insets(0, width/10, 5, 0);
+		labelConst.anchor = GridBagConstraints.EAST;
+		labelConst.gridx = 0;
+		labelConst.gridy = 2;
+		panel.add(label, labelConst);
 
 		username = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.insets = new Insets(0, 0, 5, width/10);
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 2;
-		panel.add(username, gbc_textField);
+		GridBagConstraints usernameConst = new GridBagConstraints();
+		usernameConst.fill = GridBagConstraints.HORIZONTAL;
+		usernameConst.insets = new Insets(0, 0, 5, width/10);
+		usernameConst.gridx = 1;
+		usernameConst.gridy = 2;
+		panel.add(username, usernameConst);
 		username.setColumns(10);
-
 	}
 	
+	private void createButton(JPanel panel) {
+
+		/* Login botoia sortu, itzura eman eta kontroladorea gehitu */
+
+		JButton button = new JButton("Login");
+		button.setActionCommand("login");
+		button.addActionListener(launcherController);
+		button.setFont(new Font("Tahoma", Font.BOLD, 13));
+		button.setForeground(Color.WHITE);
+		button.setBackground(new Color(36, 123, 160));
+
+		/* Botoiarentzat constraint-ak sortu eta goi margina ezarri */
+
+		GridBagConstraints buttonConst = new GridBagConstraints();
+		buttonConst.insets = new Insets(20, 0, 10, 0);
+		buttonConst.gridwidth = 2;
+		buttonConst.gridx = 0;
+		buttonConst.gridy = 4;
+
+		panel.add(button, buttonConst); // Panelera nagusira gehitu
+	}
+	
+	private void createErrorMessage(JPanel panel) {
+		/* Label bat sortu bertan login oker bat gertau dela adierazteko, hasieran ez da ikusten */
+		
+		errorMsg = new JLabel("Wrong credentials, try again or contact the administrator");
+		errorMsg.setFont(new Font("Tahoma", Font.BOLD, 13));
+		errorMsg.setForeground(errorMsg.getBackground());	//Letrak atzeko kolorekoak jartzen dira ez ikusteko
+		
+		GridBagConstraints labelConst = new GridBagConstraints();
+		labelConst.insets = new Insets(10, 0, height/10, 0);
+		labelConst.gridwidth = 2;
+		labelConst.gridx = 0;
+		labelConst.gridy = 5;
+		
+		panel.add(errorMsg, labelConst);
+	}
+	
+	/* Leihoa txikitxeko */
 	public void minimize() {
 		this.setState(JFrame.ICONIFIED);
 	}
 	
+	/* Leihoa ixteko */
 	public void close() {
 		this.dispose();
 	}
+	
+	/* Login errorea erakusteko */
+	public void showErrorMsg() {
+		errorMsg.setForeground(Color.RED);	//Behin login oker bat eginda letrak gorriz jartzen dira ikusi daitezen
+	}
+
+	public String getUsername() {
+		return username.getText();
+	}
+
+	public String getPassword() {
+		String pass = new String(password.getPassword());
+		return pass;
+	}
+	
+	public static void main(String[] args) {
+		Launcher l = new Launcher();
+    }
 }

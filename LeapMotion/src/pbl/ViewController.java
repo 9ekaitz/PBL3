@@ -13,6 +13,7 @@ import javax.swing.event.ListSelectionListener;
 
 import dialogs.AddMaterialDialog;
 import dialogs.CreateAccountDialog;
+import launcher.Launcher;
 import models.MaterialList;
 import models.ProcessList;
 import models.UsersModel;
@@ -43,14 +44,12 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		String command = arg0.getActionCommand();
 		
 		switch (command) {
-		case "loginAttempt":
-			loginAttempt();
-			break;
 		case "createAccount":
 			createAccount();
 			break;
-		case "logout":
-			view.setActualPanel(new Login(this));
+		case "logout":	//Erabiltzailearen sesioa amaitzen da eta login leihoa irekitzen da
+			Launcher l = new Launcher();
+			view.close();
 			break;
 		case "addMaterial":
 			addMaterial();
@@ -130,20 +129,6 @@ public class ViewController implements ActionListener, ListSelectionListener{
 		
 	}
 
-	private void loginAttempt() {
-		Login panel = view.getActualPanel();
-		
-		int username = panel.getUsernameField().hashCode();
-		int password = panel.getPasswordField().hashCode();
-		
-		if (usersmodel.authorizedUser(username, password)) {
-			view.setActualPanel(new AppMenu(this, materialListModel));
-		} else {
-			JOptionPane.showMessageDialog(view, "Username or password is incorrect,\n please try again", "Authentication failed", JOptionPane.ERROR_MESSAGE, new ImageIcon("icons/error.png"));
-		}
-		
-	}
-	
 	private void shutdownMachine() {
 		int option = JOptionPane.showConfirmDialog(view, "Are you sure you want to shutdown the machine?");
 		

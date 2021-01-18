@@ -12,17 +12,22 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import launcher.Launcher;
+import models.MaterialList;
+import views.AppMenu;
 import views.Login;
 import views.MaterialView;
 
 public class MainViewFrame extends JFrame{
 
+	Session session;
 	JPanel actualPanel;
 	ViewController controller;
 	MenuActions logout, exit;
 
-	public MainViewFrame() {
+	public MainViewFrame(Session session) {
 		super("Leap Motion");
+		this.session = session;
 		this.setSize(1024,600);
 		this.setLocation(0, 0);
 		this.setIconImage(new ImageIcon("img/Logo-icon.png").getImage());
@@ -37,7 +42,7 @@ public class MainViewFrame extends JFrame{
 	private void initializeVariables() {
     	createActions();
     	controller = new ViewController(this);
-		actualPanel = new Login(controller);
+		actualPanel = new AppMenu(controller, new MaterialList());
 	}
     
     private void createActions() {	
@@ -53,7 +58,7 @@ public class MainViewFrame extends JFrame{
 	}
 
 	private JMenu createExitMenu() {
-		JMenu menu = new JMenu("Exit");
+		JMenu menu = new JMenu(session.getName());
 		menu.add(logout);
 		menu.add(exit);		
 		return menu;
@@ -95,7 +100,8 @@ public class MainViewFrame extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			switch (command) {
 			case "Logout":
-				setActualPanel(new Login(controller));
+				Launcher l = new Launcher();
+				MainViewFrame.this.dispose();	
 				return;
 			case "Exit app":
 				System.exit(0);
@@ -104,10 +110,9 @@ public class MainViewFrame extends JFrame{
 				break;
 			}
 		}		
-		
 	}
 
-	public static void main(String[] args) {
-        MainViewFrame p = new MainViewFrame();
-    }
+	public void close() {
+		this.dispose();
+	}
 }

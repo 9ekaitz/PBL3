@@ -22,7 +22,7 @@ public class UsersModel {
 	
 	public UsersModel() {
 		users = new ArrayList<>();
-		loadFromFile();
+//		loadFromFile();
 	}
 	
 	public void addUser(User user) {
