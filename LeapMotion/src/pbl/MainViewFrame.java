@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import launcher.Launcher;
 import models.MaterialList;
 import views.AppMenu;
-import views.Login;
 import views.MaterialView;
 
 public class MainViewFrame extends JFrame{
@@ -28,8 +27,8 @@ public class MainViewFrame extends JFrame{
 	public MainViewFrame(Session session) {
 		super("Leap Motion");
 		this.session = session;
-		this.setSize(1024,600);
-		this.setLocation(0, 0);
+		this.setSize(1024,600);	//Toolkit-en ordez aldatu behar da, edozein pantailatan funtzionatzeko
+		this.setLocationRelativeTo(null);	//Ordenagialuaren erdian agertzeko
 		this.setIconImage(new ImageIcon("img/Logo-icon.png").getImage());
 		this.initializeVariables();
 		this.setJMenuBar(createMenuBar());
@@ -74,10 +73,6 @@ public class MainViewFrame extends JFrame{
 		this.invalidate();
 		this.validate();
 		this.repaint();
-	}
-	
-	public Login getActualPanel() {
-		return (Login) actualPanel;
 	}
 	
 	public Object getActualObject() {
