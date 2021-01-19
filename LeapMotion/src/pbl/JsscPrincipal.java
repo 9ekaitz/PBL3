@@ -11,7 +11,6 @@ public class JsscPrincipal {
 	
 	public static void main(String[] args) {
 		
-		
 		final int BAUDRATE_9600 = 9600;
 		final int DATABITS_8 = 8;
 		final int STOPBITS_1 = 1;
