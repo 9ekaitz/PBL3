@@ -26,11 +26,11 @@ public class ListRenderer implements ListCellRenderer<String>{
 		panel.add(lblMaterialName, BorderLayout.CENTER);	
 		
 		if(isSelected) {
-			lblIsSelected = new JLabel(new ImageIcon("icons/valid.png"));
+			lblIsSelected = new JLabel(new ImageIcon("res/icons/valid.png"));
 			panel.add(lblIsSelected, BorderLayout.EAST);
 			panel.setBackground(new Color(197, 229, 242));
 		} else if(!isSelected) {
-			lblIsSelected = new JLabel(new ImageIcon("icons/error.png"));
+			lblIsSelected = new JLabel(new ImageIcon("res/icons/error.png"));
 			panel.add(lblIsSelected, BorderLayout.EAST);
 		}
 		return panel;

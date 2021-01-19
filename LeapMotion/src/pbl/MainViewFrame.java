@@ -17,6 +17,7 @@ import launcher.Launcher;
 import models.MaterialList;
 import views.AppMenu;
 import views.MaterialView;
+import views.Settings;
 
 public class MainViewFrame extends JFrame{
 
@@ -30,7 +31,7 @@ public class MainViewFrame extends JFrame{
 		this.session = session;
 		this.setSize(1024,600);	//Toolkit-en ordez aldatu behar da, edozein pantailatan funtzionatzeko
 		this.setLocationRelativeTo(null);	//Ordenagialuaren erdian agertzeko
-		this.setIconImage(new ImageIcon("img/Logo-icon.png").getImage());
+		this.setIconImage(new ImageIcon("res/img/Logo-icon.png").getImage());
 		this.initializeVariables();
 		this.setJMenuBar(createMenuBar());
 		this.setContentPane(actualPanel);
@@ -46,9 +47,9 @@ public class MainViewFrame extends JFrame{
 	}
     
     private void createActions() {	
-		logout = new MenuActions("Logout", new ImageIcon("icons/logout.png"), "Logout from the app");
-		exit = new MenuActions("Exit app", new ImageIcon("icons/exitapp.png"), "Exit the app");
-		settings = new MenuActions("Settings", new ImageIcon("icons/exitapp.png"), "Choose the serial port");
+		logout = new MenuActions("Logout", new ImageIcon("res/icons/logout.png"), "Logout from the app");
+		settings = new MenuActions("Settings", new ImageIcon("res/icons/settings.png"), "Choose the serial port");
+		exit = new MenuActions("Exit app", new ImageIcon("res/icons/exitapp.png"), "Exit the app");
 	}
     
     private JMenuBar createMenuBar() {
@@ -61,8 +62,8 @@ public class MainViewFrame extends JFrame{
 	private JMenu createExitMenu() {
 		JMenu menu = new JMenu(session.getName());
 		menu.add(logout);
-		menu.add(exit);	
 		menu.add(settings);
+		menu.add(exit);	
 		return menu;
 	}
 
@@ -86,6 +87,14 @@ public class MainViewFrame extends JFrame{
 		return (MaterialView) actualPanel;
 	}
 	
+	/* 
+	 * 
+	 * 
+	 * TODO: JPopupMenu 
+	 * 
+	 * 
+	 */
+	
 	private class MenuActions extends AbstractAction{
 		String command;
 		public MenuActions(String command, Icon img, String desc) {
@@ -105,7 +114,7 @@ public class MainViewFrame extends JFrame{
 				System.exit(0);
 				break;
 			case "Settings":
-				PortChooser p = new PortChooser(MainViewFrame.this, "Ports", true);
+				MainViewFrame.this.setActualPanel(new Settings());
 				break;
 			default:
 				break;

@@ -50,7 +50,7 @@ public class ProcessView extends JPanel{
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, 0.0};
 		setLayout(gridBagLayout);
 		
-		JLabel logo = new JLabel(new ImageIcon("img/Logo-vista.png"));
+		JLabel logo = new JLabel(new ImageIcon("res/img/Logo-vista.png"));
 		GridBagConstraints gbc_logo = new GridBagConstraints();
 		gbc_logo.anchor = GridBagConstraints.WEST;
 		gbc_logo.insets = new Insets(0, 0, 5, 5);

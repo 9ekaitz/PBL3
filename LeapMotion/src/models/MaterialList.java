@@ -13,7 +13,7 @@ import javax.swing.AbstractListModel;
 
 public class MaterialList extends AbstractListModel<String>{
 
-	private final static String PATH = "files/materials.txt";
+	private final static String PATH = "res/files/materials.txt";
 	List<String> materialList;
 	
 	public MaterialList() {

@@ -19,6 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import models.UserHandler;
+import pbl.MainViewFrame;
+import pbl.Session;
 
 public class Launcher extends JFrame {
 
@@ -46,7 +48,7 @@ public class Launcher extends JFrame {
 		if (width > 1920) width = 1920;
 		
 		/* UserHandler klaseak erbiltzaileen fitxategia aurki dezan path ezarri behar da */
-		UserHandler.setPath("files/users.txt");
+		UserHandler.setPath("res/files/users.txt");
 		
 		this.setContentPane(createMainContentPanel());
 		this.setSize(new Dimension((int) (width / 3), (int) (height / 2.5)));
@@ -80,7 +82,7 @@ public class Launcher extends JFrame {
 		
 		/* Panel horretan joango diren bi botoiak sortu */
 		
-		JButton button = new JButton(new ImageIcon("icons/minimize.png"));
+		JButton button = new JButton(new ImageIcon("res/icons/minimize.png"));
 		button.setActionCommand("minimize");
 		button.addActionListener(launcherController);
 		button.setBackground(Color.WHITE);
@@ -89,7 +91,7 @@ public class Launcher extends JFrame {
 		button.setFocusPainted(false);
 		header.add(button);
 
-		button = new JButton(new ImageIcon("icons/close.png"));
+		button = new JButton(new ImageIcon("res/icons/close.png"));
 		button.setActionCommand("close");
 		button.addActionListener(launcherController);
 		button.setBackground(Color.WHITE);
@@ -112,7 +114,7 @@ public class Launcher extends JFrame {
 	private void createBanner(JPanel panel) {
 		/* Leihoko argazia */
 		
-		JLabel logo = new JLabel(new ImageIcon("img/Logo-vista.png"));
+		JLabel logo = new JLabel(new ImageIcon("res/img/Logo-vista.png"));
 		GridBagConstraints logoConst = new GridBagConstraints();
 		logoConst.gridwidth = 2;
 		logoConst.insets = new Insets(0, 0, 20, 0);
@@ -232,6 +234,8 @@ public class Launcher extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		Launcher l = new Launcher();
+		String[] data = {"user","jhhhhh", "T"};
+		MainViewFrame l = new MainViewFrame(new Session(data));
+//		Launcher l = new Launcher();
     }
 }

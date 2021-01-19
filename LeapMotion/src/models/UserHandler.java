@@ -35,7 +35,7 @@ public abstract class UserHandler {
 		
 		try {
 			File srcFile = new File(PATH);	//Erabiltzaileen fitxategia
-			File dstFile = new File("files/tmp");	//Ezabatuko ez diren erabiltzaielak gordetzeko fitxategia
+			File dstFile = new File("res/files/tmp");	//Ezabatuko ez diren erabiltzaielak gordetzeko fitxategia
 			BufferedWriter dst = new BufferedWriter(new FileWriter(dstFile));
 			BufferedReader src = new BufferedReader(new FileReader(srcFile));
 			String line;

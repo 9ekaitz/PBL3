@@ -29,7 +29,7 @@ public class FirstLoad extends JFrame{
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		JLabel logo = new JLabel();
-		logo.setIcon(new ImageIcon("img/Logo-init.png"));
+		logo.setIcon(new ImageIcon("res/img/Logo-init.png"));
 		logo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		panel.add(Box.createVerticalGlue());

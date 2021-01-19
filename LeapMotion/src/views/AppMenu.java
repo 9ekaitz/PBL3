@@ -188,7 +188,7 @@ public class AppMenu extends JPanel{
 		btnShutdown.setOpaque(false);
 		btnShutdown.setContentAreaFilled(false);
 		btnShutdown.setBorderPainted(false);
-		btnShutdown.setIcon(new ImageIcon("icons/shutdown.png"));
+		btnShutdown.setIcon(new ImageIcon("res/icons/shutdown.png"));
 		
 		GridBagConstraints gbc_btnShutdown = new GridBagConstraints();
 		gbc_btnShutdown.anchor = GridBagConstraints.EAST;

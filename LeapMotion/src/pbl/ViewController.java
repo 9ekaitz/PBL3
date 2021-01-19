@@ -18,6 +18,7 @@ import models.UserHandler;
 import views.AppMenu;
 import views.MaterialView;
 import views.ProcessView;
+import views.Settings;
 
 public class ViewController implements ActionListener, ListSelectionListener{
 	
