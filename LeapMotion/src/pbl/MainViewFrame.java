@@ -12,7 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-import dialogs.PortChooser;
+import dialogs.SettingsDialog;
 import launcher.Launcher;
 import models.MaterialList;
 import views.AppMenu;
@@ -114,7 +114,7 @@ public class MainViewFrame extends JFrame{
 				System.exit(0);
 				break;
 			case "Settings":
-				PortChooser p = new PortChooser(MainViewFrame.this, "Settings", true);
+				SettingsDialog p = new SettingsDialog(MainViewFrame.this, "Settings", true);
 				break;
 			default:
 				break;

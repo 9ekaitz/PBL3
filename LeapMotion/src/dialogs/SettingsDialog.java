@@ -18,13 +18,13 @@ import javax.swing.JPanel;
 
 import models.PortManager;
 
-public class PortChooser extends JDialog {
+public class SettingsDialog extends JDialog {
 
 	JFrame frame;
 	JComboBox<String> ports;
 	PortManager portManager;
 	
-	public PortChooser(JFrame frame, String title, boolean mode) {
+	public SettingsDialog(JFrame frame, String title, boolean mode) {
 		super(frame, title, mode);
 		this.frame = frame;
 		this.setSize(400,320);
@@ -52,7 +52,7 @@ public class PortChooser extends JDialog {
 		label.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		GridBagConstraints labelKonst = new GridBagConstraints();
-		labelKonst.insets = new Insets(10,10,10,10);
+		labelKonst.insets = new Insets(10,10,5,10);
 		labelKonst.gridx = 0;
 		labelKonst.gridy = 0;
 		labelKonst.weightx = 0.3;
@@ -89,8 +89,10 @@ public class PortChooser extends JDialog {
 		subPanelKonst.weightx = 0.7;
 		subPanelKonst.weighty = 0.7;
 		subPanelKonst.gridwidth = 2;
-		subPanelKonst.anchor = GridBagConstraints.WEST;
+		subPanelKonst.anchor = GridBagConstraints.CENTER;
 //		subPanelKonst.weightx = 1;
+		
+		
 		
 		panel.add(subPanel, subPanelKonst);
 	}
@@ -102,7 +104,7 @@ public class PortChooser extends JDialog {
 		
 		GridBagConstraints labelKonst = new GridBagConstraints();
 		labelKonst.gridwidth = 1;
-		labelKonst.insets = new Insets(10, 5, 20, 30);	//top left bottom right
+		labelKonst.insets = new Insets(10,10,5,10);	//top left bottom right
 		labelKonst.gridx = 0;
 		labelKonst.gridy = 2;
 		labelKonst.weightx = 0.3;
@@ -136,7 +138,7 @@ public class PortChooser extends JDialog {
 		subPanelKonst.weightx = 0.7;
 		subPanelKonst.weighty = 0.7;
 		subPanelKonst.gridwidth = 2;
-		subPanelKonst.anchor = GridBagConstraints.WEST;
+		subPanelKonst.anchor = GridBagConstraints.CENTER;
 		panel.add(subPanel, subPanelKonst);
 	}
 	
