@@ -7,21 +7,29 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import models.PortManager;
+
 public class PortChooser extends JDialog {
 
 	JFrame frame;
+	JComboBox<String> ports;
+	PortManager portManager;
 	
 	public PortChooser(JFrame frame, String title, boolean mode) {
 		super(frame, title, mode);
 		this.frame = frame;
 		this.setSize(400,320);
-		this.setLocation(352,150); ///////// TODO: PONER EN EL CENTRO DEL JPANEL
+		portManager = new PortManager();
+		this.setLocationRelativeTo(null); ///////// TODO: PONER EN EL CENTRO DEL JPANEL
 		this.setContentPane(createPanel());
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
@@ -31,6 +39,7 @@ public class PortChooser extends JDialog {
 		
 		JPanel panel = new JPanel(new GridBagLayout());
 		createAccountSection(panel);
+		createPortsSection(panel);
 		
 		return panel;
 	}
@@ -75,13 +84,59 @@ public class PortChooser extends JDialog {
 		
 		GridBagConstraints subPanelKonst = new GridBagConstraints();	//Botoiaren konstraintak sortu
 		subPanelKonst.insets = new Insets(0, 0, 5, 0);
-		subPanelKonst.gridx = 1;
+		subPanelKonst.gridx = 0;
 		subPanelKonst.gridy = 1;
 		subPanelKonst.weightx = 0.7;
 		subPanelKonst.weighty = 0.7;
+		subPanelKonst.gridwidth = 2;
 		subPanelKonst.anchor = GridBagConstraints.WEST;
 //		subPanelKonst.weightx = 1;
 		
+		panel.add(subPanel, subPanelKonst);
+	}
+	
+	private void createPortsSection(JPanel panel) {
+		/* Kategoriaren goiburura */
+		JLabel label = new JLabel("Port");
+		label.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+		GridBagConstraints labelKonst = new GridBagConstraints();
+		labelKonst.gridwidth = 1;
+		labelKonst.insets = new Insets(10, 5, 20, 30);	//top left bottom right
+		labelKonst.gridx = 0;
+		labelKonst.gridy = 2;
+		labelKonst.weightx = 0.3;
+		labelKonst.weighty = 0.3;
+		labelKonst.anchor = GridBagConstraints.NORTHWEST;
+		
+		panel.add(label, labelKonst);
+		
+		/* JComboBox bat portu ezberdinak erakusteko, eta boti bat portuen zerrenda freskatzeko */
+		JPanel subPanel = new JPanel();
+		ports = new JComboBox<String>(portManager.getAvaiblePorts());
+		ports.setForeground(Color.WHITE);
+		ports.setBackground(new Color(36, 123, 160));
+		ports.setActionCommand("logout");
+//		btnLogout.addActionListener(controller);
+		subPanel.add(ports);
+		
+		JButton button = new JButton(new ImageIcon("res/icons/refresh.png"));
+		button.setActionCommand("refresh");
+//		button.addActionListener(controller);
+		button.setBackground(Color.WHITE);
+		button.setBorder(BorderFactory.createEmptyBorder(5,5,5,7));
+		button.setOpaque(false);
+		button.setFocusPainted(false);
+		subPanel.add(button);
+		
+		GridBagConstraints subPanelKonst = new GridBagConstraints();
+		subPanelKonst.insets = new Insets(0, 0, 5, 0);
+		subPanelKonst.gridx = 0;
+		subPanelKonst.gridy = 3;
+		subPanelKonst.weightx = 0.7;
+		subPanelKonst.weighty = 0.7;
+		subPanelKonst.gridwidth = 2;
+		subPanelKonst.anchor = GridBagConstraints.WEST;
 		panel.add(subPanel, subPanelKonst);
 	}
 	
