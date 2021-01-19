@@ -24,6 +24,8 @@ public class JsscPrincipal {
 		
 		String[] ports = SerialPortList.getPortNames();
 		
+		System.out.println(System.getProperty("java.version"));
+		
 		for(int i = 0; i < ports.length; i++) {
 		   System.out.println(i+": "+ports[i]);
 		}
@@ -35,27 +37,20 @@ public class JsscPrincipal {
 		try {
 			
 			port.openPort();
-//			port.setParams(9600, 8, 1, 0);
-//			port.setParams(9600, 8, 1, 0); // alternate technique
-//			byte[] buffer = port.readBytes(10 /* read first 10 bytes */);
-
 			port.setParams(BAUDRATE_9600,  DATABITS_8, STOPBITS_1, PARITY_NONE);
-			port.writeBytes("1".getBytes());
-			port.closePort();
 			
 		} catch (SerialPortException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		while (true) {
 			System.out.print("Angulo: ");
 			angle = input.nextInt();
+
 			try {
-//				port.writeBytes(String.valueOf(angle).getBytes());
-				port.writeByte((byte)angle);
+				port.writeBytes(String.valueOf(angle).getBytes());
+
 			} catch (SerialPortException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
