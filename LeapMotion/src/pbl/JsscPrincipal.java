@@ -36,6 +36,9 @@ public class JsscPrincipal {
 		try {
 			
 			port.openPort();
+//			port.setParams(9600, 8, 1, 0);
+//			byte[] buffer = port.readBytes(10 /* read first 10 bytes */);
+
 			port.setParams(BAUDRATE_9600,  DATABITS_8, STOPBITS_1, PARITY_NONE);
 			
 		} catch (SerialPortException e) {
@@ -47,6 +50,7 @@ public class JsscPrincipal {
 			angle = input.nextInt();
 
 			try {
+				byte debug = (byte) angle;
 				port.writeBytes(String.valueOf(angle).getBytes());
 
 			} catch (SerialPortException e) {
