@@ -114,7 +114,7 @@ public class MainViewFrame extends JFrame{
 				System.exit(0);
 				break;
 			case "Settings":
-				MainViewFrame.this.setActualPanel(new Settings());
+				PortChooser p = new PortChooser(MainViewFrame.this, "Settings", true);
 				break;
 			default:
 				break;
