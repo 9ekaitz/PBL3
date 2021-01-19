@@ -17,7 +17,7 @@ public class JsscPrincipal {
 		final int PARITY_NONE = 0;
 		
 		int indexOfPort;
-		int angle;
+		byte angle;
 		
 		Scanner input = new Scanner(System.in);
 		
@@ -44,10 +44,10 @@ public class JsscPrincipal {
 		
 		while (true) {
 			System.out.print("Angulo: ");
-			angle = input.nextInt();
+			angle = input.nextByte();
 
 			try {
-				port.writeBytes(String.valueOf(angle).getBytes());
+				port.writeByte(angle);
 
 			} catch (SerialPortException e) {
 				e.printStackTrace();
