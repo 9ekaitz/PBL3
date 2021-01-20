@@ -27,7 +27,7 @@ public class Settings extends JPanel implements PropertyChangeListener{
 	
 	public Settings() {
 		super(new GridBagLayout());	//Panela hasieratu
-		controller = new SettingsController(this);
+//		controller = new SettingsController(this);
 		portManager = new PortManager();
 		setPreferredSize(new Dimension(1024, 600));	//Aldatu behar da
 		this.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
@@ -56,6 +56,10 @@ public class Settings extends JPanel implements PropertyChangeListener{
 			ports.addItem(port);
 		}
 		
+	}
+	
+	public String getSelectedPort() {
+		return (String) ports.getSelectedItem();
 	}
 	
 	@Override

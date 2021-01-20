@@ -114,7 +114,7 @@ public class MainViewFrame extends JFrame{
 				System.exit(0);
 				break;
 			case "Settings":
-				SettingsDialog p = new SettingsDialog(MainViewFrame.this, "Settings", true);
+				SettingsDialog p = new SettingsDialog(MainViewFrame.this, "Settings", true, session);
 				break;
 			default:
 				break;

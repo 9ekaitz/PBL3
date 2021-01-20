@@ -19,4 +19,8 @@ public class Session {
 		return name;	//Menuan erbiltzailearen izena agertzeko
 	}
 	
+	public boolean isPriviledged() {
+		return priviledges;
+	}
+	
 }

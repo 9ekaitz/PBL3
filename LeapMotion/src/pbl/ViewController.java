@@ -105,10 +105,10 @@ public class ViewController implements ActionListener, ListSelectionListener{
 	}
 
 	private void createAccount() {
-		CreateAccountDialog dialog = new CreateAccountDialog(view, "Create user", true);
-		if (dialog.userIsCreated()) {
-			UserHandler.saveUserToFile(dialog.getUserData());	//Dialogoari erabiltzailearen datuak eskatzen dizkio eta fitxategia abtean gordetzen ditu
-		}	
+//		CreateAccountDialog dialog = new CreateAccountDialog(view, "Create user", true);
+//		if (dialog.userIsCreated()) {
+//			UserHandler.saveUserToFile(dialog.getUserData());	//Dialogoari erabiltzailearen datuak eskatzen dizkio eta fitxategia abtean gordetzen ditu
+//		}	
 	}
 
 	@Override

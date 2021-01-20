@@ -28,7 +28,7 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 	JPasswordField repeatPasswordField;
 	JCheckBox isAdminCheckBox;
 	
-	JFrame frame;
+	SettingsDialog frame;
 	
 	boolean userIsAdmin;
 	String username;
@@ -36,12 +36,12 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 	
 	boolean userIsCreated;
 	
-	public CreateAccountDialog(JFrame frame, String title, boolean mode) {
+	public CreateAccountDialog(SettingsDialog frame, String title, boolean mode) {
 		super(frame, title, mode);
 		this.frame = frame;
 		this.userIsCreated = false;
 		this.setSize(400,320);
-		this.setLocation(352,150); ///////// TODO: PONER EN EL CENTRO DEL JPANEL
+		this.setLocationRelativeTo(null);
 		this.setContentPane(createDialogPanel());
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);

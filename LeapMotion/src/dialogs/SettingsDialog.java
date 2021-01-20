@@ -20,7 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controllers.SettingsController;
 import models.PortManager;
+import pbl.Session;
 
 public class SettingsDialog extends JDialog {
 
@@ -28,13 +30,17 @@ public class SettingsDialog extends JDialog {
 	JComboBox<String> ports;
 	JTextField l;
 	PortManager portManager;
+	Session session;
+	SettingsController controller;
 	
-	public SettingsDialog(JFrame frame, String title, boolean mode) {
+	public SettingsDialog(JFrame frame, String title, boolean mode, Session session) {
 		super(frame, title, mode);
 		this.frame = frame;
 		this.setSize(400,320);
+		this.session = session;
 		portManager = new PortManager();
-		this.setLocationRelativeTo(null); ///////// TODO: PONER EN EL CENTRO DEL JPANEL
+		controller = new SettingsController(this, portManager);
+		this.setLocationRelativeTo(null);
 		this.setContentPane(createPanel());
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
@@ -68,24 +74,24 @@ public class SettingsDialog extends JDialog {
 
 
 		JPanel subPanel = new JPanel();
-		
 		/* 1 Aukera -- kontu bat sortu, bakarrik administratzileentzako */
-		JButton btnCreateAccount = new JButton("Create Account");
-		btnCreateAccount.setForeground(Color.WHITE);
-		btnCreateAccount.setBackground(new Color(36, 123, 160));
-		btnCreateAccount.setActionCommand("createAccount");
-//		btnCreateAccount.addActionListener(controller);
+		JButton button = new JButton("Create Account");
+		button.setForeground(Color.WHITE);
+		button.setBackground(new Color(36, 123, 160));
+		button.setActionCommand("create");
+		button.addActionListener(controller);
+		if (!session.isPriviledged()) button.setEnabled(false);
 		
-		subPanel.add(btnCreateAccount);
+		subPanel.add(button);
 		
 		/* 2 Aukera -- sesio hasita daukan kontu ezabatu, dialogo bat erakutsi daiteke konfirmatzeko */
-		JButton btnLogout = new JButton("Logout");	//Botoia sortu
-		btnLogout.setForeground(Color.WHITE);
-		btnLogout.setBackground(new Color(36, 123, 160));
-		btnLogout.setActionCommand("logout");
-//		btnLogout.addActionListener(controller);
+		button = new JButton("Delete Account");	//Botoia sortu
+		button.setForeground(Color.WHITE);
+		button.setBackground(new Color(36, 123, 160));
+		button.setActionCommand("delete");
+		button.addActionListener(controller);
 		
-		subPanel.add(btnLogout);
+		subPanel.add(button);
 		
 		GridBagConstraints subPanelKonst = new GridBagConstraints();	//Botoiaren konstraintak sortu
 		subPanelKonst.insets = new Insets(0, 0, 5, 0);
@@ -125,8 +131,8 @@ public class SettingsDialog extends JDialog {
 		ports = new JComboBox<String>(portManager.getAvaiblePorts());
 		ports.setForeground(Color.BLACK);
 //		ports.setBackground(Color.LIGHT_GRAY);
-		ports.setActionCommand("logout");
-//		btnLogout.addActionListener(controller);
+		ports.setPreferredSize(new Dimension(150,30));
+		ports.addActionListener(controller);
 		azpiPanel.add(ports);
 		
 		JButton button = new JButton(new ImageIcon("res/icons/refresh.png"));
@@ -153,6 +159,7 @@ public class SettingsDialog extends JDialog {
 		button.setForeground(Color.WHITE);
 		button.setBackground(new Color(36, 123, 160));
 		button.setActionCommand("open");
+		button.addActionListener(controller);
 		azpiPanel.add(button);
 		
 		subPanel.add(azpiPanel);
@@ -168,5 +175,22 @@ public class SettingsDialog extends JDialog {
 		panel.add(subPanel, subPanelKonst);
 	}
 	
+	public void refreshPorts() {
+		ports.removeAllItems();
+		for (String port : portManager.getAvaiblePorts()) {
+			ports.addItem(port);
+		}
+	}
 	
+	public String getSelectedPort() {
+		return (String) ports.getSelectedItem();
+	}
+	
+	public void displayStatus(String status) {
+		l.setText(status);
+	}
+	
+	public Session getSession() {
+		return session;
+	}
 }
