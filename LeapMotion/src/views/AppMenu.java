@@ -23,18 +23,21 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
 import chart.ChartView;
-import models.MaterialList;
+import models.MaterialModel;
 import pbl.ViewController;
 import javax.swing.JList;
 
 public class AppMenu extends JPanel{
 
 	ViewController controller;
-	MaterialList materialList;
+	MaterialModel materialModel;
 	Color darkBlue;
+	JList<String> materialJList;
 	
-	public AppMenu(ViewController controller, MaterialList materialList) {
-		initializeVariables(controller, materialList);
+	public AppMenu(ViewController controller, MaterialModel materialModel) {
+		this.controller = controller;
+		this.materialModel = materialModel;
+		
 		setPreferredSize(new Dimension(1024, 600));
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -42,11 +45,6 @@ public class AppMenu extends JPanel{
 		splitPane.setDividerLocation(350);
 		add(splitPane);
 		
-	}
-
-	private void initializeVariables(ViewController controller, MaterialList materialList) {
-		this.controller = controller;
-		this.materialList = materialList;
 	}
 
 	private JScrollPane createGraph() {
@@ -65,40 +63,6 @@ public class AppMenu extends JPanel{
 		gbl_buttonPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0};
 		gbl_buttonPanel.columnWeights = new double[]{1.0, 0.0};
 		menuPanel.setLayout(gbl_buttonPanel);
-
-		JLabel lbAccount = new JLabel("Account");
-		GridBagConstraints gbc_lbAccount = new GridBagConstraints();
-		gbc_lbAccount.gridwidth = 2;
-		gbc_lbAccount.insets = new Insets(0, 0, 5, 0);
-		gbc_lbAccount.gridx = 0;
-		gbc_lbAccount.gridy = 0;
-		menuPanel.add(lbAccount, gbc_lbAccount);
-
-		JButton btnCreateAccount = new JButton("Create Account");
-		btnCreateAccount.setForeground(Color.WHITE);
-		btnCreateAccount.setBackground(new Color(36, 123, 160));
-		btnCreateAccount.setActionCommand("createAccount");
-		btnCreateAccount.addActionListener(controller);
-		
-		GridBagConstraints gbc_btnCreateAccount = new GridBagConstraints();
-		gbc_btnCreateAccount.fill = GridBagConstraints.BOTH;
-		gbc_btnCreateAccount.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCreateAccount.gridx = 0;
-		gbc_btnCreateAccount.gridy = 1;
-		menuPanel.add(btnCreateAccount, gbc_btnCreateAccount);
-
-		JButton btnLogout = new JButton("Logout");
-		btnLogout.setForeground(Color.WHITE);
-		btnLogout.setBackground(new Color(36, 123, 160));
-		btnLogout.setActionCommand("logout");
-		btnLogout.addActionListener(controller);
-		
-		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
-		gbc_btnLogout.fill = GridBagConstraints.BOTH;
-		gbc_btnLogout.insets = new Insets(0, 0, 5, 0);
-		gbc_btnLogout.gridx = 1;
-		gbc_btnLogout.gridy = 1;
-		menuPanel.add(btnLogout, gbc_btnLogout);
 
 		JLabel lblMaterials = new JLabel("Materials");
 		GridBagConstraints gbc_lblMaterials = new GridBagConstraints();
@@ -143,8 +107,9 @@ public class AppMenu extends JPanel{
 		gbc_scrollPane.gridy = 4;
 		menuPanel.add(scrollPane, gbc_scrollPane);
 		
-		JList<String> materialJList = new JList<>();
-		materialJList.setModel(materialList);
+		materialJList = new JList<>();
+		materialJList.setModel(materialModel);
+		materialJList.addListSelectionListener(controller);
 		scrollPane.setViewportView(materialJList);
 
 		JLabel lblLast50products = new JLabel("Last 50 products");
@@ -197,5 +162,9 @@ public class AppMenu extends JPanel{
 		menuPanel.add(btnShutdown, gbc_btnShutdown);
 		
 		return menuPanel;
+	}
+	
+	public JList<String> getMaterialList() {
+		return materialJList;
 	}
 }

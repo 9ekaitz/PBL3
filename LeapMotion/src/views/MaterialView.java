@@ -17,7 +17,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
-import models.MaterialList;
+import models.MaterialModel;
 import pbl.ListRenderer;
 import pbl.ViewController;
 
@@ -28,18 +28,18 @@ import java.awt.Font;
 public class MaterialView extends JPanel{
 
 	ViewController controller;
-	MaterialList materialListModel;
+	MaterialModel materialListModel;
 	ListRenderer renderer;
 	Color darkBlue;
 	JTextField textField;
 	JList<String> materialList;
 	
-	public MaterialView(ViewController controller, MaterialList list) {
+	public MaterialView(ViewController controller, MaterialModel list) {
 		initializeVariables(list);
 		createPanel(controller);		
 	}
 
-	private void initializeVariables(MaterialList list) {
+	private void initializeVariables(MaterialModel list) {
 		materialListModel = list;
 		renderer = new ListRenderer();
 	}

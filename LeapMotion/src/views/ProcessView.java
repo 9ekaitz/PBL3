@@ -9,7 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
-import models.MaterialList;
+import models.MaterialModel;
 import models.ProcessList;
 import pbl.ListRenderer;
 import pbl.ViewController;

@@ -11,12 +11,12 @@ import java.util.List;
 
 import javax.swing.AbstractListModel;
 
-public class MaterialList extends AbstractListModel<String>{
+public class MaterialModel extends AbstractListModel<String>{
 
 	private final static String PATH = "res/files/materials.txt";
-	List<String> materialList;
+	List<Material> materialList;
 	
-	public MaterialList() {
+	public MaterialModel() {
 		materialList = new ArrayList<>();
 		loadFromFile();
 	}
@@ -39,7 +39,7 @@ public class MaterialList extends AbstractListModel<String>{
 	
 	private void saveToFile() {
 			try (BufferedWriter out = new BufferedWriter(new FileWriter(PATH))) {
-				for (String material : materialList) {
+				for (Material material : materialList) {
 					out.write(material+"\n");
 				}
 			} catch (FileNotFoundException e) {
@@ -49,8 +49,14 @@ public class MaterialList extends AbstractListModel<String>{
 			}		
 	}
 	
-	public void addMaterial(String materialName) {
+	public void addMaterial(Material materialName) {
 		materialList.add(materialName);
+		fireContentsChanged(materialList, 0, materialList.size());
+		saveToFile();
+	}
+	
+	public void removeMaterial(String materialName) {
+		materialList.remove(materialName);
 		fireContentsChanged(materialList, 0, materialList.size());
 		saveToFile();
 	}
@@ -63,6 +69,10 @@ public class MaterialList extends AbstractListModel<String>{
 	@Override
 	public String getElementAt(int index) {
 		return materialList.get(index);
+	}
+
+	public void changeStatus(Material selectedValue) {
+		
 	}
 
 	

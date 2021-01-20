@@ -100,7 +100,7 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		if (material.trim().isEmpty()) {
 			JOptionPane.showMessageDialog(frame, "You should enter a valid name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showConfirmDialog(frame, "The material \""+material+"\" was successfully added!", "Success", JOptionPane.OK_OPTION);
+			JOptionPane.showMessageDialog(frame, "The material \""+material+"\" was successfully added!", "Success", JOptionPane.INFORMATION_MESSAGE);
 			materialCreated = true;
 			this.dispose();
 		}

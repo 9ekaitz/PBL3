@@ -24,12 +24,12 @@ import pbl.Session;
 
 public class Launcher extends JFrame {
 
-	Authenticator authenticator;
-	LauncherController launcherController;
-	JTextField username;
-	JPasswordField password;
-	JLabel errorMsg;
-	int width, height;
+	private Authenticator authenticator;
+	private LauncherController launcherController;
+	private JTextField username;
+	private JPasswordField password;
+	private JLabel errorMsg;
+	private int width, height;
 
 	public Launcher() {
 		super("Login");

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import dialogs.SettingsDialog;
 import launcher.Launcher;
-import models.MaterialList;
+import models.MaterialModel;
 import views.AppMenu;
 import views.MaterialView;
 import views.Settings;
@@ -25,33 +25,37 @@ public class MainViewFrame extends JFrame{
 	JPanel actualPanel;
 	ViewController controller;
 	MenuActions logout, exit, settings;
+	MaterialModel materialModel;
 
 	public MainViewFrame(Session session) {
 		super("Leap Motion");
 		this.session = session;
+		
+		this.materialModel = new MaterialModel();
+		this.controller = new ViewController(this, materialModel);
+		this.actualPanel = new AppMenu(controller, materialModel);
+		
+		createActions();
+		this.setJMenuBar(createMenuBar());
+		this.setContentPane(actualPanel);
+		
 		this.setSize(1024,600);	//Toolkit-en ordez aldatu behar da, edozein pantailatan funtzionatzeko
 		this.setLocationRelativeTo(null);	//Ordenagialuaren erdian agertzeko
 		this.setIconImage(new ImageIcon("res/img/Logo-icon.png").getImage());
-		this.initializeVariables();
-		this.setJMenuBar(createMenuBar());
-		this.setContentPane(actualPanel);
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		this.setUndecorated(true);
 		this.setVisible(true);
 	}
 
-	private void initializeVariables() {
-    	createActions();
-    	controller = new ViewController(this);
-		actualPanel = new AppMenu(controller, new MaterialList());
-	}
-    
+	/* Akzioak sortzeko */
     private void createActions() {	
 		logout = new MenuActions("Logout", new ImageIcon("res/icons/logout.png"), "Logout from the app");
 		settings = new MenuActions("Settings", new ImageIcon("res/icons/settings.png"), "Choose the serial port");
 		exit = new MenuActions("Exit app", new ImageIcon("res/icons/exitapp.png"), "Exit the app");
 	}
     
+    /* MenuBar sorzteko */
     private JMenuBar createMenuBar() {
     	JMenuBar bar = new JMenuBar();
 		bar.add(Box.createHorizontalGlue());
@@ -59,6 +63,7 @@ public class MainViewFrame extends JFrame{
 		return bar;
 	}
 
+    /* Exit menu sortzeko */
 	private JMenu createExitMenu() {
 		JMenu menu = new JMenu(session.getName());
 		menu.add(logout);
@@ -79,12 +84,8 @@ public class MainViewFrame extends JFrame{
 		this.repaint();
 	}
 	
-	public Object getActualObject() {
+	public JPanel getPanel() {
 		return actualPanel;
-	}
-	
-	public MaterialView getActualPanelMaterial() {
-		return (MaterialView) actualPanel;
 	}
 	
 	/* 
