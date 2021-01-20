@@ -9,6 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.jfree.ui.SortableTable;
+
+import models.Material;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,13 +26,11 @@ import java.awt.event.ActionListener;
 public class AddMaterialDialog extends JDialog implements ActionListener{
 
 	JTextField materialField;
-	
+	Material material;
 	JFrame frame;
-	boolean materialCreated;
 	
 	public AddMaterialDialog(JFrame frame, String title, boolean mode) {
 		super(frame, title, mode);
-		materialCreated = false;
 		this.frame = frame;
 		this.setSize(new Dimension(300, 125));
 		this.setContentPane(createDialogPanel());
@@ -86,22 +88,18 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		return panel;
 	}
 
-	public String getMaterial() {
-		return materialField.getText();
+	public Material getMaterial() {
+		return new Material(materialField.getText());
 	}
 	
-	public boolean materialIsCreated() {
-		return materialCreated;
-	}
 	
 	public void testFieldInput() {	
-		String material = getMaterial();
+		Material material = getMaterial();
 		
 		if (material.trim().isEmpty()) {
 			JOptionPane.showMessageDialog(frame, "You should enter a valid name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(frame, "The material \""+material+"\" was successfully added!", "Success", JOptionPane.INFORMATION_MESSAGE);
-			materialCreated = true;
 			this.dispose();
 		}
 	}

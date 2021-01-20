@@ -12,6 +12,7 @@ import javax.swing.event.ListSelectionListener;
 import dialogs.AddMaterialDialog;
 import dialogs.CreateAccountDialog;
 import launcher.Launcher;
+import models.Material;
 import models.MaterialModel;
 import models.ProcessList;
 import models.UserHandler;
@@ -74,8 +75,9 @@ public class ViewController implements ActionListener, ListSelectionListener{
 
 	private void addMaterial() {
 		AddMaterialDialog dialog = new AddMaterialDialog(view, "Add material", true);
-		if (dialog.materialIsCreated()) {
-			String material = dialog.getMaterial();
+		Material material = dialog.getMaterial();
+		if (material != null) {
+			
 			materialModel.addMaterial(material);
 		}
 	}
