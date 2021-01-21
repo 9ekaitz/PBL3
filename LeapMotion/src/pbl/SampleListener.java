@@ -11,6 +11,8 @@ import com.leapmotion.leap.Vector;
 
 public class SampleListener extends Listener {
 
+	double totalAngle = 0;
+
 	public void onFrame(Controller controller) {
 		Frame frame = controller.frame();
 
@@ -28,7 +30,7 @@ public class SampleListener extends Listener {
 		if (leftHand != null) {
 			System.out.println("Eskua");
 			for (Finger leftFinger : leftHand.fingers()) {
-				double totalAngle = 0;
+				totalAngle = 0;
 				for (int i = 0; i < 2; i++) {
 					Type[] bones = Type.values();
 					
@@ -59,11 +61,10 @@ public class SampleListener extends Listener {
 					if (totalAngle > 60) totalAngle = 60;
 					System.out.println(leftFinger.type()+" Angulo: "+totalAngle);
 				}
-				
 			}
 		}
 
-		}
+	}
 		// Pointable pointable = frame.pointables().frontmost();
 
 	public void onInit(Controller controller) {
@@ -80,19 +81,8 @@ public class SampleListener extends Listener {
 
 	}
 
-	private double calculateAngle(Vector v, Vector u) {
-
-		double biderketa = (v.getX() * u.getX()) + (v.getY() * u.getY()) + (v.getZ() * u.getZ());
-
-		double moduloV = Math.sqrt(Math.pow(v.getX(), 2) + Math.pow(v.getY(), 2) + Math.pow(v.getZ(), 2));
-
-		double moduloU = Math.sqrt(Math.pow(u.getX(), 2) + Math.pow(u.getY(), 2) + Math.pow(u.getZ(), 2));
-
-		double angulo = biderketa / (moduloV * moduloU);
-
-		angulo = Math.acos(angulo);
-
-		return Math.toDegrees(angulo);
+	public double getTotalAngle() {
+		return totalAngle;
 	}
-
+	
 }
