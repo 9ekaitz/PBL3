@@ -18,8 +18,8 @@ public class FirstLoad extends JFrame{
 	public FirstLoad() {
 		super();
 		this.setSize(400,200);
-		this.setWindowCentered();
 		this.setContentPane(createMainWindow());
+		this.setLocationRelativeTo(null);
 		this.setUndecorated(true);
 		this.setVisible(true);
 	}
@@ -41,9 +41,7 @@ public class FirstLoad extends JFrame{
 		return panel;
 	}
 
-	private void setWindowCentered() {
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-		
+	public static void main(String[] args) {
+		FirstLoad f = new FirstLoad();
 	}
 }

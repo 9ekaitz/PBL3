@@ -6,35 +6,36 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
+import models.Material;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class ListRenderer implements ListCellRenderer<String>{
+public class ListRenderer implements ListCellRenderer<Material> {
 
-	
 	@Override
-	public Component getListCellRendererComponent(JList<? extends String> list, String value, int index,
+	public Component getListCellRendererComponent(JList<? extends Material> list, Material value, int index,
 			boolean isSelected, boolean cellHasFocus) {
+		
 		JPanel panel = new JPanel(new BorderLayout(10, 10));
 		panel.setBackground(Color.WHITE);
-		JLabel lblIsSelected;
+
+		JLabel label = new JLabel(value.toString());
+		panel.add(label, BorderLayout.CENTER);
 		
-		JLabel lblMaterialName = new JLabel(value);
-		panel.add(lblMaterialName, BorderLayout.CENTER);	
+		JLabel icon;
+		/* Elementua aukeratzen denean ikonoa aldtzeko */
+		if (value.isSelected()) icon = new JLabel(new ImageIcon("res/icons/valid.png"));
+		else icon = new JLabel(new ImageIcon("res/icons/error.png"));
 		
-		if(isSelected) {
-			lblIsSelected = new JLabel(new ImageIcon("res/icons/valid.png"));
-			panel.add(lblIsSelected, BorderLayout.EAST);
-			panel.setBackground(new Color(197, 229, 242));
-		} else if(!isSelected) {
-			lblIsSelected = new JLabel(new ImageIcon("res/icons/error.png"));
-			panel.add(lblIsSelected, BorderLayout.EAST);
-		}
+		/* Elementua klikatzean atzeko planoaren kolorea alatzeko */
+		if (cellHasFocus) panel.setBackground(new Color(197, 229, 242));
+
+		panel.add(icon, BorderLayout.EAST);
 		return panel;
 	}
 
-	
 }

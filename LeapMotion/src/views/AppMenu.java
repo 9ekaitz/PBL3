@@ -23,6 +23,7 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
 import chart.ChartView;
+import models.Material;
 import models.MaterialModel;
 import pbl.ViewController;
 import javax.swing.JList;
@@ -32,7 +33,7 @@ public class AppMenu extends JPanel{
 	ViewController controller;
 	MaterialModel materialModel;
 	Color darkBlue;
-	JList<String> materialJList;
+	JList<Material> materialJList;
 	
 	public AppMenu(ViewController controller, MaterialModel materialModel) {
 		this.controller = controller;
@@ -164,7 +165,7 @@ public class AppMenu extends JPanel{
 		return menuPanel;
 	}
 	
-	public JList<String> getMaterialList() {
+	public JList<Material> getMaterialList() {
 		return materialJList;
 	}
 }

@@ -9,6 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
+import models.Material;
 import models.MaterialModel;
 import models.ProcessList;
 import pbl.ListRenderer;
@@ -195,7 +196,7 @@ public class ProcessView extends JPanel{
 	}
 
 	private Component createProcessList() {
-		JList<String> processList = new JList<>();
+		JList<Material> processList = new JList<>();
 		processList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		processList.addListSelectionListener(controller);
 		processList.setModel(processListModel);

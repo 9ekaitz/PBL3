@@ -17,7 +17,9 @@ import javax.swing.ListSelectionModel;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
+import models.Material;
 import models.MaterialModel;
+import models.Product;
 import pbl.ListRenderer;
 import pbl.ViewController;
 
@@ -27,26 +29,30 @@ import java.awt.Font;
 
 public class MaterialView extends JPanel{
 
-	ViewController controller;
-	MaterialModel materialListModel;
-	ListRenderer renderer;
-	Color darkBlue;
-	JTextField textField;
-	JList<String> materialList;
+	private ViewController controller;
+	private MaterialModel materialModel;
+	private Product product;
+	private ListRenderer renderer;
+	private JTextField textField;
+	private JList<Material> lst;
 	
-	public MaterialView(ViewController controller, MaterialModel list) {
-		initializeVariables(list);
+	public MaterialView(ViewController controller, MaterialModel model) {
+//		initializeVariables(lst);
+		this.materialModel = model;
+		this.product = new Product();
+		this.controller = controller;
+		this.renderer = new ListRenderer();
 		createPanel(controller);		
 	}
 
-	private void initializeVariables(MaterialModel list) {
-		materialListModel = list;
-		renderer = new ListRenderer();
-	}
+//	private void initializeVariables(MaterialModel model) {
+//		materialModel = model;
+//		renderer = new ListRenderer();
+//	}
 	
 	private void createPanel(ViewController controller) {
 		setBorder(new EmptyBorder(30, 30, 15, 30));
-		this.controller = controller;
+		//this.controller = controller;
 		setPreferredSize(new Dimension(1024, 600));
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -54,18 +60,20 @@ public class MaterialView extends JPanel{
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0};
 		setLayout(gridBagLayout);
 		
-		JButton btnCreateProduct = new JButton("Create product");
-		btnCreateProduct.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCreateProduct.setBackground(new Color(36, 123, 160));
-		btnCreateProduct.setForeground(Color.WHITE);
-		btnCreateProduct.setActionCommand("createProduct");
-		btnCreateProduct.addActionListener(controller);
-		GridBagConstraints gbc_btnCreateProduct = new GridBagConstraints();
-		gbc_btnCreateProduct.anchor = GridBagConstraints.WEST;
-		gbc_btnCreateProduct.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCreateProduct.gridx = 0;
-		gbc_btnCreateProduct.gridy = 0;
-		add(btnCreateProduct, gbc_btnCreateProduct);
+		/* Produktuak sortzeko botoia */
+		JButton button = new JButton("Create product");
+		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		button.setBackground(new Color(36, 123, 160));
+		button.setForeground(Color.WHITE);
+		button.setActionCommand("createProduct");
+		button.addActionListener(controller);
+		
+		GridBagConstraints buttonConst = new GridBagConstraints();
+		buttonConst.anchor = GridBagConstraints.WEST;
+		buttonConst.insets = new Insets(0, 0, 5, 5);
+		buttonConst.gridx = 0;
+		buttonConst.gridy = 0;
+		add(button, buttonConst);
 		
 		JLabel productName = new JLabel("Product Name: ");
 		productName.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -96,34 +104,44 @@ public class MaterialView extends JPanel{
 		gbc_listPanel.gridy = 1;
 		add(listPanel, gbc_listPanel);
 		
-		JButton btnGoBack = new JButton("Back");
-		btnGoBack.setBackground(new Color(36, 123, 160));
-		btnGoBack.setForeground(Color.WHITE);
-		btnGoBack.setActionCommand("goBackFromMaterialView");
-		btnGoBack.addActionListener(controller);
-		GridBagConstraints gbc_btnGoBack = new GridBagConstraints();
-		gbc_btnGoBack.anchor = GridBagConstraints.EAST;
-		gbc_btnGoBack.gridx = 2;
-		gbc_btnGoBack.gridy = 2;
-		add(btnGoBack, gbc_btnGoBack);
+		/* Atzera bueltatzeko botoia */
+		button = new JButton("Back");
+		button.setBackground(new Color(36, 123, 160));
+		button.setForeground(Color.WHITE);
+		button.setActionCommand("goBackFromMaterialView");
+		button.addActionListener(controller);
+		
+		buttonConst = new GridBagConstraints();
+		buttonConst.anchor = GridBagConstraints.EAST;
+		buttonConst.gridx = 2;
+		buttonConst.gridy = 2;
+		add(button, buttonConst);
 		
 	}
 
-	private JList<String> createMaterialList() {
-		materialList = new JList<>();
-		materialList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		materialList.addListSelectionListener(controller);
-		materialList.setModel(materialListModel);
-		materialList.setCellRenderer(renderer);
-		return materialList;
+	private JList<Material> createMaterialList() {
+		lst = new JList<>();
+		lst.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		lst.addListSelectionListener(controller);
+		lst.setModel(materialModel);
+		lst.setCellRenderer(renderer);
+		return lst;
 	}
 	
 	public String getProductName() {
 		return textField.getText();
 	}
 	
-	public JList<String> getJlist() {
-		return materialList;
+	public JList<Material> getMaterialList() {
+		return lst;
+	}
+
+	public void addToRecipe(Material m) {
+		product.addMaterial(m);
+	}
+	
+	public void removeFromRecipe(Material m) {
+		product.removeMaterial(m);
 	}
 	
 }

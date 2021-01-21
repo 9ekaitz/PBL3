@@ -21,27 +21,27 @@ import views.MaterialView;
 import views.ProcessView;
 import views.Settings;
 
-public class ViewController implements ActionListener, ListSelectionListener{
-	
+public class ViewController implements ActionListener, ListSelectionListener {
+
 	MainViewFrame view;
 	MaterialModel materialModel;
 	ProcessList processListModel;
-	
-	JList<String> materialJList;
-	
+
+	JList<Material> materialJList;
+
 	public ViewController(MainViewFrame view, MaterialModel materialModel) {
 		this.view = view;
 		this.materialModel = materialModel;
-		
+
 		processListModel = new ProcessList();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String command = arg0.getActionCommand();
-		
+
 		switch (command) {
-		case "logout":	//Erabiltzailearen sesioa amaitzen da eta login leihoa irekitzen da
+		case "logout": // Erabiltzailearen sesioa amaitzen da eta login leihoa irekitzen da
 			Launcher l = new Launcher();
 			view.close();
 			break;
@@ -52,10 +52,11 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			removeMaterial();
 			break;
 		case "shutdown":
-			shutdownMachine();	
+			shutdownMachine();
 			break;
 		case "startcreateProduct":
 			view.setActualPanel(new MaterialView(this, materialModel));
+			materialModel.resetSelection();
 			initializeMaterialJlist();
 			break;
 		case "createProduct":
@@ -70,18 +71,17 @@ public class ViewController implements ActionListener, ListSelectionListener{
 			break;
 		default:
 			break;
-		}	
+		}
 	}
 
 	private void addMaterial() {
 		AddMaterialDialog dialog = new AddMaterialDialog(view, "Add material", true);
 		Material material = dialog.getMaterial();
 		if (material != null) {
-			
 			materialModel.addMaterial(material);
 		}
 	}
-	
+
 	private void removeMaterial() {
 		AppMenu appMenu = (AppMenu) view.getPanel();
 		materialModel.removeMaterial(appMenu.getMaterialList().getSelectedValue());
@@ -89,39 +89,43 @@ public class ViewController implements ActionListener, ListSelectionListener{
 
 	private void initializeMaterialJlist() {
 		MaterialView materialView = (MaterialView) view.getPanel();
-		materialJList = materialView.getJlist();
-		
-	}
+		materialJList = materialView.getMaterialList();
 
-	
+	}
 
 	private void createProductWithMaterials() {
 		MaterialView matView = (MaterialView) view.getPanel();
 		String productName = matView.getProductName();
-		int materialQuantity = 15; //////////////////////////// HACE FALTA METER LA CANTIDAD DE MATERIALES SELECCIONADOS EN LA JLIST
-		
+		int materialQuantity = 15; //////////////////////////// HACE FALTA METER LA CANTIDAD DE MATERIALES
+									//////////////////////////// SELECCIONADOS EN LA JLIST
+
 		if (productName.isEmpty()) {
 			JOptionPane.showMessageDialog(view, "You must enter a product name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			view.setActualPanel(new ProcessView(this, processListModel, productName, materialQuantity));
-		}		
+		}
 	}
-
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getValueIsAdjusting()) return;
-			if (e.getSource() instanceof MaterialModel){
- 				MaterialModel model = (MaterialModel) e.getSource();
- 				AppMenu panel = (AppMenu) view.getPanel();
- 				model.changeStatus(panel.getMaterialList().getSelectedValue());
+		if (view.getPanel() instanceof MaterialView) {
+			MaterialView panel = (MaterialView) view.getPanel();
+			JList<Material> lst = panel.getMaterialList();
+			MaterialModel model = (MaterialModel) lst.getModel();
+			
+			if (lst.getSelectedValue() != null) {
+				model.changeStatus(lst.getSelectedValue());
+				if (lst.getSelectedValue().isSelected()) panel.addToRecipe(lst.getSelectedValue());
+				else panel.removeFromRecipe(lst.getSelectedValue());
+				lst.clearSelection();
 			}
-		
+		}
 	}
 
 	private void shutdownMachine() {
 		int option = JOptionPane.showConfirmDialog(view, "Are you sure you want to shutdown the machine?");
-		
+
 //		if (option == JOptionPane.YES_OPTION) {
 //			Runtime runtime = Runtime.getRuntime();
 //			try {
@@ -131,7 +135,7 @@ public class ViewController implements ActionListener, ListSelectionListener{
 //			}
 //			System.exit(0);	
 //		}
-		
+
 	}
 
 }

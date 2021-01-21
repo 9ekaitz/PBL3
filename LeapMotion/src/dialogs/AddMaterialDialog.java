@@ -26,7 +26,7 @@ import java.awt.event.ActionListener;
 public class AddMaterialDialog extends JDialog implements ActionListener{
 
 	JTextField materialField;
-	Material material;
+	Material material = null;
 	JFrame frame;
 	
 	public AddMaterialDialog(JFrame frame, String title, boolean mode) {
@@ -89,17 +89,18 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 	}
 
 	public Material getMaterial() {
-		return new Material(materialField.getText());
+		return material;
 	}
 	
 	
 	public void testFieldInput() {	
-		Material material = getMaterial();
+		String materialName = materialField.getText();
 		
-		if (material.trim().isEmpty()) {
+		if (materialName.trim().isEmpty()) {
 			JOptionPane.showMessageDialog(frame, "You should enter a valid name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(frame, "The material \""+material+"\" was successfully added!", "Success", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(frame, "The material \""+materialName+"\" was successfully added!", "Success", JOptionPane.INFORMATION_MESSAGE);
+			material = new Material(materialName);
 			this.dispose();
 		}
 	}
