@@ -40,8 +40,4 @@ public class FirstLoad extends JFrame{
 		
 		return panel;
 	}
-
-	public static void main(String[] args) {
-		FirstLoad f = new FirstLoad();
-	}
 }
