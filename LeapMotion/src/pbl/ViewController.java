@@ -10,37 +10,28 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import dialogs.AddMaterialDialog;
-import dialogs.CreateAccountDialog;
 import launcher.Launcher;
 import models.Material;
 import models.MaterialModel;
-import models.ProcessList;
-import models.UserHandler;
 import views.AppMenu;
 import views.MaterialView;
 import views.ProcessView;
-import views.Settings;
 
 public class ViewController implements ActionListener, ListSelectionListener {
 
 	MainViewFrame view;
 	MaterialModel materialModel;
-	ProcessList processListModel;
-
-	JList<Material> materialJList;
 
 	public ViewController(MainViewFrame view, MaterialModel materialModel) {
 		this.view = view;
 		this.materialModel = materialModel;
-
-		processListModel = new ProcessList();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String command = arg0.getActionCommand();
-
-		switch (command) {
+		ProcessView panel;
+		
+		switch (arg0.getActionCommand()) {
 		case "logout": // Erabiltzailearen sesioa amaitzen da eta login leihoa irekitzen da
 			Launcher l = new Launcher();
 			view.close();
@@ -57,7 +48,6 @@ public class ViewController implements ActionListener, ListSelectionListener {
 		case "startcreateProduct":
 			view.setActualPanel(new MaterialView(this, materialModel));
 			materialModel.resetSelection();
-			initializeMaterialJlist();
 			break;
 		case "createProduct":
 			createProductWithMaterials();
@@ -67,7 +57,18 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			break;
 		case "goBackFromProcessView":
 			view.setActualPanel(new MaterialView(this, materialModel));
-			initializeMaterialJlist();
+			break;
+		case "cancel":
+			view.setActualPanel(new MaterialView(this, materialModel));
+			materialModel.resetSelection();
+			break;
+		case "start":
+			panel = (ProcessView) view.getPanel();
+			panel.getMaterialLst().setSelectedIndex(0);
+			break;
+		case "next":
+			 panel = (ProcessView) view.getPanel();
+			panel.getMaterialLst().setSelectedIndex(panel.getMaterialLst().getSelectedIndex()+1);
 			break;
 		default:
 			break;
@@ -87,22 +88,17 @@ public class ViewController implements ActionListener, ListSelectionListener {
 		materialModel.removeMaterial(appMenu.getMaterialList().getSelectedValue());
 	}
 
-	private void initializeMaterialJlist() {
-		MaterialView materialView = (MaterialView) view.getPanel();
-		materialJList = materialView.getMaterialList();
-
-	}
-
 	private void createProductWithMaterials() {
-		MaterialView matView = (MaterialView) view.getPanel();
-		String productName = matView.getProductName();
+		MaterialView panel = (MaterialView) view.getPanel();
+		String productName = panel.getProductName();
 		int materialQuantity = 15; //////////////////////////// HACE FALTA METER LA CANTIDAD DE MATERIALES
 									//////////////////////////// SELECCIONADOS EN LA JLIST
 
 		if (productName.isEmpty()) {
 			JOptionPane.showMessageDialog(view, "You must enter a product name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
-			view.setActualPanel(new ProcessView(this, processListModel, productName, materialQuantity));
+			view.setActualPanel(new ProcessView(this, panel.getProduct()));
+			panel.getProduct().setName(productName);
 		}
 	}
 

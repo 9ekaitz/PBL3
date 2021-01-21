@@ -126,6 +126,10 @@ public class MaterialView extends JPanel{
 		return textField.getText();
 	}
 	
+	public Product getProduct() {
+		return product;
+	}
+	
 	public JList<Material> getMaterialList() {
 		return lst;
 	}

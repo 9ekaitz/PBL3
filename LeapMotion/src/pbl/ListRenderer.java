@@ -32,7 +32,7 @@ public class ListRenderer implements ListCellRenderer<Material> {
 		else icon = new JLabel(new ImageIcon("res/icons/error.png"));
 		
 		/* Elementua klikatzean atzeko planoaren kolorea alatzeko */
-		if (cellHasFocus) panel.setBackground(new Color(197, 229, 242));
+		if (cellHasFocus || isSelected) panel.setBackground(new Color(197, 229, 242));
 
 		panel.add(icon, BorderLayout.EAST);
 		return panel;

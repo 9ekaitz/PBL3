@@ -139,18 +139,24 @@ public class ProcessView extends JPanel{
 		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnStart.setForeground(Color.WHITE);
 		btnStart.setBackground(new Color(36, 123, 160));
+		btnStart.setActionCommand("start");
+		btnStart.addActionListener(controller);
 		buttonPanel.add(btnStart);
 		
-		JButton btnNextProcess = new JButton("Newt Step");
+		JButton btnNextProcess = new JButton("Next");
 		btnNextProcess.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNextProcess.setForeground(Color.WHITE);
 		btnNextProcess.setBackground(new Color(36, 123, 160));
+		btnNextProcess.setActionCommand("next");
+		btnNextProcess.addActionListener(controller);
 		buttonPanel.add(btnNextProcess);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBackground(new Color(36, 123, 160));
 		btnCancel.setForeground(Color.WHITE);
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnCancel.setActionCommand("cancel");
+		btnCancel.addActionListener(controller);
 		buttonPanel.add(btnCancel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Progress: ");
@@ -173,27 +179,19 @@ public class ProcessView extends JPanel{
 		gbc_progressBar.insets = new Insets(0, 25, 0, 25);
 		gbc_progressBar.gridx = 1;
 		gbc_progressBar.gridy = 5;
-		add(progressBar, gbc_progressBar);
-		
-		JButton btnBack = new JButton("Back");
-		btnBack.setBackground(new Color(36, 123, 160));
-		btnBack.setForeground(Color.WHITE);
-		btnBack.setActionCommand("goBackFromProcessView");
-		btnBack.addActionListener(controller);
-		
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-		gbc_btnBack.gridx = 3;
-		gbc_btnBack.gridy = 5;
-		add(btnBack, gbc_btnBack);
-		
+		add(progressBar, gbc_progressBar);		
 	}
 
 
 	private void createProcessList() {
 		materialLst = new JList<>();
-		materialLst.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		materialLst.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		materialLst.addListSelectionListener(controller);
 		materialLst.setModel(product);
 		materialLst.setCellRenderer(renderer);
+	}
+	
+	public JList<Material> getMaterialLst(){
+		return materialLst;
 	}
 }
