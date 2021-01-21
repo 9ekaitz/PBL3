@@ -16,7 +16,7 @@ public class Principal {
 	SerialPort serialPort;
 	SerialIO serial;
 	SampleListener listener;
-	
+
 	public Principal() {
 		port = Serial.lstPorts();
 		serialPort = Serial.openPort(port);
@@ -33,8 +33,6 @@ public class Principal {
 		Controller controller = new Controller();
 
 		Frame frame = controller.frame(); // controller is a Controller object
-		HandList hands = frame.hands();
-		Hand firstHand = hands.get(0);
 
 		// Have the sample listener receive events from the controller
 		controller.addListener(listener);
@@ -48,12 +46,11 @@ public class Principal {
 		}
 
 		// Remove the sample listener when done
-
 		controller.removeListener(listener);
 	}
 
 	public class SerialIO extends Thread {
-		boolean end;
+		boolean end = false;
 
 		SerialPort port;
 
@@ -66,8 +63,15 @@ public class Principal {
 			while (!end) {
 				if (!end) {
 					try {
-						if (listener != null) port.writeByte((byte)listener.getTotalAngle());
+						if (listener != null) {
+//							System.out.println((byte)listener.getTotalAngle());
+							port.writeByte((byte) listener.getAngle(1));
+							Thread.sleep(100);
+						}
 					} catch (SerialPortException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -75,8 +79,12 @@ public class Principal {
 			}
 		}
 
+		public void finish() {
+			end = true;
+		}
+
 	}
-	
+
 	public static void main(String[] args) {
 		Principal p = new Principal();
 	}

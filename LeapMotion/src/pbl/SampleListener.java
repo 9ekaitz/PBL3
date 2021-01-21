@@ -11,7 +11,8 @@ import com.leapmotion.leap.Vector;
 
 public class SampleListener extends Listener {
 
-	double totalAngle = 0;
+	double angles[] = {0,0,0,0,0};
+	Type[] bones = Type.values();
 
 	public void onFrame(Controller controller) {
 		Frame frame = controller.frame();
@@ -29,11 +30,11 @@ public class SampleListener extends Listener {
 
 		if (leftHand != null) {
 			System.out.println("Eskua");
-			for (Finger leftFinger : leftHand.fingers()) {
-				totalAngle = 0;
+			for (int j = 0; j < 4; j++) {
+				Finger leftFinger = leftHand.fingers().get(j);
+				
+				double tmpAngle = 0;
 				for (int i = 0; i < 2; i++) {
-					Type[] bones = Type.values();
-					
 					Bone bone = leftFinger.bone(bones[i]);
 					
 					Vector p1 = bone.prevJoint();
@@ -54,12 +55,15 @@ public class SampleListener extends Listener {
 					u.setY(q2.getY()-q1.getY());
 					u.setZ(q2.getZ()-q1.getZ());
 					
-					totalAngle += Math.toDegrees(v.angleTo(u));
+					tmpAngle = Math.toDegrees(v.angleTo(u));
 				}
+				
 				if (leftFinger.type() == com.leapmotion.leap.Finger.Type.values()[1]) {
-					totalAngle = (totalAngle*60)/160;
-					if (totalAngle > 60) totalAngle = 60;
-					System.out.println(leftFinger.type()+" Angulo: "+totalAngle);
+					System.out.println(leftFinger.type()+" Angulo no map: "+tmpAngle);
+					tmpAngle = (tmpAngle*60)/80;
+					if (tmpAngle > 60) tmpAngle = 60;
+					angles[j] = tmpAngle;
+					System.out.println(leftFinger.type()+" Angulo: "+tmpAngle);
 				}
 			}
 		}
@@ -81,8 +85,8 @@ public class SampleListener extends Listener {
 
 	}
 
-	public double getTotalAngle() {
-		return totalAngle;
+	public double getAngle(int index) {
+		return angles[index];
 	}
 	
 }
