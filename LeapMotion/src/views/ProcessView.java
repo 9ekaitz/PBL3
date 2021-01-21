@@ -10,8 +10,7 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
 import models.Material;
-import models.MaterialModel;
-import models.ProcessList;
+import models.Product;
 import pbl.ListRenderer;
 import pbl.ViewController;
 
@@ -29,21 +28,21 @@ import javax.swing.ImageIcon;
 public class ProcessView extends JPanel{
 
 	ViewController controller;
-	ProcessList processListModel;
+	Product product;
 	ListRenderer renderer;
-	String productName;
-	int materialQuantity;
+	JList<Material> materialLst;
 	
-	public ProcessView(ViewController controller, ProcessList list, String productName, int materialQuantity) {	
-		initializeVariables(list, productName, materialQuantity);
-		createPanel(controller);			
+	
+	public ProcessView(ViewController controller, Product product) {	
+		this.product = product;
+		this.renderer = new ListRenderer();
+		this.controller = controller;
+		createPanel();			
 	}
 
-	private void createPanel(ViewController controller) {
+	private void createPanel() {
 		setBorder(new EmptyBorder(30, 30, 30, 30));
-		this.controller = controller;
 		setPreferredSize(new Dimension(1024, 600));
-		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWidths = new int[]{0, 532, 0, 0};
@@ -68,7 +67,7 @@ public class ProcessView extends JPanel{
 		gbc_lblNewLabel.gridy = 1;
 		add(lblNewLabel, gbc_lblNewLabel);
 		
-		JLabel lblProductName = new JLabel(productName);
+		JLabel lblProductName = new JLabel(product.toString());
 		lblProductName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblProductName = new GridBagConstraints();
 		gbc_lblProductName.anchor = GridBagConstraints.SOUTHWEST;
@@ -113,7 +112,9 @@ public class ProcessView extends JPanel{
 		gbc_lblTimeCount.gridy = 3;
 		add(lblTimeCount, gbc_lblTimeCount);
 		
-		JScrollPane listPanel = new JScrollPane(createProcessList());
+		JScrollPane listPanel = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		createProcessList();
+		listPanel.setViewportView(materialLst);
 		
 		GridBagConstraints gbc_listPanel = new GridBagConstraints();
 		gbc_listPanel.insets = new Insets(0, 0, 20, 5);
@@ -187,20 +188,12 @@ public class ProcessView extends JPanel{
 		
 	}
 
-	private void initializeVariables(ProcessList list, String productName, int materialQuantity) {
-		this.processListModel = list;
-		this.productName = productName;
-		this.materialQuantity = materialQuantity;
-		renderer = new ListRenderer();
-		
-	}
 
-	private Component createProcessList() {
-		JList<Material> processList = new JList<>();
-		processList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		processList.addListSelectionListener(controller);
-		processList.setModel(processListModel);
-		processList.setCellRenderer(renderer);
-		return processList;
+	private void createProcessList() {
+		materialLst = new JList<>();
+		materialLst.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		materialLst.addListSelectionListener(controller);
+		materialLst.setModel(product);
+		materialLst.setCellRenderer(renderer);
 	}
 }

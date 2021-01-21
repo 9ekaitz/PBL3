@@ -37,22 +37,16 @@ public class MaterialView extends JPanel{
 	private JList<Material> lst;
 	
 	public MaterialView(ViewController controller, MaterialModel model) {
-//		initializeVariables(lst);
 		this.materialModel = model;
 		this.product = new Product();
 		this.controller = controller;
 		this.renderer = new ListRenderer();
-		createPanel(controller);		
+		createPanel();		
 	}
 
-//	private void initializeVariables(MaterialModel model) {
-//		materialModel = model;
-//		renderer = new ListRenderer();
-//	}
 	
-	private void createPanel(ViewController controller) {
+	private void createPanel() {
 		setBorder(new EmptyBorder(30, 30, 15, 30));
-		//this.controller = controller;
 		setPreferredSize(new Dimension(1024, 600));
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
