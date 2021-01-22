@@ -30,7 +30,7 @@ public class SampleListener extends Listener {
 
 		if (leftHand != null) {
 			System.out.println("Eskua");
-			for (int j = 0; j < 4; j++) {
+			for (int j = 0; j < 5; j++) {
 				Finger leftFinger = leftHand.fingers().get(j);
 				
 				double tmpAngle = 0;
@@ -57,19 +57,41 @@ public class SampleListener extends Listener {
 					
 					tmpAngle = Math.toDegrees(v.angleTo(u));
 				}
-				
-				if (leftFinger.type() == com.leapmotion.leap.Finger.Type.values()[1]) {
-					System.out.println(leftFinger.type()+" Angulo no map: "+tmpAngle);
-					tmpAngle = (tmpAngle*60)/80;
-					if (tmpAngle > 60) tmpAngle = 60;
-					angles[j] = tmpAngle;
-					System.out.println(leftFinger.type()+" Angulo: "+tmpAngle);
-				}
+				map(leftFinger, tmpAngle, j);
+				System.out.println(leftFinger.type()+" Angulo no map: "+angles[j]);
 			}
 		}
 
 	}
 		// Pointable pointable = frame.pointables().frontmost();
+
+	private void map(Finger finger, double angle, int index) {
+		switch (finger.type()) {
+		case TYPE_THUMB:
+			angle = (angle*60)/45;
+			if (angle > 60) angle = 60;
+			break;
+		case TYPE_INDEX:
+			angle = (angle*60)/80;
+			if (angle > 60) angle = 60;
+			break;
+		case TYPE_MIDDLE:
+			angle = (angle*80)/85;
+			if (angle > 80) angle = 80;
+			break;
+		case TYPE_RING:
+			angle = (angle*70)/90;
+			if (angle > 70) angle = 70;
+			break;
+		case TYPE_PINKY:
+			angle = (angle*60)/80;
+			if (angle > 60) angle = 60;
+			break;
+		default:
+			break;
+		}
+		angles[index] = angle;
+	}
 
 	public void onInit(Controller controller) {
 		System.out.println("Iniciado");
