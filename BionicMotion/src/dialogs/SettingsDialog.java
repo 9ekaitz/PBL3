@@ -17,13 +17,13 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controllers.SettingsController;
 import models.PortManager;
 import pbl.Session;
 
+@SuppressWarnings("serial")
 public class SettingsDialog extends JDialog {
 
 	JFrame frame;

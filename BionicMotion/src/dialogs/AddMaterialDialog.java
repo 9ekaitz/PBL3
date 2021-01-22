@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.jfree.ui.SortableTable;
-
 import models.Material;
 
 import java.awt.GridBagLayout;
@@ -23,6 +21,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class AddMaterialDialog extends JDialog implements ActionListener{
 
 	JTextField materialField;

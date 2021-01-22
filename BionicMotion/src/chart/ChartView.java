@@ -34,6 +34,7 @@ import org.jfree.ui.DateCellRenderer;
 import org.jfree.ui.NumberCellRenderer;
 import org.jfree.ui.RectangleInsets;
 
+@SuppressWarnings("serial")
 public class ChartView extends JPanel implements ChangeListener, ChartProgressListener{
 	
 	TimeSeries series;   
@@ -61,7 +62,7 @@ public class ChartView extends JPanel implements ChangeListener, ChartProgressLi
         return jfreechart;   
     }   
 
-    private XYDataset createDataset(String s, double d, RegularTimePeriod regulartimeperiod, int i) {   
+	private XYDataset createDataset(String s, double d, RegularTimePeriod regulartimeperiod, int i) {   
         series = new TimeSeries(s, regulartimeperiod.getClass());   
         RegularTimePeriod regulartimeperiod1 = regulartimeperiod;   
         double d1 = d;   

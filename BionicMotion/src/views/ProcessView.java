@@ -21,10 +21,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class ProcessView extends JPanel{
 
 	ViewController controller;

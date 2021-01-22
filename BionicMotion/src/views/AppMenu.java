@@ -1,21 +1,16 @@
 package views;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.ListSelectionModel;
-
-import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
@@ -28,6 +23,7 @@ import models.MaterialModel;
 import pbl.ViewController;
 import javax.swing.JList;
 
+@SuppressWarnings("serial")
 public class AppMenu extends JPanel{
 
 	ViewController controller;
@@ -130,7 +126,7 @@ public class AppMenu extends JPanel{
 		gbc_scrollPane_1.gridy = 6;
 		menuPanel.add(scrollPane_1, gbc_scrollPane_1);
 		
-		JList list_1 = new JList<>();
+		JList<String> list_1 = new JList<>();
 		scrollPane_1.setViewportView(list_1);
 		
 		JButton btnCreateProduct = new JButton("Create Product");

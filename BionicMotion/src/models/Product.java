@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.AbstractListModel;
 
+@SuppressWarnings("serial")
 public class Product extends AbstractListModel<Material>{
 
 	private List<Material> lst;

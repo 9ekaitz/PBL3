@@ -10,7 +10,6 @@ import dialogs.SettingsDialog;
 import jssc.SerialPortException;
 import models.PortManager;
 import models.UserHandler;
-import views.Settings;
 
 public class SettingsController implements ActionListener {
 

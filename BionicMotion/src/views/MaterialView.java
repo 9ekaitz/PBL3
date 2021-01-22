@@ -2,7 +2,6 @@ package views;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,9 +23,9 @@ import pbl.ListRenderer;
 import pbl.ViewController;
 
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class MaterialView extends JPanel{
 
 	private ViewController controller;

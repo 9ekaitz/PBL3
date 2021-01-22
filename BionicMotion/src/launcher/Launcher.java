@@ -22,6 +22,7 @@ import models.UserHandler;
 import pbl.MainViewFrame;
 import pbl.Session;
 
+@SuppressWarnings("serial")
 public class Launcher extends JFrame {
 
 	private Authenticator authenticator;

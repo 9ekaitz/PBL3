@@ -3,7 +3,6 @@ package dialogs;
 import java.awt.Container;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -21,6 +20,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class CreateAccountDialog extends JDialog implements ActionListener{
 	
 	JTextField usernameField;

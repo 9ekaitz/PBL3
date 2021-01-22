@@ -16,9 +16,8 @@ import dialogs.SettingsDialog;
 import launcher.Launcher;
 import models.MaterialModel;
 import views.AppMenu;
-import views.MaterialView;
-import views.Settings;
 
+@SuppressWarnings("serial")
 public class MainViewFrame extends JFrame{
 
 	Session session;
@@ -115,7 +114,7 @@ public class MainViewFrame extends JFrame{
 				System.exit(0);
 				break;
 			case "Settings":
-				SettingsDialog p = new SettingsDialog(MainViewFrame.this, "Settings", true, session);
+				SettingsDialog d = new SettingsDialog(MainViewFrame.this, "Settings", true, session);
 				break;
 			default:
 				break;

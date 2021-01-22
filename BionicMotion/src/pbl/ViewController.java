@@ -2,7 +2,6 @@ package pbl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -50,7 +49,7 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			materialModel.resetSelection();
 			break;
 		case "createProduct":
-			createProductWithMaterials();
+			createProduct();
 			break;
 		case "goBackFromMaterialView":
 			view.setActualPanel(new AppMenu(this, materialModel));
@@ -68,7 +67,13 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			break;
 		case "next":
 			 panel = (ProcessView) view.getPanel();
-			panel.getMaterialLst().setSelectedIndex(panel.getMaterialLst().getSelectedIndex()+1);
+			 if (panel.getMaterialLst().getSelectedIndex() > panel.getMaterialLst().getModel().getSize()) {
+				 //////////////////////////////////////////////////////////////////////////////////////////
+				 // produktua gehitu
+				 //////////////////////////////////////////////////////////////////////////////////////////
+			 } else {
+				 panel.getMaterialLst().setSelectedIndex(panel.getMaterialLst().getSelectedIndex()+1);
+			}
 			break;
 		default:
 			break;
@@ -88,11 +93,9 @@ public class ViewController implements ActionListener, ListSelectionListener {
 		materialModel.removeMaterial(appMenu.getMaterialList().getSelectedValue());
 	}
 
-	private void createProductWithMaterials() {
+	private void createProduct() {
 		MaterialView panel = (MaterialView) view.getPanel();
 		String productName = panel.getProductName();
-		int materialQuantity = 15; //////////////////////////// HACE FALTA METER LA CANTIDAD DE MATERIALES
-									//////////////////////////// SELECCIONADOS EN LA JLIST
 
 		if (productName.isEmpty()) {
 			JOptionPane.showMessageDialog(view, "You must enter a product name!", "Error", JOptionPane.ERROR_MESSAGE);

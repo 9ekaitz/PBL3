@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.swing.AbstractListModel;
 
+@SuppressWarnings("serial")
 public class MaterialModel extends AbstractListModel<Material>{
 
 	private final static String PATH = "res/files/materials.txt";

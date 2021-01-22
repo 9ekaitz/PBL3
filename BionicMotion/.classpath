@@ -11,13 +11,17 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="LeapJava.jar">
+	<classpathentry kind="lib" path="lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="lib/jssc.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="LeapMotion/lib"/>
+			<attribute name="javadoc_location" value="jar:platform:/resource/BionicMotion/lib/doc/jssc-2.8.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="jssc.jar"/>
+	<classpathentry kind="lib" path="lib/LeapJava.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BionicMotion/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
