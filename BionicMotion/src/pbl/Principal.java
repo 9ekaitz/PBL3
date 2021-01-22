@@ -65,12 +65,12 @@ public class Principal {
 					try {
 						if (listener != null) {
 //							System.out.println((byte)listener.getTotalAngle());
-//							for (int i = 0; i < 5; i++) {
-//								port.writeByte((byte)(i+1));
-//								Thread.sleep(10);
-								port.writeByte((byte)listener.getAngle(1));
+							for (int i = 0; i < 5; i++) {
+								port.writeByte((byte)(i+100));
 								Thread.sleep(100);
-//							}
+								port.writeByte((byte)listener.getAngle(i));
+								Thread.sleep(100);
+							}
 						}
 					} catch (SerialPortException e) {
 						// TODO Auto-generated catch block
