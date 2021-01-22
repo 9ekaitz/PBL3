@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -177,9 +178,7 @@ public class SettingsDialog extends JDialog {
 	
 	public void refreshPorts() {
 		ports.removeAllItems();
-		for (String port : portManager.getAvaiblePorts()) {
-			ports.addItem(port);
-		}
+		Arrays.stream(portManager.getAvaiblePorts()).forEach(p->ports.addItem(p));
 	}
 	
 	public String getSelectedPort() {

@@ -53,7 +53,6 @@ public abstract class UserHandler {
 			dstFile.renameTo(srcFile);	//Sortutako fitxategi berriari aurreko fitxategiaren izena jarri
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -65,7 +64,6 @@ public abstract class UserHandler {
 		try {
 			file = new BufferedReader(new FileReader(PATH));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return file;

@@ -27,6 +27,23 @@ public class ViewController implements ActionListener, ListSelectionListener {
 	}
 
 	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		if (e.getValueIsAdjusting()) return;
+		if (view.getPanel() instanceof MaterialView) {
+			MaterialView panel = (MaterialView) view.getPanel();
+			JList<Material> lst = panel.getMaterialList();
+			MaterialModel model = (MaterialModel) lst.getModel();
+			
+			if (lst.getSelectedValue() != null) {
+				model.changeStatus(lst.getSelectedValue());
+				if (lst.getSelectedValue().isSelected()) panel.addToRecipe(lst.getSelectedValue());
+				else panel.removeFromRecipe(lst.getSelectedValue());
+				lst.clearSelection();
+			}
+		}
+	}
+	
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		ProcessView panel;
 		
@@ -102,23 +119,6 @@ public class ViewController implements ActionListener, ListSelectionListener {
 		} else {
 			view.setActualPanel(new ProcessView(this, panel.getProduct()));
 			panel.getProduct().setName(productName);
-		}
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		if (e.getValueIsAdjusting()) return;
-		if (view.getPanel() instanceof MaterialView) {
-			MaterialView panel = (MaterialView) view.getPanel();
-			JList<Material> lst = panel.getMaterialList();
-			MaterialModel model = (MaterialModel) lst.getModel();
-			
-			if (lst.getSelectedValue() != null) {
-				model.changeStatus(lst.getSelectedValue());
-				if (lst.getSelectedValue().isSelected()) panel.addToRecipe(lst.getSelectedValue());
-				else panel.removeFromRecipe(lst.getSelectedValue());
-				lst.clearSelection();
-			}
 		}
 	}
 

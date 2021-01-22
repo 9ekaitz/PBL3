@@ -61,39 +61,44 @@ public class AppMenu extends JPanel{
 		gbl_buttonPanel.columnWeights = new double[]{1.0, 0.0};
 		menuPanel.setLayout(gbl_buttonPanel);
 
-		JLabel lblMaterials = new JLabel("Materials");
-		GridBagConstraints gbc_lblMaterials = new GridBagConstraints();
-		gbc_lblMaterials.gridwidth = 2;
-		gbc_lblMaterials.insets = new Insets(0, 0, 5, 0);
-		gbc_lblMaterials.gridx = 0;
-		gbc_lblMaterials.gridy = 2;
-		menuPanel.add(lblMaterials, gbc_lblMaterials);
+		/* Material zerrendaren goiburua */
+		JLabel label = new JLabel("Materials");
+		GridBagConstraints labelConst = new GridBagConstraints();
+		labelConst.gridwidth = 2;
+		labelConst.insets = new Insets(0, 0, 5, 0);
+		labelConst.gridx = 0;
+		labelConst.gridy = 2;
+		menuPanel.add(label, labelConst);
 
-		JButton btnAddMaterial = new JButton("Add Material");
-		btnAddMaterial.setForeground(Color.WHITE);
-		btnAddMaterial.setBackground(new Color(36, 123, 160));
-		btnAddMaterial.setActionCommand("addMaterial");
-		btnAddMaterial.addActionListener(controller);
-
-		GridBagConstraints gbc_btnAddMaterial = new GridBagConstraints();
-		gbc_btnAddMaterial.fill = GridBagConstraints.BOTH;
-		gbc_btnAddMaterial.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAddMaterial.gridx = 0;
-		gbc_btnAddMaterial.gridy = 3;
-		menuPanel.add(btnAddMaterial, gbc_btnAddMaterial);
-
-		JButton btnRemoveMaterial = new JButton("Remove Material");
-		btnRemoveMaterial.setForeground(Color.WHITE);
-		btnRemoveMaterial.setBackground(new Color(36, 123, 160));
-		btnRemoveMaterial.setActionCommand("removeMaterial");
-		btnRemoveMaterial.addActionListener(controller);
 		
-		GridBagConstraints gbc_btnRemoveMaterial = new GridBagConstraints();
-		gbc_btnRemoveMaterial.fill = GridBagConstraints.BOTH;
-		gbc_btnRemoveMaterial.insets = new Insets(0, 0, 5, 0);
-		gbc_btnRemoveMaterial.gridx = 1;
-		gbc_btnRemoveMaterial.gridy = 3;
-		menuPanel.add(btnRemoveMaterial, gbc_btnRemoveMaterial);
+		/* Materialak gehitzeko botoia */
+		JButton button = new JButton("Add Material");
+		button.setForeground(Color.WHITE);
+		button.setBackground(new Color(36, 123, 160));
+		button.setActionCommand("addMaterial");
+		button.addActionListener(controller);
+
+		GridBagConstraints buttonConst = new GridBagConstraints();
+		buttonConst.fill = GridBagConstraints.BOTH;
+		buttonConst.insets = new Insets(0, 0, 5, 5);
+		buttonConst.gridx = 0;
+		buttonConst.gridy = 3;
+		menuPanel.add(button, buttonConst);
+
+		/* Materialak ezabatzeko botoia */
+		button = new JButton("Remove Material");
+		button.setForeground(Color.WHITE);
+		button.setBackground(new Color(36, 123, 160));
+		button.setActionCommand("removeMaterial");
+		button.addActionListener(controller);
+		
+		buttonConst = new GridBagConstraints();
+		buttonConst.fill = GridBagConstraints.BOTH;
+		buttonConst.insets = new Insets(0, 0, 5, 0);
+		buttonConst.gridx = 1;
+		buttonConst.gridy = 3;
+		menuPanel.add(button, buttonConst);
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -129,34 +134,37 @@ public class AppMenu extends JPanel{
 		JList<String> list_1 = new JList<>();
 		scrollPane_1.setViewportView(list_1);
 		
-		JButton btnCreateProduct = new JButton("Create Product");
-		btnCreateProduct.setBackground(new Color(36, 123, 160));
-		btnCreateProduct.setForeground(Color.WHITE);
-		btnCreateProduct.setActionCommand("startcreateProduct");
-		btnCreateProduct.addActionListener(controller);
+		/* Produktuak sortzeko botoia */
+		button = new JButton("Create Product");
+		button.setBackground(new Color(36, 123, 160));
+		button.setForeground(Color.WHITE);
+		button.setActionCommand("startcreateProduct");
+		button.addActionListener(controller);
 		
-		GridBagConstraints gbc_btnCreateProduct = new GridBagConstraints();
-		gbc_btnCreateProduct.insets = new Insets(0, 0, 5, 0);
-		gbc_btnCreateProduct.fill = GridBagConstraints.BOTH;
-		gbc_btnCreateProduct.gridheight = 2;
-		gbc_btnCreateProduct.gridwidth = 2;
-		gbc_btnCreateProduct.gridx = 0;
-		gbc_btnCreateProduct.gridy = 7;
-		menuPanel.add(btnCreateProduct, gbc_btnCreateProduct);
+		buttonConst = new GridBagConstraints();
+		buttonConst.insets = new Insets(0, 0, 5, 0);
+		buttonConst.fill = GridBagConstraints.BOTH;
+		buttonConst.gridheight = 2;
+		buttonConst.gridwidth = 2;
+		buttonConst.gridx = 0;
+		buttonConst.gridy = 7;
+		menuPanel.add(button, buttonConst);
 
-		JButton btnShutdown = new JButton();
-		btnShutdown.setActionCommand("shutdown");
-		btnShutdown.addActionListener(controller);
-		btnShutdown.setOpaque(false);
-		btnShutdown.setContentAreaFilled(false);
-		btnShutdown.setBorderPainted(false);
-		btnShutdown.setIcon(new ImageIcon("res/icons/shutdown.png"));
 		
-		GridBagConstraints gbc_btnShutdown = new GridBagConstraints();
-		gbc_btnShutdown.anchor = GridBagConstraints.EAST;
-		gbc_btnShutdown.gridx = 1;
-		gbc_btnShutdown.gridy = 9;
-		menuPanel.add(btnShutdown, gbc_btnShutdown);
+		/* Itzaltzeko botoia */
+		button = new JButton();
+		button.setActionCommand("shutdown");
+		button.addActionListener(controller);
+		button.setOpaque(false);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("res/icons/shutdown.png"));
+		
+		buttonConst = new GridBagConstraints();
+		buttonConst.anchor = GridBagConstraints.EAST;
+		buttonConst.gridx = 1;
+		buttonConst.gridy = 9;
+		menuPanel.add(button, buttonConst);
 		
 		return menuPanel;
 	}

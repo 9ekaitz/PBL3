@@ -109,7 +109,6 @@ public class MaterialModel extends AbstractListModel<Material>{
 	}
 
 	public void resetSelection() {
-		for (Material m : materialList) m.setSelected(false);
+		materialList.forEach(m->m.setSelected(false));
 	}
-
 }
