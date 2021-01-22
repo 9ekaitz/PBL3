@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import dialogs.SettingsDialog;
 import launcher.Launcher;
 import models.MaterialModel;
+import models.ProductModel;
 import views.AppMenu;
 
 @SuppressWarnings("serial")
@@ -25,14 +26,16 @@ public class MainViewFrame extends JFrame{
 	ViewController controller;
 	MenuActions logout, exit, settings;
 	MaterialModel materialModel;
+	ProductModel productModel;
 
 	public MainViewFrame(Session session) {
 		super("Leap Motion");
 		this.session = session;
 		
 		this.materialModel = new MaterialModel();
-		this.controller = new ViewController(this, materialModel);
-		this.actualPanel = new AppMenu(controller, materialModel);
+		this.productModel = new ProductModel();
+		this.controller = new ViewController(this, materialModel, productModel);
+		this.actualPanel = new AppMenu(controller, materialModel, productModel);
 		
 		createActions();
 		this.setJMenuBar(createMenuBar());

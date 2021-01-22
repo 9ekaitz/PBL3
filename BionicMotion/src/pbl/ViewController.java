@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -12,6 +13,7 @@ import dialogs.AddMaterialDialog;
 import launcher.Launcher;
 import models.Material;
 import models.MaterialModel;
+import models.ProductModel;
 import views.AppMenu;
 import views.MaterialView;
 import views.ProcessView;
@@ -20,10 +22,12 @@ public class ViewController implements ActionListener, ListSelectionListener {
 
 	MainViewFrame view;
 	MaterialModel materialModel;
+	ProductModel productModel;
 
-	public ViewController(MainViewFrame view, MaterialModel materialModel) {
+	public ViewController(MainViewFrame view, MaterialModel materialModel, ProductModel productModel) {
 		this.view = view;
 		this.materialModel = materialModel;
+		this.productModel = productModel;
 	}
 
 	@Override
@@ -45,7 +49,8 @@ public class ViewController implements ActionListener, ListSelectionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		ProcessView panel;
+		
+		ProcessView panel = null;
 		
 		switch (arg0.getActionCommand()) {
 		case "logout": // Erabiltzailearen sesioa amaitzen da eta login leihoa irekitzen da
@@ -69,7 +74,7 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			createProduct();
 			break;
 		case "goBackFromMaterialView":
-			view.setActualPanel(new AppMenu(this, materialModel));
+			view.setActualPanel(new AppMenu(this, materialModel, productModel));
 			break;
 		case "goBackFromProcessView":
 			view.setActualPanel(new MaterialView(this, materialModel));
@@ -81,20 +86,27 @@ public class ViewController implements ActionListener, ListSelectionListener {
 		case "start":
 			panel = (ProcessView) view.getPanel();
 			panel.getMaterialLst().setSelectedIndex(0);
+			panel.startProcess();
 			break;
 		case "next":
-			 panel = (ProcessView) view.getPanel();
-			 if (panel.getMaterialLst().getSelectedIndex() > panel.getMaterialLst().getModel().getSize()) {
-				 //////////////////////////////////////////////////////////////////////////////////////////
-				 // produktua gehitu
-				 //////////////////////////////////////////////////////////////////////////////////////////
-			 } else {
-				 panel.getMaterialLst().setSelectedIndex(panel.getMaterialLst().getSelectedIndex()+1);
-			}
+			nextMaterial(panel);
 			break;
 		default:
 			break;
 		}
+	}
+
+	private void nextMaterial(ProcessView panel) {
+		 panel = (ProcessView) view.getPanel();
+		 if (panel.getMaterialLst().getSelectedIndex()+1 >= panel.getMaterialLst().getModel().getSize()) {
+			 panel.finishProgress();
+			 JOptionPane.showMessageDialog(view, "You have created a product", "Completed", JOptionPane.INFORMATION_MESSAGE);
+			 productModel.addProduct(panel.getProduct());
+			 view.setActualPanel(new AppMenu(this, materialModel, productModel));
+			 
+		 } else {
+			 panel.updateProgress();
+		 }
 	}
 
 	private void addMaterial() {
@@ -114,11 +126,15 @@ public class ViewController implements ActionListener, ListSelectionListener {
 		MaterialView panel = (MaterialView) view.getPanel();
 		String productName = panel.getProductName();
 
+		int size = panel.getProduct().getSize();
+		
 		if (productName.isEmpty()) {
 			JOptionPane.showMessageDialog(view, "You must enter a product name!", "Error", JOptionPane.ERROR_MESSAGE);
-		} else {
-			view.setActualPanel(new ProcessView(this, panel.getProduct()));
+		} else if(size < 1){
+			JOptionPane.showMessageDialog(view, "You must select at least one material", "Error", JOptionPane.ERROR_MESSAGE);
+		}else {
 			panel.getProduct().setName(productName);
+			view.setActualPanel(new ProcessView(this, panel.getProduct()));
 		}
 	}
 

@@ -20,6 +20,8 @@ import javax.swing.border.EmptyBorder;
 import chart.ChartView;
 import models.Material;
 import models.MaterialModel;
+import models.Product;
+import models.ProductModel;
 import pbl.ViewController;
 import javax.swing.JList;
 
@@ -28,12 +30,14 @@ public class AppMenu extends JPanel{
 
 	ViewController controller;
 	MaterialModel materialModel;
+	ProductModel productModel;
 	Color darkBlue;
 	JList<Material> materialJList;
 	
-	public AppMenu(ViewController controller, MaterialModel materialModel) {
+	public AppMenu(ViewController controller, MaterialModel materialModel, ProductModel productModel) {
 		this.controller = controller;
 		this.materialModel = materialModel;
+		this.productModel = productModel;
 		
 		setPreferredSize(new Dimension(1024, 600));
 		setLayout(new GridLayout(0, 1, 0, 0));
@@ -131,8 +135,10 @@ public class AppMenu extends JPanel{
 		gbc_scrollPane_1.gridy = 6;
 		menuPanel.add(scrollPane_1, gbc_scrollPane_1);
 		
-		JList<String> list_1 = new JList<>();
+		JList<Product> list_1 = new JList<>();
+		list_1.setModel(productModel);
 		scrollPane_1.setViewportView(list_1);
+		
 		
 		/* Produktuak sortzeko botoia */
 		button = new JButton("Create Product");

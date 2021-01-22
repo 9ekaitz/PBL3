@@ -31,6 +31,9 @@ public class ProcessView extends JPanel{
 	Product product;
 	ListRenderer renderer;
 	JList<Material> materialLst;
+	JProgressBar progressBar;
+	JButton startButton, nextButton;
+	JLabel labelProducts;
 	
 	
 	public ProcessView(ViewController controller, Product product) {	
@@ -80,37 +83,19 @@ public class ProcessView extends JPanel{
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 10);
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 15, 10);
 		gbc_lblNewLabel_1.gridx = 2;
 		gbc_lblNewLabel_1.gridy = 2;
 		add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JLabel lblProcessCount = new JLabel("0 out of 15");
-		lblProcessCount.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		labelProducts = new JLabel(0+" out of "+product.getMaterials().size());
+		labelProducts.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblProcessCount = new GridBagConstraints();
 		gbc_lblProcessCount.anchor = GridBagConstraints.WEST;
-		gbc_lblProcessCount.insets = new Insets(0, 0, 5, 0);
+		gbc_lblProcessCount.insets = new Insets(0, 0, 15, 0);
 		gbc_lblProcessCount.gridx = 3;
 		gbc_lblProcessCount.gridy = 2;
-		add(lblProcessCount, gbc_lblProcessCount);
-		
-		JLabel lblTimeSpent = new JLabel("Time spent:");
-		lblTimeSpent.setFont(new Font("Tahoma", Font.BOLD, 15));
-		GridBagConstraints gbc_lblTimeSpent = new GridBagConstraints();
-		gbc_lblTimeSpent.anchor = GridBagConstraints.EAST;
-		gbc_lblTimeSpent.insets = new Insets(0, 0, 20, 10);
-		gbc_lblTimeSpent.gridx = 2;
-		gbc_lblTimeSpent.gridy = 3;
-		add(lblTimeSpent, gbc_lblTimeSpent);
-		
-		JLabel lblTimeCount = new JLabel("00:35 min");
-		lblTimeCount.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GridBagConstraints gbc_lblTimeCount = new GridBagConstraints();
-		gbc_lblTimeCount.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblTimeCount.insets = new Insets(0, 0, 5, 0);
-		gbc_lblTimeCount.gridx = 3;
-		gbc_lblTimeCount.gridy = 3;
-		add(lblTimeCount, gbc_lblTimeCount);
+		add(labelProducts, gbc_lblProcessCount);
 		
 		JScrollPane listPanel = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		createProcessList();
@@ -135,21 +120,23 @@ public class ProcessView extends JPanel{
 		add(buttonPanel, gbc_buttonPanel);
 		
 		
-		JButton btnStart = new JButton("Start");
-		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnStart.setForeground(Color.WHITE);
-		btnStart.setBackground(new Color(36, 123, 160));
-		btnStart.setActionCommand("start");
-		btnStart.addActionListener(controller);
-		buttonPanel.add(btnStart);
+		startButton = new JButton("Start");
+		startButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		startButton.setForeground(Color.WHITE);
+		startButton.setBackground(new Color(36, 123, 160));
+		startButton.setActionCommand("start");
+		startButton.addActionListener(controller);
+		buttonPanel.add(startButton);
 		
-		JButton btnNextProcess = new JButton("Next");
-		btnNextProcess.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNextProcess.setForeground(Color.WHITE);
-		btnNextProcess.setBackground(new Color(36, 123, 160));
-		btnNextProcess.setActionCommand("next");
-		btnNextProcess.addActionListener(controller);
-		buttonPanel.add(btnNextProcess);
+		nextButton = new JButton("Next");
+		nextButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		nextButton.setForeground(Color.WHITE);
+		nextButton.setBackground(new Color(36, 123, 160));
+		nextButton.setEnabled(false);
+		nextButton.setActionCommand("next");
+		nextButton.addActionListener(controller);
+		buttonPanel.add(nextButton);
+		
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBackground(new Color(36, 123, 160));
@@ -167,8 +154,10 @@ public class ProcessView extends JPanel{
 		gbc_lblNewLabel_2.gridy = 5;
 		add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(45);
+		
+		/* ProgressBar */
+		progressBar = new JProgressBar();
+		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
 		progressBar.setForeground(new Color(36, 123, 160));
 		progressBar.setIndeterminate(false);
@@ -193,5 +182,33 @@ public class ProcessView extends JPanel{
 	
 	public JList<Material> getMaterialLst(){
 		return materialLst;
+	}
+	
+	public JProgressBar getBar() {
+		return progressBar;
+	}
+	
+	public Product getProduct() {
+		return product;
+	}
+	
+	public void startProcess() {
+		startButton.setEnabled(false);
+		nextButton.setEnabled(true);
+	}
+	
+	public void finishProgress() {
+		progressBar.setValue(100);
+		labelProducts.setText(product.getMaterials().size()+" out of "+product.getMaterials().size());
+	}
+	
+	public void updateProgress() {
+		
+		materialLst.setSelectedIndex(materialLst.getSelectedIndex()+1);
+		float a = materialLst.getSelectedIndex();
+		float b = materialLst.getModel().getSize();
+		progressBar.setValue((int)((a/b)*100));
+		
+		labelProducts.setText(materialLst.getSelectedIndex()+" out of "+product.getMaterials().size());
 	}
 }

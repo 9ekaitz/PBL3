@@ -11,6 +11,16 @@ public class Product extends AbstractListModel<Material>{
 	private List<Material> lst;
 	private String name;
 	
+	public Product(String line) {
+		lst = new ArrayList<>();
+		String[] data = line.split("&");
+		this.name = data[0];
+		String[] materials = data[1].split("[$]");
+		for (String material : materials) {
+			lst.add(new Material(material));
+		}
+	}
+	
 	public Product() {
 		lst = new ArrayList<>();
 	}
@@ -42,6 +52,10 @@ public class Product extends AbstractListModel<Material>{
 	public void removeMaterial(Material m) {
 		lst.remove(m);
 		fireContentsChanged(lst, 0, getSize());
+	}
+	
+	public List<Material> getMaterials(){
+		return lst;
 	}
 
 }
