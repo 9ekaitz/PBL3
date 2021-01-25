@@ -81,8 +81,11 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			view.setActualPanel(new MaterialView(this, materialModel));
 			break;
 		case "cancel":
+			panel = (ProcessView) view.getPanel();
+			panel.finishProgress();
 			view.setActualPanel(new MaterialView(this, materialModel));
 			materialModel.resetSelection();
+			
 			break;
 		case "start":
 			panel = (ProcessView) view.getPanel();
