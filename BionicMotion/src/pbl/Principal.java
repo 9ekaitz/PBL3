@@ -44,7 +44,7 @@ public class Principal {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-			controller.removeListener(listener);	// Remove the sample listener when done
+		controller.removeListener(listener);	// Remove the sample listener when done
 	}
 
 	public class SerialIO extends Thread {
