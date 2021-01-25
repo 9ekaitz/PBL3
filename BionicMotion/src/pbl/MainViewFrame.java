@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import dialogs.SettingsDialog;
 import launcher.Launcher;
 import models.MaterialModel;
+import models.PortManager;
 import models.ProductModel;
 import views.AppMenu;
 
@@ -117,7 +118,9 @@ public class MainViewFrame extends JFrame{
 				System.exit(0);
 				break;
 			case "Settings":
-				SettingsDialog d = new SettingsDialog(MainViewFrame.this, "Settings", true, session);
+				SettingsDialog d = new SettingsDialog(MainViewFrame.this, "Settings", true, session, controller.getPortManager());
+				controller.setPortManager(d.getPortManager());
+				
 				break;
 			default:
 				break;

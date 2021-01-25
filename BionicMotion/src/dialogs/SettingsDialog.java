@@ -34,13 +34,15 @@ public class SettingsDialog extends JDialog {
 	Session session;
 	SettingsController controller;
 	
-	public SettingsDialog(JFrame frame, String title, boolean mode, Session session) {
+	public SettingsDialog(JFrame frame, String title, boolean mode, Session session, PortManager portManager) {
 		super(frame, title, mode);
 		this.frame = frame;
 		this.setSize(400,320);
 		this.session = session;
-		portManager = new PortManager();
-		controller = new SettingsController(this, portManager);
+		if (portManager == null) this.portManager = new PortManager();
+		else this.portManager = portManager;
+		
+		controller = new SettingsController(this, this.portManager);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(createPanel());
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -191,5 +193,9 @@ public class SettingsDialog extends JDialog {
 	
 	public Session getSession() {
 		return session;
+	}
+	
+	public PortManager getPortManager() {
+		return portManager;
 	}
 }

@@ -13,6 +13,7 @@ import dialogs.AddMaterialDialog;
 import launcher.Launcher;
 import models.Material;
 import models.MaterialModel;
+import models.PortManager;
 import models.ProductModel;
 import views.AppMenu;
 import views.MaterialView;
@@ -23,6 +24,7 @@ public class ViewController implements ActionListener, ListSelectionListener {
 	MainViewFrame view;
 	MaterialModel materialModel;
 	ProductModel productModel;
+	PortManager portManager = null;
 
 	public ViewController(MainViewFrame view, MaterialModel materialModel, ProductModel productModel) {
 		this.view = view;
@@ -152,5 +154,13 @@ public class ViewController implements ActionListener, ListSelectionListener {
 //		}
 
 	}
+	
+	public PortManager getPortManager() {
+		return portManager;
+	}
 
+	public void setPortManager(PortManager portManager) {
+		this.portManager = portManager;
+	}
+	
 }

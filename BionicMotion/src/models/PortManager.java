@@ -16,6 +16,7 @@ public class PortManager {
 
 	/* Pasatutako portua irekitzen du */
 	public void openConnection(String selectedPort) throws SerialPortException {
+		if (port != null) port.closePort();
 		port = new SerialPort(selectedPort);
 		port.openPort();
 		port.setParams(BAUDRATE_9600,  DATABITS_8, STOPBITS_1, PARITY_NONE);
@@ -24,5 +25,4 @@ public class PortManager {
 	public SerialPort getPort() {
 		return port;
 	}
-	
 }

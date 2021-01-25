@@ -10,6 +10,7 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
 import models.Material;
+import models.PortManager;
 import models.Product;
 import pbl.ListRenderer;
 import pbl.ViewController;
@@ -34,12 +35,14 @@ public class ProcessView extends JPanel{
 	JProgressBar progressBar;
 	JButton startButton, nextButton;
 	JLabel labelProducts;
+	PortManager portManager;
 	
 	
 	public ProcessView(ViewController controller, Product product) {	
 		this.product = product;
 		this.renderer = new ListRenderer();
 		this.controller = controller;
+		this.portManager = controller.getPortManager();
 		createPanel();			
 	}
 
