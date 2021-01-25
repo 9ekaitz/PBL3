@@ -5,12 +5,11 @@ import jssc.SerialPortException;
 
 public class Serial extends Thread{
 
-	private boolean end = true;
+	private boolean end;
 	private SerialPort port;
 	private SampleListener listener;
 	
 	public Serial(SerialPort port, SampleListener listener) {
-		super();
 		this.port = port;
 		this.listener = listener;
 		end = false;
