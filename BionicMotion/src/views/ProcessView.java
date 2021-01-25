@@ -9,6 +9,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
+import com.leapmotion.leap.Controller;
+import com.leapmotion.leap.Frame;
+
+import leapmotion.SampleListener;
+import leapmotion.Serial;
 import models.Material;
 import models.PortManager;
 import models.Product;
@@ -28,7 +33,7 @@ import javax.swing.ImageIcon;
 @SuppressWarnings("serial")
 public class ProcessView extends JPanel{
 
-	ViewController controller;
+	ViewController viewController;
 	Product product;
 	ListRenderer renderer;
 	JList<Material> materialLst;
@@ -36,13 +41,16 @@ public class ProcessView extends JPanel{
 	JButton startButton, nextButton;
 	JLabel labelProducts;
 	PortManager portManager;
+	SampleListener listener;
+	Controller controller;
+	Serial serial;
 	
 	
 	public ProcessView(ViewController controller, Product product) {	
 		this.product = product;
 		this.renderer = new ListRenderer();
-		this.controller = controller;
-		this.portManager = controller.getPortManager();
+		this.viewController = controller;
+		
 		createPanel();			
 	}
 
@@ -128,7 +136,7 @@ public class ProcessView extends JPanel{
 		startButton.setForeground(Color.WHITE);
 		startButton.setBackground(new Color(36, 123, 160));
 		startButton.setActionCommand("start");
-		startButton.addActionListener(controller);
+		startButton.addActionListener(viewController);
 		buttonPanel.add(startButton);
 		
 		nextButton = new JButton("Next");
@@ -137,7 +145,7 @@ public class ProcessView extends JPanel{
 		nextButton.setBackground(new Color(36, 123, 160));
 		nextButton.setEnabled(false);
 		nextButton.setActionCommand("next");
-		nextButton.addActionListener(controller);
+		nextButton.addActionListener(viewController);
 		buttonPanel.add(nextButton);
 		
 		
@@ -146,7 +154,7 @@ public class ProcessView extends JPanel{
 		btnCancel.setForeground(Color.WHITE);
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnCancel.setActionCommand("cancel");
-		btnCancel.addActionListener(controller);
+		btnCancel.addActionListener(viewController);
 		buttonPanel.add(btnCancel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Progress: ");
@@ -178,7 +186,7 @@ public class ProcessView extends JPanel{
 	private void createProcessList() {
 		materialLst = new JList<>();
 		materialLst.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		materialLst.addListSelectionListener(controller);
+		materialLst.addListSelectionListener(viewController);
 		materialLst.setModel(product);
 		materialLst.setCellRenderer(renderer);
 	}
@@ -198,12 +206,25 @@ public class ProcessView extends JPanel{
 	public void startProcess() {
 		startButton.setEnabled(false);
 		nextButton.setEnabled(true);
+		listener = new SampleListener();
+		controller = new Controller();
 		
+		Frame frame = controller.frame();
+		
+		// Have the sample listener receive events from the controller
+		controller.addListener(listener);
+		this.portManager = viewController.getPortManager();
+		serial = new Serial(portManager.getPort(), listener);
+		serial.start();
 	}
 	
 	public void finishProgress() {
 		progressBar.setValue(100);
 		labelProducts.setText(product.getMaterials().size()+" out of "+product.getMaterials().size());
+		controller.removeListener(listener);
+		controller = null;
+	
+		serial.finish();
 	}
 	
 	public void updateProgress() {
