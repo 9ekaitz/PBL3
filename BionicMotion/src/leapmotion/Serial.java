@@ -22,7 +22,7 @@ public class Serial extends Thread{
 				try {
 					if (listener != null) {
 						for (int i = 0; i < 5; i++) {
-							port.writeByte((byte)(i+1));
+							port.writeByte((byte)(i+100));
 							Thread.sleep(20);
 							System.out.println("Sended");
 							port.writeByte((byte)listener.getAngle(i));

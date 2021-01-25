@@ -90,7 +90,11 @@ public class ViewController implements ActionListener, ListSelectionListener {
 		case "start":
 			panel = (ProcessView) view.getPanel();
 			panel.getMaterialLst().setSelectedIndex(0);
-			panel.startProcess();
+			if (portManager.getPort() != null) {
+				panel.startProcess();
+			} else {
+				JOptionPane.showMessageDialog(view, "You must open the port first", "Warning", JOptionPane.WARNING_MESSAGE);
+			}
 			break;
 		case "next":
 			nextMaterial(panel);

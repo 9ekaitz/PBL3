@@ -6,8 +6,8 @@ import jssc.SerialPortList;
 
 public class PortManager {
 
-	private SerialPort port;
-	private final int BAUDRATE_9600 = 9600, DATABITS_8 = 8, STOPBITS_1 = 1, PARITY_NONE = 0;
+	private SerialPort port = null;
+	private final int BAUDRATE = 115200, DATABITS_8 = 8, STOPBITS_1 = 1, PARITY_NONE = 0;
 	
 	/* Eskuragarri dauden portuak erakusten ditu */
 	public String[] getAvaiblePorts() {
@@ -19,7 +19,7 @@ public class PortManager {
 		if (port != null) port.closePort();
 		port = new SerialPort(selectedPort);
 		port.openPort();
-		port.setParams(BAUDRATE_9600,  DATABITS_8, STOPBITS_1, PARITY_NONE);
+		port.setParams(BAUDRATE,  DATABITS_8, STOPBITS_1, PARITY_NONE);
 	}
 	
 	public SerialPort getPort() {
