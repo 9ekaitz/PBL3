@@ -38,15 +38,17 @@ public class Principal {
 		controller.addListener(listener);
 
 		// Keep this process running until Enter is pressed
-		System.out.println("Press Enter to quit...");
-		try {
-			System.in.read();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		System.out.println("Press Enter to quit...");
+//		try {
+//			System.in.read();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
-		// Remove the sample listener when done
-		controller.removeListener(listener);
+		if (false){
+			controller.removeListener(listener);	// Remove the sample listener when done
+		}
+		
 	}
 
 	public class SerialIO extends Thread {
