@@ -6,11 +6,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="jssc.jar"/>
 	<classpathentry kind="lib" path="LeapJava.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BionicMotion/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/jssc-2.9.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
