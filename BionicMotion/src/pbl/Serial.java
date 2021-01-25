@@ -8,7 +8,7 @@ import jssc.SerialPortList;
 
 public class Serial {
 
-	final static int BAUDRATE_9600 = 9600;
+	final static int BAUDRATE = 115200;
 	final static int DATABITS_8 = 8;
 	final static int STOPBITS_1 = 1;
 	final static int PARITY_NONE = 0;
@@ -35,7 +35,7 @@ public class Serial {
 		try {
 
 			serialPort.openPort();
-			serialPort.setParams(BAUDRATE_9600, DATABITS_8, STOPBITS_1, PARITY_NONE);
+			serialPort.setParams(BAUDRATE, DATABITS_8, STOPBITS_1, PARITY_NONE);
 			
 			return serialPort;
 
