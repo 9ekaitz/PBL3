@@ -36,20 +36,21 @@ public class SampleListener extends Listener {
 				double tmpAngle = 0;
 				for (int i = 0; i < 2; i++) {
 					Bone bone = leftFinger.bone(bones[i]);
-					
 					Vector p1 = bone.prevJoint();
 					Vector p2 = bone.nextJoint();
 					
+					//Lehenengo hezurraren bektorea sortu
 					Vector v = new Vector();
 					v.setX(p2.getX()-p1.getX());
 					v.setY(p2.getY()-p1.getY());
 					v.setZ(p2.getZ()-p1.getZ());
 					
-					Bone nextBone = leftFinger.bone(bones[i+1]);
 					
+					Bone nextBone = leftFinger.bone(bones[i+1]);
 					Vector q1 = nextBone.prevJoint();
 					Vector q2 = nextBone.nextJoint();
 					
+					//Hurrengo hezurraren bektorea sortu
 					Vector u = new Vector();
 					u.setX(q2.getX()-q1.getX());
 					u.setY(q2.getY()-q1.getY());

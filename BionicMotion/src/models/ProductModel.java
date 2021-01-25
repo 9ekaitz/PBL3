@@ -1,16 +1,15 @@
 package models;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractListModel;
 
+@SuppressWarnings("serial")
 public class ProductModel extends AbstractListModel<Product>{
 	
 	private final static String PATH = "res/files/products.txt";

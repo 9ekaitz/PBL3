@@ -8,9 +8,7 @@ import javax.swing.JOptionPane;
 import dialogs.CreateAccountDialog;
 import dialogs.SettingsDialog;
 import jssc.SerialPortException;
-import models.FileHandler;
 import models.PortManager;
-import models.User;
 import models.UserHandler;
 
 public class SettingsController implements ActionListener {

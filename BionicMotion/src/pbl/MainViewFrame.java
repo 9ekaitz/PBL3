@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import dialogs.SettingsDialog;
 import launcher.Launcher;
 import models.MaterialModel;
-import models.PortManager;
 import models.ProductModel;
 import views.AppMenu;
 

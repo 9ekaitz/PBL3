@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 import models.Material;
 import models.MaterialModel;
 import models.Product;
-import models.ProductModel;
 import pbl.ListRenderer;
 import pbl.ViewController;
 
@@ -31,7 +30,6 @@ public class MaterialView extends JPanel{
 
 	private ViewController controller;
 	private MaterialModel materialModel;
-	private ProductModel productModel;
 	private Product product;
 	private ListRenderer renderer;
 	private JTextField textField;
