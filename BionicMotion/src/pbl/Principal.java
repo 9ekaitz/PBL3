@@ -32,23 +32,19 @@ public class Principal {
 		listener = new SampleListener();
 		Controller controller = new Controller();
 
-		Frame frame = controller.frame(); // controller is a Controller object
-
+		Frame frame = controller.frame(); //frame izena izan behar du derrigorrez
+		System.out.println("New frame");
 		// Have the sample listener receive events from the controller
 		controller.addListener(listener);
 
 		// Keep this process running until Enter is pressed
-//		System.out.println("Press Enter to quit...");
-//		try {
-//			System.in.read();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-
-		if (false){
-			controller.removeListener(listener);	// Remove the sample listener when done
+		System.out.println("Press Enter to quit...");
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
+			controller.removeListener(listener);	// Remove the sample listener when done
 	}
 
 	public class SerialIO extends Thread {
