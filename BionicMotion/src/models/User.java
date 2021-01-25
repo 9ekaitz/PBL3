@@ -20,5 +20,4 @@ public class User implements Saveable, Removeable{
 		String param[] = line.split("[$]");
 		return name.equals(param[0]);
 	}
-	
 }

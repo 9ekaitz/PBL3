@@ -198,6 +198,7 @@ public class ProcessView extends JPanel{
 	public void startProcess() {
 		startButton.setEnabled(false);
 		nextButton.setEnabled(true);
+		
 	}
 	
 	public void finishProgress() {

@@ -1,48 +1,46 @@
 package leapmotion;
 
-import java.util.Scanner;
-
 import jssc.SerialPort;
 import jssc.SerialPortException;
-import jssc.SerialPortList;
 
-public class Serial {
+public class Serial extends Thread{
 
-	final static int BAUDRATE_9600 = 9600;
-	final static int DATABITS_8 = 8;
-	final static int STOPBITS_1 = 1;
-	final static int PARITY_NONE = 0;
-
-	public static String lstPorts() {
-
-		int port;
-
-		Scanner input = new Scanner(System.in);
-		String[] ports = SerialPortList.getPortNames();
-
-		for (int i = 0; i < ports.length; i++) {
-			System.out.println(i + ": " + ports[i]);
+	private boolean end = true;
+	private SerialPort port;
+	private SampleListener listener;
+	
+	public Serial(SerialPort port, SampleListener listener) {
+		super();
+		this.port = port;
+		this.listener = listener;
+		end = false;
+	}
+	
+	@Override
+	public void run() {
+		while (!end) {
+			if (!end) {
+				try {
+					if (listener != null) {
+//						System.out.println((byte)listener.getTotalAngle());
+//						for (int i = 0; i < 5; i++) {
+//							port.writeByte((byte)(i+1));
+//							Thread.sleep(10);
+							port.writeByte((byte)listener.getAngle(1));
+							Thread.sleep(100);
+//						}
+					}
+				} catch (SerialPortException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
-
-		System.out.print("Choose the port: ");
-		port = input.nextInt();
-
-		return ports[port];
 	}
 
-	public static SerialPort openPort(String port) {
-		SerialPort serialPort = new SerialPort(port);
-		try {
-
-			serialPort.openPort();
-			serialPort.setParams(BAUDRATE_9600, DATABITS_8, STOPBITS_1, PARITY_NONE);
-			
-			return serialPort;
-
-		} catch (SerialPortException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
+	
+	
 }

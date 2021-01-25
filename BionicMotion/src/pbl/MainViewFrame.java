@@ -119,7 +119,6 @@ public class MainViewFrame extends JFrame{
 			case "Settings":
 				SettingsDialog d = new SettingsDialog(MainViewFrame.this, "Settings", true, session, controller.getPortManager());
 				controller.setPortManager(d.getPortManager());
-				
 				break;
 			default:
 				break;

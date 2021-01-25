@@ -202,7 +202,7 @@ public class Launcher extends JFrame {
 		errorMsg.setForeground(errorMsg.getBackground());	//Letrak atzeko kolorekoak jartzen dira ez ikusteko
 		
 		GridBagConstraints labelConst = new GridBagConstraints();
-		labelConst.insets = new Insets(10, 0, height/10, 0);
+		labelConst.insets = new Insets(10, 0, height/20, 0);
 		labelConst.gridwidth = 2;
 		labelConst.gridx = 0;
 		labelConst.gridy = 5;

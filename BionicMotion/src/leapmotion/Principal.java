@@ -30,7 +30,7 @@ public class Principal {
 		listener = new SampleListener();
 		Controller controller = new Controller();
 
-		Frame frame = controller.frame(); // controller is a Controller object
+		Frame frame = controller.frame();
 
 		// Have the sample listener receive events from the controller
 		controller.addListener(listener);
