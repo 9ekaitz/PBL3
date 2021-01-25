@@ -1,8 +1,8 @@
 package models;
 
-public class Material {
+public class Material implements Saveable, Removeable{
 
-	String name;
+	private String name;
 	boolean selected;
 	
 	public Material(String name) {
@@ -23,4 +23,17 @@ public class Material {
 		this.selected = selected;
 	}
 	
+	@Override
+	public String toFile() {
+		return name+"\n";
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	@Override
+	public boolean isTheSame(String line) {
+		return line.equals(name);
+	}
 }

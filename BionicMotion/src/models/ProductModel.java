@@ -37,28 +37,15 @@ public class ProductModel extends AbstractListModel<Product>{
 			e.printStackTrace();
 		}
 	}
-	public void addProduct(Product m) {
-		lst.add(m);
+	public void addProduct(Product p) {
+		lst.add(p);
 		fireContentsChanged(lst, 0, getSize());
-		saveMaterialToFile(m);
+		FileHandler.saveToFile(p, PATH);
 	}
 	
 	public void removeProduct(Product m) {
 		lst.remove(m);
 		fireContentsChanged(lst, 0, getSize());
-	}
-	
-	public static void saveMaterialToFile(Product m) {
-		/* Materiala fitxategira gehitzen du */
-		try (BufferedWriter out = new BufferedWriter(new FileWriter(PATH, true))) {
-			StringBuilder materials = new StringBuilder();
-			m.getMaterials().forEach((p)->materials.append(p.toString()+"$"));
-			out.write(m+"&"+materials+"\n");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override

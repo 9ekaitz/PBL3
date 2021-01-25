@@ -39,28 +39,16 @@ public class MaterialModel extends AbstractListModel<Material>{
 		}
 	}
 	
-	public static void saveMaterialToFile(Material m) {
-		/* Materiala fitxategira gehitzen du */
-		
-		try (BufferedWriter out = new BufferedWriter(new FileWriter(PATH, true))) {
-			out.write(m+"\n");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void addMaterial(Material m) {
 		materialList.add(m);
 		fireContentsChanged(materialList, 0, materialList.size());
-		saveMaterialToFile(m);
+		FileHandler.saveToFile(m, PATH);
 	}
 	
 	public void removeMaterial(Material m) {
 		materialList.remove(m);
 		fireContentsChanged(materialList, 0, materialList.size());
-		removeMaterialFromFile(m.toString());
+		FileHandler.removeFromFile(m, PATH);
 	}
 	
 	public static void removeMaterialFromFile(String m) {

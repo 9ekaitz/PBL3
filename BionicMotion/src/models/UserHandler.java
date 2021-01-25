@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 public abstract class UserHandler {
 
@@ -17,44 +18,12 @@ public abstract class UserHandler {
 	}
 	
 	public static void saveUserToFile(String[] user) {
-		/* Erabiltzailearen datuak fitxategira gehitzen ditu */
-		
-		try (BufferedWriter out = new BufferedWriter(new FileWriter(PATH, true))) {
-			out.write(user[0] + "$" + user[1] + "$" + user[2] + "\n");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		FileHandler.saveToFile(new User(user), PATH);
 	}
 	
 	public static void removeUserFromFile(String user) {
-		/* Emandako erabiltzialea izenarekin bilatzen du eta fitxategiatik kentzen du
-		 * Ezabatu den edo ez adierazten duen mezu bat sortu beharko zen
-		 */
-		
-		try {
-			File srcFile = new File(PATH);	//Erabiltzaileen fitxategia
-			File dstFile = new File("res/files/tmp");	//Ezabatuko ez diren erabiltzaielak gordetzeko fitxategia
-			BufferedWriter dst = new BufferedWriter(new FileWriter(dstFile));
-			BufferedReader src = new BufferedReader(new FileReader(srcFile));
-			String line;
-			
-			while ((line = src.readLine()) != null) {
-				if (line.split("[$]")[0].equals(user)) {
-					System.out.println("User: "+user+" has been deleted");
-					continue;
-				}
-				dst.write(line+"\n");
-			}
-			src.close();
-			dst.close();
-			srcFile.delete();	//Fitxategi zaharra ezabatu
-			dstFile.renameTo(srcFile);	//Sortutako fitxategi berriari aurreko fitxategiaren izena jarri
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String[] aux = {user, "hash", "F"};
+		FileHandler.removeFromFile(new User(aux), PATH);
 	}
 
 	public static BufferedReader getUsersFile() {

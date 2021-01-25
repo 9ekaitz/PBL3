@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.AbstractListModel;
 
 @SuppressWarnings("serial")
-public class Product extends AbstractListModel<Material>{
+public class Product extends AbstractListModel<Material> implements Saveable{
 
 	private List<Material> lst;
 	private String name;
@@ -56,6 +56,13 @@ public class Product extends AbstractListModel<Material>{
 	
 	public List<Material> getMaterials(){
 		return lst;
+	}
+	
+	@Override
+	public String toFile() {
+		StringBuilder materials = new StringBuilder();
+		lst.forEach((p)->materials.append(p.toString()+"$"));
+		return name+"&"+materials+"\n";
 	}
 
 }
