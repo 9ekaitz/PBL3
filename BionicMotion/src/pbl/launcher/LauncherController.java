@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import pbl.Session;
-import pbl.display.MainViewFrame;
+import pbl.display.MainFrame;
 
 public class LauncherController implements ActionListener {
 
@@ -28,7 +28,7 @@ public class LauncherController implements ActionListener {
 		case "login":
 			Session session = authModel.authenticate(view.getUsername(), view.getPassword());
 			if (session != null) {
-				MainViewFrame app = new MainViewFrame(session);
+				MainFrame app = new MainFrame(session);
 				view.close();
 			} else {
 				view.showErrorMsg();

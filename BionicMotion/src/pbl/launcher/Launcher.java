@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 import models.UserHandler;
 import pbl.Session;
-import pbl.display.MainViewFrame;
+import pbl.display.MainFrame;
 
 @SuppressWarnings("serial")
 public class Launcher extends JFrame {
@@ -236,7 +236,7 @@ public class Launcher extends JFrame {
 	
 	public static void main(String[] args) {
 		String[] data = {"user","jhhhhh", "T"};
-		MainViewFrame l = new MainViewFrame(new Session(data));
+		MainFrame l = new MainFrame(new Session(data));
 //		Launcher l = new Launcher();
     }
 }

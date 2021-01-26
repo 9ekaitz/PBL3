@@ -95,7 +95,7 @@ public class SampleListener extends Listener {
 	}
 
 	public void onInit(Controller controller) {
-		System.out.println("Iniciado");
+		System.out.println("Started");
 	}
 
 	public void onConnect(Controller controller) {
@@ -104,7 +104,7 @@ public class SampleListener extends Listener {
 
 	public void onDisconnect(Controller controller) {
 		// Gailua dekonektaztean exekutatzen da
-		System.out.println("Desconectado");
+		System.out.println("Disconnected");
 
 	}
 

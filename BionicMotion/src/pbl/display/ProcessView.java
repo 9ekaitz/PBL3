@@ -33,24 +33,25 @@ import javax.swing.ImageIcon;
 @SuppressWarnings("serial")
 public class ProcessView extends JPanel{
 
-	ViewController viewController;
-	Product product;
-	ListRenderer renderer;
-	JList<Material> materialLst;
-	JProgressBar progressBar;
-	JButton startButton, nextButton;
-	JLabel labelProducts;
-	PortManager portManager;
-	SampleListener listener;
-	Controller controller;
-	Serial serial;
+	private ViewController viewController;
+	private Product product;
+	private ListRenderer renderer;
+	private JList<Material> materialLst;
+	private JProgressBar progressBar;
+	private JButton startButton, nextButton;
+	private JLabel labelProducts;
+	private PortManager portManager;
+	private SampleListener listener;
+	private Controller controller;
+	private Serial serial;
+	private boolean motionCapture;
 	
 	
 	public ProcessView(ViewController controller, Product product) {	
 		this.product = product;
 		this.renderer = new ListRenderer();
 		this.viewController = controller;
-		
+		this.motionCapture = false;
 		createPanel();			
 	}
 
@@ -216,15 +217,19 @@ public class ProcessView extends JPanel{
 		this.portManager = viewController.getPortManager();
 		serial = new Serial(portManager.getPort(), listener);
 		serial.start();
+		motionCapture = true;
 	}
 	
 	public void finishProgress() {
 		progressBar.setValue(100);
 		labelProducts.setText(product.getMaterials().size()+" out of "+product.getMaterials().size());
-		controller.removeListener(listener);
-		controller = null;
+		if (motionCapture) {
+			controller.removeListener(listener); 
+			controller=null;
+			serial.finish();
+		}
 	
-		serial.finish();
+		
 	}
 	
 	public void updateProgress() {

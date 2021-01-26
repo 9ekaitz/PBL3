@@ -20,7 +20,7 @@ import pbl.dialogs.SettingsDialog;
 import pbl.launcher.Launcher;
 
 @SuppressWarnings("serial")
-public class MainViewFrame extends JFrame{
+public class MainFrame extends JFrame{
 
 	Session session;
 	JPanel actualPanel;
@@ -29,7 +29,7 @@ public class MainViewFrame extends JFrame{
 	MaterialModel materialModel;
 	ProductModel productModel;
 
-	public MainViewFrame(Session session) {
+	public MainFrame(Session session) {
 		super("Leap Motion");
 		this.session = session;
 		
@@ -112,13 +112,13 @@ public class MainViewFrame extends JFrame{
 			switch (command) {
 			case "Logout":
 				Launcher l = new Launcher();
-				MainViewFrame.this.dispose();	
+				MainFrame.this.dispose();	
 				break;
 			case "Exit app":
 				System.exit(0);
 				break;
 			case "Settings":
-				SettingsDialog d = new SettingsDialog(MainViewFrame.this, "Settings", true, session, controller.getPortManager());
+				SettingsDialog d = new SettingsDialog(MainFrame.this, "Settings", true, session, controller.getPortManager());
 				controller.setPortManager(d.getPortManager());
 				break;
 			default:

@@ -39,8 +39,7 @@ public class SettingsDialog extends JDialog {
 		this.frame = frame;
 		this.setSize(400,320);
 		this.session = session;
-		if (portManager == null) this.portManager = new PortManager();
-		else this.portManager = portManager;
+		this.portManager = portManager;
 		
 		controller = new SettingsController(this, this.portManager);
 		this.setLocationRelativeTo(null);

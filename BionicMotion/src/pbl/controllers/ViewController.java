@@ -13,7 +13,7 @@ import models.MaterialModel;
 import models.ProductModel;
 import pbl.dialogs.AddMaterialDialog;
 import pbl.display.AppMenu;
-import pbl.display.MainViewFrame;
+import pbl.display.MainFrame;
 import pbl.display.MaterialView;
 import pbl.display.ProcessView;
 import pbl.io.PortManager;
@@ -21,15 +21,16 @@ import pbl.launcher.Launcher;
 
 public class ViewController implements ActionListener, ListSelectionListener {
 
-	MainViewFrame view;
+	MainFrame view;
 	MaterialModel materialModel;
 	ProductModel productModel;
 	PortManager portManager = null;
 
-	public ViewController(MainViewFrame view, MaterialModel materialModel, ProductModel productModel) {
+	public ViewController(MainFrame view, MaterialModel materialModel, ProductModel productModel) {
 		this.view = view;
 		this.materialModel = materialModel;
 		this.productModel = productModel;
+		this.portManager = new PortManager();
 	}
 
 	@Override
