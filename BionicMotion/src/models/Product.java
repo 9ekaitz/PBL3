@@ -17,7 +17,7 @@ public class Product extends AbstractListModel<Material> implements Saveable{
 		lst = new ArrayList<>();
 		String[] data = line.split("&");
 		this.name = data[0];
-		String[] materials = data[1].split("[$]");
+		String[] materials = data[1].split("[%]");
 		for (String material : materials) {
 			lst.add(new Material(material));
 		}
@@ -63,8 +63,8 @@ public class Product extends AbstractListModel<Material> implements Saveable{
 	@Override
 	public String toFile() {
 		StringBuilder materials = new StringBuilder();
-		lst.forEach((p)->materials.append(p.toString()+"$"));
-		return name+"&"+materials+"\n";
+		lst.forEach((p)->materials.append(p.toFile()+"%"));
+		return name+"&"+materials;
 	}
 
 }
