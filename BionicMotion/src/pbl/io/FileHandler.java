@@ -14,7 +14,7 @@ public abstract class FileHandler {
 		/* Objektua fitxategira gehitzen du */
 		
 		try (BufferedWriter out = new BufferedWriter(new FileWriter(PATH, true))) {
-			out.write(item.toFile());
+			out.write(item.toFile()+"\n");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -21,7 +21,7 @@ public class PieChart extends JPanel{
 
     private JFreeChart createChart()  {
         JFreeChart jfreechart = ChartFactory.createPieChart3D("Test", createDataset());
-        jfreechart.setBackgroundPaint(Color.white);   
+        jfreechart.setBackgroundPaint(Color.white);  
         
         return jfreechart;   
     }   

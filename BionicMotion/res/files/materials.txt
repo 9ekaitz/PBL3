@@ -1,7 +1,3 @@
-Bromuro de potasio
-Agua
-Iodo
-Alcohol
-Polonio
-Cafe
-Proba
+H2SO4$CORROSIVE
+Agua$NON_REACTIVE
+Cloro$TOXIC

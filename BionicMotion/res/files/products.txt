@@ -1,3 +1,1 @@
-mm&Agua$Alcohol$
-nnn&Alcohol$Bromuro de potasio$
-jjjj&Alcohol$Cafe$
+Acido&H2SO4$CORROSIVE%Agua$NON_REACTIVE%
