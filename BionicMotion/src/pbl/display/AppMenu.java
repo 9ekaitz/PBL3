@@ -17,7 +17,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
-import chart.ChartView;
+import chart.PieChart;
 import models.Material;
 import models.MaterialModel;
 import models.Product;
@@ -52,7 +52,7 @@ public class AppMenu extends JPanel{
 	private JScrollPane createGraph() {
 		JScrollPane scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		scrollPane.setViewportView(new ChartView());
+		scrollPane.setViewportView(new PieChart());
 		
 		return scrollPane;
 	}
