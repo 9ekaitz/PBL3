@@ -1,2 +1,4 @@
 Acido&H2SO4$CORROSIVE%Agua$NON_REACTIVE%
 
+Polvora&Nitrato de potasio$NON_REACTIVE%Carbon$FLAMMABLE%Azufre$TOXIC%
+Suero&Nitrato de potasio$NON_REACTIVE%Carbon$FLAMMABLE%Azufre$TOXIC%H2SO4$CORROSIVE%Cloro$TOXIC%
