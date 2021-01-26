@@ -21,7 +21,7 @@ public class PieChart extends JPanel{
     DefaultPieDataset dataset;
 
     private JFreeChart createChart()  {
-        JFreeChart jfreechart = ChartFactory.createPieChart3D("Material Types", dataset);
+        JFreeChart jfreechart = ChartFactory.createPieChart3D("Material Types", dataset,true,false,true);
         jfreechart.getPlot().setBackgroundPaint(Color.white);  
         jfreechart.getPlot().setForegroundAlpha( 0.60f );
         

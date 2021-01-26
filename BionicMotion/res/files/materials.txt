@@ -1,3 +1,6 @@
 H2SO4$CORROSIVE
 Agua$NON_REACTIVE
 Cloro$TOXIC
+Azufre$TOXIC
+Carbon$FLAMMABLE
+Nitrato de potasio$NON_REACTIVE
