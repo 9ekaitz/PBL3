@@ -93,6 +93,12 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		radioButton.setBorder(BorderFactory.createEmptyBorder(0,5,0,5));
 		typeButtons.add(radioButton);
 		subPanel.add(radioButton);
+		
+		radioButton = new JRadioButton("Flammable");
+		radioButton.setActionCommand("Flammable");
+		radioButton.setBorder(BorderFactory.createEmptyBorder(0,5,0,5));
+		typeButtons.add(radioButton);
+		subPanel.add(radioButton);
 
 		GridBagConstraints subPanelConst = new GridBagConstraints();
 		subPanelConst.insets = new Insets(10, 0, 20, 5);
