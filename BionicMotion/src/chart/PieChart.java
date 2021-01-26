@@ -28,6 +28,12 @@ public class PieChart extends JPanel{
         return jfreechart;   
     }   
 
+    private PieDataset createDataset( ) {
+        dataset.setValue( "" , new Double( 1 ) );  
+        return dataset;         
+     }
+    
+    
     public DefaultPieDataset getDataset() {
 		return dataset;
 	}
