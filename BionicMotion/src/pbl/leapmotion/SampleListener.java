@@ -29,7 +29,6 @@ public class SampleListener extends Listener {
 		}
 
 		if (leftHand != null) {
-			System.out.println("Eskua");
 			for (int j = 0; j < 5; j++) {
 				Finger leftFinger = leftHand.fingers().get(j);
 				
@@ -58,9 +57,7 @@ public class SampleListener extends Listener {
 					
 					tmpAngle = Math.toDegrees(v.angleTo(u));
 				}
-				map(leftFinger, tmpAngle, j);
-				System.out.println(leftFinger.type()+" Angulo no map: "+angles[j]);
-			}
+				map(leftFinger, tmpAngle, j);			}
 		}
 
 	}

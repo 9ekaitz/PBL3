@@ -3,7 +3,10 @@ package pbl.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -31,6 +34,7 @@ public class ViewController implements ActionListener, ListSelectionListener {
 	MaterialModel materialModel;
 	ProductModel productModel;
 	PortManager portManager = null;
+	Map<String, Integer> typeMap;
 
 	public ViewController(MainFrame view, MaterialModel materialModel, ProductModel productModel) {
 		this.view = view;
@@ -59,12 +63,27 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			JList<Product> lst = panel.getProductList();
 			
 			if (lst.getSelectedValue() != null) {
+				typeMap = new HashMap<>();
+
+				lst.getSelectedValue().getMaterials().forEach(d->{
+		            Integer count = typeMap.get(d.getType());
+		            if (count == null) count = 1;
+		            else count++;
+		            typeMap.put(d.getType(), count);
+		        });
 				
-				panel.getChart().getDataset().setValue("CORROSIVE", new Double(20));
+				panel.getChart().getDataset().clear();
+				
+				for (String string:typeMap.keySet() ) {
+					panel.getChart().getDataset().setValue(string, new Double(typeMap.get(string)));
+
+				}
+			
 				
 			}
 		}
 	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

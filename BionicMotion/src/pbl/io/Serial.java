@@ -25,16 +25,13 @@ public class Serial extends Thread{
 						for (int i = 0; i < 5; i++) {
 							port.writeByte((byte)(i+100));
 							Thread.sleep(20);
-							System.out.println("Sended");
 							port.writeByte((byte)listener.getAngle(i));
 							Thread.sleep(20);
 						}
 					}
 				} catch (SerialPortException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

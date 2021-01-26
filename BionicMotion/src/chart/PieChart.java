@@ -21,18 +21,13 @@ public class PieChart extends JPanel{
     DefaultPieDataset dataset;
 
     private JFreeChart createChart()  {
-        JFreeChart jfreechart = ChartFactory.createPieChart3D("Test", createDataset());
-        jfreechart.setBackgroundPaint(Color.white);  
+        JFreeChart jfreechart = ChartFactory.createPieChart3D("Material Types", dataset);
+        jfreechart.getPlot().setBackgroundPaint(Color.white);  
+        jfreechart.getPlot().setForegroundAlpha( 0.60f );
         
         return jfreechart;   
     }   
 
-    private PieDataset createDataset( ) {
-        dataset.setValue( "" , new Double( 1 ) );  
-        return dataset;         
-     }
-    
-    
     public DefaultPieDataset getDataset() {
 		return dataset;
 	}

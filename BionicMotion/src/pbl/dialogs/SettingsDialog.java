@@ -139,7 +139,7 @@ public class SettingsDialog extends JDialog {
 		
 		JButton button = new JButton(new ImageIcon("res/icons/refresh.png"));
 		button.setActionCommand("refresh");
-//		button.addActionListener(controller);
+		button.addActionListener(controller);
 		button.setBackground(Color.WHITE);
 		button.setBorder(BorderFactory.createEmptyBorder(5,5,5,7));
 		button.setOpaque(false);

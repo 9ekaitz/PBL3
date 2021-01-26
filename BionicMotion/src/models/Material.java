@@ -44,6 +44,12 @@ public class Material implements Saveable, Removeable{
 		return name;
 	}
 	
+	
+	
+	public String getType() {
+		return String.valueOf(type);
+	}
+
 	@Override
 	public boolean isTheSame(String line) {
 		return line.equals(name);
