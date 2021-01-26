@@ -1,4 +1,4 @@
-package dialogs;
+package pbl.dialogs;
 
 import java.awt.Color;
 import java.awt.Container;

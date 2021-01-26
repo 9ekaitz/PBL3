@@ -1,4 +1,4 @@
-package launcher;
+package pbl.launcher;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -19,8 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import models.UserHandler;
-import pbl.MainViewFrame;
 import pbl.Session;
+import pbl.display.MainViewFrame;
 
 @SuppressWarnings("serial")
 public class Launcher extends JFrame {

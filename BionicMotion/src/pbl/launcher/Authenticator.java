@@ -1,4 +1,4 @@
-package launcher;
+package pbl.launcher;
 
 import java.io.BufferedReader;
 import java.io.IOException;

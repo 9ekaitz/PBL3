@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.swing.AbstractListModel;
 
+import pbl.io.FileHandler;
+
 @SuppressWarnings("serial")
 public class MaterialModel extends AbstractListModel<Material>{
 

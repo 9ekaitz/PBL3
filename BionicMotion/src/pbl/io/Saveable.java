@@ -1,4 +1,4 @@
-package models;
+package pbl.io;
 
 public interface Saveable {
 

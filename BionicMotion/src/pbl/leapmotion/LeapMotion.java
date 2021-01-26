@@ -1,4 +1,4 @@
-package leapmotion;
+package pbl.leapmotion;
 
 import java.io.IOException;
 

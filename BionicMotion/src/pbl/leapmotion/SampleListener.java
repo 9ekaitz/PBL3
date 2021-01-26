@@ -1,4 +1,4 @@
-package leapmotion;
+package pbl.leapmotion;
 
 import com.leapmotion.leap.Bone;
 import com.leapmotion.leap.Bone.Type;

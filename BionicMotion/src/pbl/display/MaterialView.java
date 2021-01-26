@@ -1,4 +1,4 @@
-package views;
+package pbl.display;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,7 +20,7 @@ import models.Material;
 import models.MaterialModel;
 import models.Product;
 import pbl.ListRenderer;
-import pbl.ViewController;
+import pbl.controllers.ViewController;
 
 import javax.swing.JLabel;
 import java.awt.Font;

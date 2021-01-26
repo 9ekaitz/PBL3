@@ -1,15 +1,15 @@
-package controllers;
+package pbl.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import dialogs.CreateAccountDialog;
-import dialogs.SettingsDialog;
 import jssc.SerialPortException;
-import models.PortManager;
 import models.UserHandler;
+import pbl.dialogs.CreateAccountDialog;
+import pbl.dialogs.SettingsDialog;
+import pbl.io.PortManager;
 
 public class SettingsController implements ActionListener {
 

@@ -1,4 +1,4 @@
-package pbl;
+package pbl.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,15 +8,16 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import dialogs.AddMaterialDialog;
-import launcher.Launcher;
 import models.Material;
 import models.MaterialModel;
-import models.PortManager;
 import models.ProductModel;
-import views.AppMenu;
-import views.MaterialView;
-import views.ProcessView;
+import pbl.dialogs.AddMaterialDialog;
+import pbl.display.AppMenu;
+import pbl.display.MainViewFrame;
+import pbl.display.MaterialView;
+import pbl.display.ProcessView;
+import pbl.io.PortManager;
+import pbl.launcher.Launcher;
 
 public class ViewController implements ActionListener, ListSelectionListener {
 

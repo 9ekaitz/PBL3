@@ -1,4 +1,4 @@
-package models;
+package pbl.io;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;

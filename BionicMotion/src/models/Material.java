@@ -1,5 +1,8 @@
 package models;
 
+import pbl.io.Removeable;
+import pbl.io.Saveable;
+
 public class Material implements Saveable, Removeable{
 
 	private String name;

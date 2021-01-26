@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import pbl.io.FileHandler;
+
 public abstract class UserHandler {
 
 	private static String PATH = "";	//Fitxategia, klasea estatikoa denez hau aldatzeko aukera egon beharko lirateke

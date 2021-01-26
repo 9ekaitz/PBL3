@@ -1,10 +1,10 @@
-package launcher;
+package pbl.launcher;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import pbl.MainViewFrame;
 import pbl.Session;
+import pbl.display.MainViewFrame;
 
 public class LauncherController implements ActionListener {
 

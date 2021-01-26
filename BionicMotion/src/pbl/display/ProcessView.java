@@ -1,4 +1,4 @@
-package views;
+package pbl.display;
 
 import java.awt.Dimension;
 
@@ -12,13 +12,13 @@ import javax.swing.border.EmptyBorder;
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Frame;
 
-import leapmotion.SampleListener;
-import leapmotion.Serial;
 import models.Material;
-import models.PortManager;
 import models.Product;
 import pbl.ListRenderer;
-import pbl.ViewController;
+import pbl.controllers.ViewController;
+import pbl.io.PortManager;
+import pbl.io.Serial;
+import pbl.leapmotion.SampleListener;
 
 import javax.swing.JList;
 import javax.swing.JProgressBar;

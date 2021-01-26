@@ -1,4 +1,4 @@
-package pbl;
+package pbl.display;
 
 import java.awt.event.ActionEvent;
 
@@ -12,11 +12,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-import dialogs.SettingsDialog;
-import launcher.Launcher;
 import models.MaterialModel;
 import models.ProductModel;
-import views.AppMenu;
+import pbl.Session;
+import pbl.controllers.ViewController;
+import pbl.dialogs.SettingsDialog;
+import pbl.launcher.Launcher;
 
 @SuppressWarnings("serial")
 public class MainViewFrame extends JFrame{

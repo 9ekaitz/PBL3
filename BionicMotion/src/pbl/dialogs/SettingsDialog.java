@@ -1,4 +1,4 @@
-package dialogs;
+package pbl.dialogs;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -20,9 +20,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controllers.SettingsController;
-import models.PortManager;
 import pbl.Session;
+import pbl.controllers.SettingsController;
+import pbl.io.PortManager;
 
 @SuppressWarnings("serial")
 public class SettingsDialog extends JDialog {

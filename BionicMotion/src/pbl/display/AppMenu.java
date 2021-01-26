@@ -1,4 +1,4 @@
-package views;
+package pbl.display;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,7 +22,8 @@ import models.Material;
 import models.MaterialModel;
 import models.Product;
 import models.ProductModel;
-import pbl.ViewController;
+import pbl.controllers.ViewController;
+
 import javax.swing.JList;
 
 @SuppressWarnings("serial")

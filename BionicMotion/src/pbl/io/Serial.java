@@ -1,7 +1,8 @@
-package leapmotion;
+package pbl.io;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import pbl.leapmotion.SampleListener;
 
 public class Serial extends Thread{
 

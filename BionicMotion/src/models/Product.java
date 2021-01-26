@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.AbstractListModel;
 
+import pbl.io.Saveable;
+
 @SuppressWarnings("serial")
 public class Product extends AbstractListModel<Material> implements Saveable{
 
