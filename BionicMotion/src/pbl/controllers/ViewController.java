@@ -2,14 +2,20 @@ package pbl.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.jfree.chart.event.ChartChangeEvent;
+import org.jfree.chart.event.ChartChangeEventType;
+
 import models.Material;
 import models.MaterialModel;
+import models.Product;
 import models.ProductModel;
 import pbl.dialogs.AddMaterialDialog;
 import pbl.display.AppMenu;
@@ -46,6 +52,16 @@ public class ViewController implements ActionListener, ListSelectionListener {
 				if (lst.getSelectedValue().isSelected()) panel.addToRecipe(lst.getSelectedValue());
 				else panel.removeFromRecipe(lst.getSelectedValue());
 				lst.clearSelection();
+			}
+		}
+		else if(view.getPanel() instanceof AppMenu){
+			AppMenu panel = (AppMenu) view.getPanel();
+			JList<Product> lst = panel.getProductList();
+			
+			if (lst.getSelectedValue() != null) {
+				
+				panel.getChart().getDataset().setValue("CORROSIVE", new Double(20));
+				
 			}
 		}
 	}

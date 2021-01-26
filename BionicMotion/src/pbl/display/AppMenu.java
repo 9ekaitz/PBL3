@@ -17,6 +17,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
+import org.jfree.chart.event.ChartChangeEvent;
+import org.jfree.chart.event.ChartChangeListener;
+
 import chart.PieChart;
 import models.Material;
 import models.MaterialModel;
@@ -34,11 +37,15 @@ public class AppMenu extends JPanel{
 	ProductModel productModel;
 	Color darkBlue;
 	JList<Material> materialJList;
+	JList<Product> list_1;
+	PieChart chart;
 	
 	public AppMenu(ViewController controller, MaterialModel materialModel, ProductModel productModel) {
 		this.controller = controller;
 		this.materialModel = materialModel;
 		this.productModel = productModel;
+		this.chart=new PieChart();
+	
 		
 		setPreferredSize(new Dimension(1024, 600));
 		setLayout(new GridLayout(0, 1, 0, 0));
@@ -51,8 +58,8 @@ public class AppMenu extends JPanel{
 
 	private JScrollPane createGraph() {
 		JScrollPane scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setViewportView(chart);
 		
-		scrollPane.setViewportView(new PieChart());
 		
 		return scrollPane;
 	}
@@ -136,8 +143,9 @@ public class AppMenu extends JPanel{
 		gbc_scrollPane_1.gridy = 6;
 		menuPanel.add(scrollPane_1, gbc_scrollPane_1);
 		
-		JList<Product> list_1 = new JList<>();
+		list_1= new JList<>();
 		list_1.setModel(productModel);
+		list_1.addListSelectionListener(controller);
 		scrollPane_1.setViewportView(list_1);
 		
 		
@@ -179,4 +187,15 @@ public class AppMenu extends JPanel{
 	public JList<Material> getMaterialList() {
 		return materialJList;
 	}
+	
+	public JList<Product> getProductList() {
+		return list_1;
+	}
+
+	public PieChart getChart() {
+		return chart;
+	}
+
+	
+	
 }

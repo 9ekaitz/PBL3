@@ -17,27 +17,34 @@ import org.jfree.data.general.PieDataset;
 public class PieChart extends JPanel{
 	
     ChartPanel chartPanel;   
-    JFreeChart chart;   
+    JFreeChart chart;  
+    DefaultPieDataset dataset;
 
     private JFreeChart createChart()  {
-        JFreeChart jfreechart = ChartFactory.createPieChart3D("Test", createDataset());
-        jfreechart.setBackgroundPaint(Color.white);   
-        
+    	JFreeChart jfreechart = ChartFactory.createPieChart3D("Material Types", createDataset());
+        jfreechart.getPlot().setBackgroundPaint(Color.white);   
         return jfreechart;   
     }   
 
-    private static PieDataset createDataset( ) {
-        DefaultPieDataset dataset = new DefaultPieDataset( );
-        dataset.setValue( "IPhone 5s" , new Double( 20 ) );  
-        dataset.setValue( "SamSung Grand" , new Double( 20 ) );   
-        dataset.setValue( "MotoG" , new Double( 40 ) );    
-        dataset.setValue( "Nokia Lumia" , new Double( 10 ) );  
+    private PieDataset createDataset( ) {
+        dataset.setValue( "" , new Double( 1 ) );  
         return dataset;         
      }
     
-    public PieChart()   
+    
+    public DefaultPieDataset getDataset() {
+		return dataset;
+	}
+    
+  
+	public JFreeChart getChart() {
+		return chart;
+	}
+
+	public PieChart()   
     {   
-        super(new BorderLayout());   
+        super(new BorderLayout());
+    	dataset = new DefaultPieDataset( );
         chart = createChart();   
         chartPanel = new ChartPanel(chart);   
         chartPanel.setDomainZoomable(true);   
