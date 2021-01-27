@@ -1,4 +1,4 @@
-package chart;
+package pbl.chart;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,24 +21,17 @@ public class PieChart extends JPanel{
     DefaultPieDataset dataset;
 
     private JFreeChart createChart()  {
-        JFreeChart jfreechart = ChartFactory.createPieChart3D("Material Types", dataset,true,false,true);
-        jfreechart.getPlot().setBackgroundPaint(Color.white);  
-        jfreechart.getPlot().setForegroundAlpha( 0.60f );
+        JFreeChart jfreechart = ChartFactory.createPieChart3D("Material Types", dataset,true,false,true);	//Izenburua, dataset, legenda, toolkit, autoroll
+        jfreechart.getPlot().setBackgroundPaint(Color.white);  //Fondo zuria jartzeko
+        jfreechart.getPlot().setForegroundAlpha( 0.60f );	//Transparente izateko
         
         return jfreechart;   
     }   
 
-    private PieDataset createDataset( ) {
-        dataset.setValue( "" , new Double( 1 ) );  
-        return dataset;         
-     }
-    
-    
     public DefaultPieDataset getDataset() {
 		return dataset;
 	}
     
-  
 	public JFreeChart getChart() {
 		return chart;
 	}
@@ -51,9 +44,7 @@ public class PieChart extends JPanel{
         chartPanel = new ChartPanel(chart);   
         chartPanel.setDomainZoomable(true);   
         chartPanel.setRangeZoomable(true);   
-        javax.swing.border.CompoundBorder compoundborder = BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4), BorderFactory.createEtchedBorder());   
-        chartPanel.setBorder(compoundborder);   
+        chartPanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4), BorderFactory.createEtchedBorder()));   
         add(chartPanel);   
     }
-
 }

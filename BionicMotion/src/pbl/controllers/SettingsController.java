@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import jssc.SerialPortException;
-import models.UserHandler;
 import pbl.dialogs.CreateAccountDialog;
 import pbl.dialogs.SettingsDialog;
 import pbl.io.PortManager;
+import pbl.models.UserHandler;
 
 public class SettingsController implements ActionListener {
 
@@ -42,7 +42,7 @@ public class SettingsController implements ActionListener {
 			
 		case "delete":
 			if (JOptionPane.showConfirmDialog(view, "Any data related with this user will be\nlost. Are you sure?", "Delete Account", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-//				UserHandler.removeUserFromFile(view.getSession().getName());
+				UserHandler.removeUserFromFile(view.getSession().getName());
 				System.out.println("Account deleted");
 			}
 			break;

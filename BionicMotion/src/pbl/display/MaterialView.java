@@ -16,11 +16,10 @@ import javax.swing.ListSelectionModel;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
-import models.Material;
-import models.MaterialModel;
-import models.Product;
-import pbl.ListRenderer;
 import pbl.controllers.ViewController;
+import pbl.models.Material;
+import pbl.models.MaterialModel;
+import pbl.models.Product;
 
 import javax.swing.JLabel;
 import java.awt.Font;

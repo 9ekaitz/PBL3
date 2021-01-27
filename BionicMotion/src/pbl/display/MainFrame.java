@@ -12,12 +12,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-import models.MaterialModel;
-import models.ProductModel;
-import pbl.Session;
 import pbl.controllers.ViewController;
 import pbl.dialogs.SettingsDialog;
 import pbl.launcher.Launcher;
+import pbl.models.MaterialModel;
+import pbl.models.ProductModel;
+import pbl.models.Session;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame{

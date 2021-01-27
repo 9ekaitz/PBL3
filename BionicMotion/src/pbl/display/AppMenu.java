@@ -20,12 +20,12 @@ import javax.swing.border.EmptyBorder;
 import org.jfree.chart.event.ChartChangeEvent;
 import org.jfree.chart.event.ChartChangeListener;
 
-import chart.PieChart;
-import models.Material;
-import models.MaterialModel;
-import models.Product;
-import models.ProductModel;
+import pbl.chart.PieChart;
 import pbl.controllers.ViewController;
+import pbl.models.Material;
+import pbl.models.MaterialModel;
+import pbl.models.Product;
+import pbl.models.ProductModel;
 
 import javax.swing.JList;
 

@@ -12,13 +12,12 @@ import javax.swing.border.EmptyBorder;
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Frame;
 
-import models.Material;
-import models.Product;
-import pbl.ListRenderer;
 import pbl.controllers.ViewController;
 import pbl.io.PortManager;
 import pbl.io.Serial;
 import pbl.leapmotion.SampleListener;
+import pbl.models.Material;
+import pbl.models.Product;
 
 import javax.swing.JList;
 import javax.swing.JProgressBar;

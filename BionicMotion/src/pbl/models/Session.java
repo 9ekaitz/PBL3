@@ -1,8 +1,8 @@
-package pbl;
+package pbl.models;
 
 public class Session {
 	
-	String name, profilePic;
+	String name;
 	boolean priviledges;
 	
 	/* Sesio bat erabiltzaile bat logeatzean sortzen da, erabiltzailearen datuak dauzka, eta baimenen informazioa.
@@ -11,7 +11,6 @@ public class Session {
 	public Session(String[] data) {
 		/* Profil argazkia gehitu daiteke */
 		this.name = data[0];
-		this.profilePic = data[1];	//Eremu hau pasahitza da, profil argazkia inplementatzeko aldatu behar da beste eremu batera
 		this.priviledges = (data[2].equals("T")?true:false);
 	}
 

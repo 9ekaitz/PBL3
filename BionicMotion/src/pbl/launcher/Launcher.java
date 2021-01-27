@@ -18,9 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import models.UserHandler;
-import pbl.Session;
 import pbl.display.MainFrame;
+import pbl.models.Session;
+import pbl.models.UserHandler;
 
 @SuppressWarnings("serial")
 public class Launcher extends JFrame {
@@ -235,8 +235,6 @@ public class Launcher extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		String[] data = {"user", "dddd", "T"};
-		MainFrame m = new MainFrame(new Session(data));
-//		Launcher l = new Launcher();
+		Launcher l = new Launcher();
     }
 }

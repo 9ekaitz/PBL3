@@ -1,4 +1,4 @@
-package models;
+package pbl.models;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

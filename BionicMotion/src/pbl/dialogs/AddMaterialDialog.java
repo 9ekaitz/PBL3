@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import models.Material;
+import pbl.models.Material;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;

@@ -16,10 +16,6 @@ import javax.swing.event.ListSelectionListener;
 import org.jfree.chart.event.ChartChangeEvent;
 import org.jfree.chart.event.ChartChangeEventType;
 
-import models.Material;
-import models.MaterialModel;
-import models.Product;
-import models.ProductModel;
 import pbl.dialogs.AddMaterialDialog;
 import pbl.display.AppMenu;
 import pbl.display.MainFrame;
@@ -27,13 +23,17 @@ import pbl.display.MaterialView;
 import pbl.display.ProcessView;
 import pbl.io.PortManager;
 import pbl.launcher.Launcher;
+import pbl.models.Material;
+import pbl.models.MaterialModel;
+import pbl.models.Product;
+import pbl.models.ProductModel;
 
 public class ViewController implements ActionListener, ListSelectionListener {
 
 	MainFrame view;
 	MaterialModel materialModel;
 	ProductModel productModel;
-	PortManager portManager = null;
+	PortManager portManager;
 	Map<String, Integer> typeMap;
 
 	public ViewController(MainFrame view, MaterialModel materialModel, ProductModel productModel) {
@@ -53,8 +53,8 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			
 			if (lst.getSelectedValue() != null) {
 				model.changeStatus(lst.getSelectedValue());
-				if (lst.getSelectedValue().isSelected()) panel.addToRecipe(lst.getSelectedValue());
-				else panel.removeFromRecipe(lst.getSelectedValue());
+				if (lst.getSelectedValue().isSelected()) panel.addToRecipe(lst.getSelectedValue());	//Materiala produktura gehitzeko
+				else panel.removeFromRecipe(lst.getSelectedValue());	//Materiala produktutik kentzeko
 				lst.clearSelection();
 			}
 		}
@@ -65,7 +65,7 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			if (lst.getSelectedValue() != null) {
 				typeMap = new HashMap<>();
 
-				lst.getSelectedValue().getMaterials().forEach(d->{
+				lst.getSelectedValue().getMaterials().forEach(d->{	//Material moten mapa egiteko
 		            Integer count = typeMap.get(d.getType());
 		            if (count == null) count = 1;
 		            else count++;
@@ -75,11 +75,8 @@ public class ViewController implements ActionListener, ListSelectionListener {
 				panel.getChart().getDataset().clear();
 				
 				for (String string:typeMap.keySet() ) {
-					panel.getChart().getDataset().setValue(string, new Double(typeMap.get(string)));
-
+					panel.getChart().getDataset().setValue(string, new Double(typeMap.get(string)));	//Grafikoaren datu modeloa
 				}
-			
-				
 			}
 		}
 	}
@@ -155,7 +152,7 @@ public class ViewController implements ActionListener, ListSelectionListener {
 	}
 
 	private void addMaterial() {
-		AddMaterialDialog dialog = new AddMaterialDialog(view, "Add material", true);
+		AddMaterialDialog dialog = new AddMaterialDialog(view, "Add material", true);	//Materiala gehitzeko dialgoa irekitzen da	
 		Material material = dialog.getMaterial();
 		if (material != null) {
 			materialModel.addMaterial(material);

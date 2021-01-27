@@ -71,26 +71,22 @@ public class SampleListener extends Listener {
 			else if (angle < 5) angle = 0;
 			break;
 		case TYPE_INDEX:
-			System.out.println("Angulo: "+(angle-20));
-			angle = ((angle-20)*60)/130;
+			angle = ((angle-20)*60)/110;
 			if (angle > 60) angle = 60;
 			else if (angle < 5) angle = 0;
 			break;
 		case TYPE_MIDDLE:
-			
-			angle = ((angle-20)*80)/130;
+			angle = ((angle-20)*80)/110;
 			if (angle > 80) angle = 80;
 			else if (angle < 5) angle = 0;
 			break;
 		case TYPE_RING:
-			
-			angle = ((angle-20)*70)/140;
+			angle = ((angle-20)*70)/120;
 			if (angle > 70) angle = 70;
 			else if (angle < 5) angle = 0;
 			break;
 		case TYPE_PINKY:
-			
-			angle = ((angle-20)*60)/130;
+			angle = ((angle-20)*60)/110;
 			if (angle > 60) angle = 60;
 			else if (angle < 1) angle = 0;
 			break;

@@ -1,4 +1,4 @@
-package models;
+package pbl.models;
 
 public enum MaterialType {
 

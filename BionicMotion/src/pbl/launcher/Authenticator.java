@@ -3,8 +3,8 @@ package pbl.launcher;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import models.UserHandler;
-import pbl.Session;
+import pbl.models.Session;
+import pbl.models.UserHandler;
 
 
 public class Authenticator {

@@ -20,9 +20,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import pbl.Session;
 import pbl.controllers.SettingsController;
 import pbl.io.PortManager;
+import pbl.models.Session;
 
 @SuppressWarnings("serial")
 public class SettingsDialog extends JDialog {

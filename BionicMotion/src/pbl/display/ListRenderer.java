@@ -1,4 +1,4 @@
-package pbl;
+package pbl.display;
 
 import java.awt.Component;
 
@@ -6,7 +6,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-import models.Material;
+import pbl.models.Material;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

@@ -3,8 +3,8 @@ package pbl.launcher;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import pbl.Session;
 import pbl.display.MainFrame;
+import pbl.models.Session;
 
 public class LauncherController implements ActionListener {
 

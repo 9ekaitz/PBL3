@@ -1,4 +1,4 @@
-package models;
+package pbl.models;
 
 import pbl.io.Removeable;
 import pbl.io.Saveable;
