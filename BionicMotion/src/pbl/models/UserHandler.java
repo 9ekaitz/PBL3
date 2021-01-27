@@ -8,7 +8,7 @@ import pbl.io.FileHandler;
 
 public abstract class UserHandler {
 
-	private static String PATH = "";	//Fitxategia, klasea estatikoa denez hau aldatzeko aukera egon beharko lirateke
+	private static String PATH = "";//Fitxategia, klasea estatikoa denez hau aldatzeko aukera egon beharko litzateke
 
 	public static void setPath(String path) {
 		PATH = path;

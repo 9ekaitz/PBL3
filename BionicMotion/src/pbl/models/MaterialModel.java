@@ -17,7 +17,7 @@ import pbl.io.FileHandler;
 @SuppressWarnings("serial")
 public class MaterialModel extends AbstractListModel<Material>{
 
-	private final static String PATH = "res/files/materials.txt";	//MMateriale fitxategia
+	private final static String PATH = "res/files/materials.txt";	//Materialen fitxategia
 	List<Material> materialList;
 	
 	public MaterialModel() {

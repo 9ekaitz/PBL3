@@ -6,10 +6,9 @@ public class Session {
 	boolean priviledges;
 	
 	/* Sesio bat erabiltzaile bat logeatzean sortzen da, erabiltzailearen datuak dauzka, eta baimenen informazioa.
-	 * Sesioekin erabiltzaile bakoitzak zer aldaketa edo prozezu egiten dituen erregistratu daiteke */
+	 * Sesioekin erabiltzaile bakoitzak zer aldaketa edo prozesu egiten dituen erregistratu daiteke */
 	
 	public Session(String[] data) {
-		/* Profil argazkia gehitu daiteke */
 		this.name = data[0];
 		this.priviledges = (data[2].equals("T")?true:false);
 	}

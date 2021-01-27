@@ -77,7 +77,7 @@ public class Launcher extends JFrame {
 
 	private void createCloseBar(JPanel panel) {
 		
-		/* Panel bat sortu bertan txikitzeko eta izteko botoiak sartzeko */
+		/* Panel bat sortu bertan txikitzeko eta isteko botoiak sartzeko */
 		
 		JPanel header = new JPanel(new GridBagLayout());
 		
@@ -113,7 +113,7 @@ public class Launcher extends JFrame {
 	}
 
 	private void createBanner(JPanel panel) {
-		/* Leihoko argazia */
+		/* Leihoko argazkia */
 		
 		JLabel logo = new JLabel(new ImageIcon("res/img/Logo-vista.png"));
 		GridBagConstraints logoConst = new GridBagConstraints();
@@ -174,7 +174,7 @@ public class Launcher extends JFrame {
 	
 	private void createButton(JPanel panel) {
 
-		/* Login botoia sortu, itzura eman eta kontroladorea gehitu */
+		/* Login botoia sortu, itxura eman eta kontroladorea gehitu */
 
 		JButton button = new JButton("Login");
 		button.setActionCommand("login");
@@ -191,7 +191,7 @@ public class Launcher extends JFrame {
 		buttonConst.gridx = 0;
 		buttonConst.gridy = 4;
 
-		panel.add(button, buttonConst); // Panelera nagusira gehitu
+		panel.add(button, buttonConst); // Panel nagusira gehitu
 	}
 	
 	private void createErrorMessage(JPanel panel) {

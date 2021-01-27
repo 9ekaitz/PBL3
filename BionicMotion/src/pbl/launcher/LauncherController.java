@@ -28,8 +28,8 @@ public class LauncherController implements ActionListener {
 		case "login":
 			Session session = authModel.authenticate(view.getUsername(), view.getPassword());
 			if (session != null) {
-				MainFrame app = new MainFrame(session);
-				view.close();
+				MainFrame app = new MainFrame(session); //Erabiltzailearen datuak zuzenak badira hurrengo pantailara pasatzeko
+				view.close();// Pantaila hau isteko
 			} else {
 				view.showErrorMsg();
 			}

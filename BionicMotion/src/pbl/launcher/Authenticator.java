@@ -19,9 +19,9 @@ public class Authenticator {
 		if (in != null) {
 			try {
 				while ((line = in.readLine()) != null) {
-					String[] data = line.split("[$]");
+					String[] data = line.split("[$]"); // sartutako datuak gordetzen ditu
 					if (data[0].equals(user) && data[1].equals(String.valueOf(password.hashCode()))) {
-						session = new Session(data);
+						session = new Session(data); //Datuak zuzenak direla begiratu ondoren sesio berria sortzeko
 						break;
 					}
 				}

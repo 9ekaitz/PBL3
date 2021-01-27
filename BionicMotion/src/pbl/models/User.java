@@ -15,7 +15,7 @@ public class User implements Saveable, Removeable{
 
 	@Override
 	public String toFile() {
-		/* Erabiltzailea fitxategia batean gordetzeko formatua sortzen du */
+		/* Erabiltzailea fitxategi batean gordetzeko formatua sortzen du */
 		
 		return name+"$"+password+"$"+priviledge;
 	}

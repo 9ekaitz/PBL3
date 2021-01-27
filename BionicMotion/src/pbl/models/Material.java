@@ -9,7 +9,7 @@ public class Material implements Saveable, Removeable{
 	private MaterialType type;
 	boolean selected;
 	
-	public Material(String line) {	//Konstrutore hau fitxategi batetik kargatzeko erabiltzen da
+	public Material(String line) {	//Konstruktore hau datuak fitxategi batetik kargatzeko erabiltzen da
 		String[] data = line.split("[$]");
 		this.name = data[0];
 		this.type = MaterialType.valueOf(data[1]);

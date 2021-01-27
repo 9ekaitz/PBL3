@@ -19,12 +19,11 @@ public class LeapMotion extends Thread{
 		listener = new SampleListener();
 		controller = new Controller();
 		frame = controller.frame();
-		// Have the sample listener receive events from the controller
 		controller.addListener(listener);
 		
 		while (!end) {
 		}
-		// Remove the sample listener when done
+		// Amaitutakoan listener-a kentzeko
 		controller.removeListener(listener);
 	}
 	

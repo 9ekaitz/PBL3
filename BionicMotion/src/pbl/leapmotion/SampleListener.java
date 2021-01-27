@@ -15,7 +15,7 @@ public class SampleListener extends Listener {
 	Type[] bones = Type.values();
 
 	public void onFrame(Controller controller) {
-		Frame frame = controller.frame();	//Kontroladeratik fotograma hartzen dugu
+		Frame frame = controller.frame();	//Kontroladoretik fotograma hartzen dugu
 	
 		Hand leftHand = null, rightHand = null;
 
@@ -53,40 +53,39 @@ public class SampleListener extends Listener {
 					u.setY(q2.getY()-q1.getY());
 					u.setZ(q2.getZ()-q1.getZ());
 					
-					tmpAngle += Math.toDegrees(v.angleTo(u));
+					tmpAngle += Math.toDegrees(v.angleTo(u));// Angelua kalkulatu radianetan eta graduetara pasatu
 				}
 				map(leftFinger, tmpAngle, j);			}
 		}
 
 	}
-		// Pointable pointable = frame.pointables().frontmost();
 
 	private void map(Finger finger, double angle, int index) {
-		switch (finger.type()) {
+		switch (finger.type()) { //Behatzaren arabera angeluak mapeatu
 		case TYPE_THUMB:
 			angle = (angle*60)/45;
-			if (angle > 60) angle = 60;
-			else if (angle < 5) angle = 0;
+			if (angle > 60) angle = 60;//Maximoa
+			else if (angle < 5) angle = 0;//Minimoa
 			break;
 		case TYPE_INDEX:
 			angle = ((angle-20)*60)/110;
-			if (angle > 60) angle = 60;
-			else if (angle < 5) angle = 0;
+			if (angle > 60) angle = 60;//Maximoa
+			else if (angle < 5) angle = 0;//Minimoa
 			break;
 		case TYPE_MIDDLE:
 			angle = ((angle-20)*80)/110;
-			if (angle > 80) angle = 80;
-			else if (angle < 5) angle = 0;
+			if (angle > 80) angle = 80;//Maximoa
+			else if (angle < 5) angle = 0;//Minimoa
 			break;
 		case TYPE_RING:
 			angle = ((angle-20)*70)/120;
-			if (angle > 70) angle = 70;
-			else if (angle < 5) angle = 0;
+			if (angle > 70) angle = 70;//Maximoa
+			else if (angle < 5) angle = 0;//Minimoa
 			break;
 		case TYPE_PINKY:
 			angle = ((angle-20)*60)/110;
-			if (angle > 60) angle = 60;
-			else if (angle < 1) angle = 0;
+			if (angle > 60) angle = 60;//Maximoa
+			else if (angle < 1) angle = 0;//Minimoa
 			break;
 		default:
 			break;
@@ -103,7 +102,7 @@ public class SampleListener extends Listener {
 	}
 
 	public void onDisconnect(Controller controller) {
-		// Gailua dekonektaztean exekutatzen da
+		// Gailua deskonektatzean exekutatzen da
 		System.out.println("Disconnected");
 
 	}
