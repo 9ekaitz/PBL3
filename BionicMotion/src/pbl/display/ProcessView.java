@@ -209,23 +209,22 @@ public class ProcessView extends JPanel{
 		listener = new SampleListener();
 		controller = new Controller();
 		
-		Frame frame = controller.frame();
+		Frame frame = controller.frame(); // LeapMotion sentsoreko fotogramak jasotzen ditu
 		
-		// Have the sample listener receive events from the controller
 		controller.addListener(listener);
 		this.portManager = viewController.getPortManager();
-		serial = new Serial(portManager.getPort(), listener);
-		serial.start();
+		serial = new Serial(portManager.getPort(), listener); // Serial puertotik bidalketak egiteko thread bat sortu
+		serial.start(); // Sortu dugun thread-a martxan jarrtzeko
 		motionCapture = true;
 	}
 	
 	public void finishProgress() {
-		progressBar.setValue(100);
-		labelProducts.setText(product.getMaterials().size()+" out of "+product.getMaterials().size());
+		progressBar.setValue(100); // Barraren azken balioa
+		labelProducts.setText(product.getMaterials().size()+" out of "+product.getMaterials().size());// Material kopurua maximoan jartzeko 
 		if (motionCapture) {
 			controller.removeListener(listener); 
 			controller=null;
-			serial.finish();
+			serial.finish(); // Serialaren thread-a gelditzeko
 		}
 	
 		
@@ -233,11 +232,11 @@ public class ProcessView extends JPanel{
 	
 	public void updateProgress() {
 		
-		materialLst.setSelectedIndex(materialLst.getSelectedIndex()+1);
+		materialLst.setSelectedIndex(materialLst.getSelectedIndex()+1); //Zerrendako hurrengo elementua aukeratu
 		float a = materialLst.getSelectedIndex();
 		float b = materialLst.getModel().getSize();
-		progressBar.setValue((int)((a/b)*100));
+		progressBar.setValue((int)((a/b)*100)); // Barraren balioa kalkulatzeko
 		
-		labelProducts.setText(materialLst.getSelectedIndex()+" out of "+product.getMaterials().size());
+		labelProducts.setText(materialLst.getSelectedIndex()+" out of "+product.getMaterials().size()); // Material kopurua eguneratu
 	}
 }

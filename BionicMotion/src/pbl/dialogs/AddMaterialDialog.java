@@ -45,7 +45,7 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		this.setVisible(true);
 	}
 
-	private Container createDialogPanel() {
+	private Container createDialogPanel() { // Panela sortu
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -108,8 +108,8 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		panel.add(subPanel,subPanelConst);
 		
 		JButton btnAddMaterial = new JButton("Add");
-		btnAddMaterial.setForeground(Color.WHITE);
-		btnAddMaterial.setBackground(new Color(36, 123, 160));
+		btnAddMaterial.setForeground(Color.WHITE); // Hizkien kolorea
+		btnAddMaterial.setBackground(new Color(36, 123, 160)); // Botoiaren kolorea
 		btnAddMaterial.setActionCommand("create");
 		btnAddMaterial.addActionListener(this);
 		
@@ -122,7 +122,7 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 		panel.add(btnAddMaterial, gbc_btnAddMaterial);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setForeground(Color.WHITE);
+		btnCancel.setForeground(Color.WHITE); 
 		btnCancel.setBackground(new Color(36, 123, 160));
 		btnCancel.setActionCommand("cancel");
 		btnCancel.addActionListener(this);

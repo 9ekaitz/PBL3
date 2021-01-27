@@ -2,6 +2,7 @@ package pbl.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,11 +100,11 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			removeMaterial();
 			break;
 		case "shutdown":
-			shutdownMachine();
+			shutdownMachine(); // Ordenagailua itzaltzeko
 			break;
 		case "startcreateProduct":
-			view.setActualPanel(new MaterialView(this, materialModel));
-			materialModel.resetSelection();
+			view.setActualPanel(new MaterialView(this, materialModel)); // Panelez aldatzeko funtzioa
+			materialModel.resetSelection(); // Material guztiak aukeratu gabe agerrarazten ditu
 			break;
 		case "createProduct":
 			createProduct();
@@ -116,15 +117,15 @@ public class ViewController implements ActionListener, ListSelectionListener {
 			break;
 		case "cancel":
 			panel = (ProcessView) view.getPanel();
-			panel.finishProgress();
+			panel.finishProgress(); 
 			view.setActualPanel(new MaterialView(this, materialModel));
 			materialModel.resetSelection();
 			
 			break;
 		case "start":
 			panel = (ProcessView) view.getPanel();
-			panel.getMaterialLst().setSelectedIndex(0);
-			if (portManager.getPort() != null) {
+			panel.getMaterialLst().setSelectedIndex(0); // Lehen elementua aukeratzeko
+			if (portManager.getPort() != null) { // Portu seriala irekita (datuak bidaltzeko prest) dagoela ziurtatzeko
 				panel.startProcess();
 			} else {
 				JOptionPane.showMessageDialog(view, "You must open the port first", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -140,10 +141,10 @@ public class ViewController implements ActionListener, ListSelectionListener {
 
 	private void nextMaterial(ProcessView panel) {
 		 panel = (ProcessView) view.getPanel();
-		 if (panel.getMaterialLst().getSelectedIndex()+1 >= panel.getMaterialLst().getModel().getSize()) {
+		 if (panel.getMaterialLst().getSelectedIndex()+1 >= panel.getMaterialLst().getModel().getSize()) {// Materiala zerrendako azken materiala den jakiteko
 			 panel.finishProgress();
 			 JOptionPane.showMessageDialog(view, "You have created a product", "Completed", JOptionPane.INFORMATION_MESSAGE);
-			 productModel.addProduct(panel.getProduct());
+			 productModel.addProduct(panel.getProduct()); // Produktua zerrendara gehitzeko
 			 view.setActualPanel(new AppMenu(this, materialModel, productModel));
 			 
 		 } else {
@@ -155,27 +156,27 @@ public class ViewController implements ActionListener, ListSelectionListener {
 		AddMaterialDialog dialog = new AddMaterialDialog(view, "Add material", true);	//Materiala gehitzeko dialgoa irekitzen da	
 		Material material = dialog.getMaterial();
 		if (material != null) {
-			materialModel.addMaterial(material);
+			materialModel.addMaterial(material); // Dialogotik material bat hartu eta listan sartzen du
 		}
 	}
 
 	private void removeMaterial() {
 		AppMenu appMenu = (AppMenu) view.getPanel();
-		materialModel.removeMaterial(appMenu.getMaterialList().getSelectedValue());
+		materialModel.removeMaterial(appMenu.getMaterialList().getSelectedValue()); 
 	}
 
 	private void createProduct() {
-		MaterialView panel = (MaterialView) view.getPanel();
-		String productName = panel.getProductName();
+		MaterialView panel = (MaterialView) view.getPanel(); 
+		String productName = panel.getProductName();  // Produktuaren izena jasotzen du
 
-		int size = panel.getProduct().getSize();
+		int size = panel.getProduct().getSize(); // Material kantitatea
 		
-		if (productName.isEmpty()) {
+		if (productName.isEmpty()) { // Izen bat sartu dugula ziurtatzeko
 			JOptionPane.showMessageDialog(view, "You must enter a product name!", "Error", JOptionPane.ERROR_MESSAGE);
-		} else if(size < 1){
+		} else if(size < 1){ // Gutxienez material bat aukeratu dugula ziurtatzeko
 			JOptionPane.showMessageDialog(view, "You must select at least one material", "Error", JOptionPane.ERROR_MESSAGE);
 		}else {
-			panel.getProduct().setName(productName);
+			panel.getProduct().setName(productName); // Produktuari bere izena esleitzen diogu
 			view.setActualPanel(new ProcessView(this, panel.getProduct()));
 		}
 	}
@@ -183,15 +184,15 @@ public class ViewController implements ActionListener, ListSelectionListener {
 	private void shutdownMachine() {
 		int option = JOptionPane.showConfirmDialog(view, "Are you sure you want to shutdown the machine?");
 
-//		if (option == JOptionPane.YES_OPTION) {
-//			Runtime runtime = Runtime.getRuntime();
-//			try {
-//				Process proc = runtime.exec("shutdown -s -t 0");
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			System.exit(0);	
-//		}
+		if (option == JOptionPane.YES_OPTION) {
+			Runtime runtime = Runtime.getRuntime();
+			try {
+				Process proc = runtime.exec("shutdown -s -t 0");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			System.exit(0);	
+		}
 
 	}
 	
