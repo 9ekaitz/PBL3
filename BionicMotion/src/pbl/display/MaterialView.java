@@ -111,7 +111,7 @@ public class MaterialView extends JPanel{
 		
 	}
 
-	private JList<Material> createMaterialList() {
+	private JList<Material> createMaterialList() { // Materialen zerrenda sortzeko
 		lst = new JList<>();
 		lst.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		lst.addListSelectionListener(controller);

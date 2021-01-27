@@ -11,7 +11,7 @@ import java.io.IOException;
 public abstract class FileHandler {
 
 	public static void saveToFile(Saveable item, String PATH) {
-		/* Objektua fitxategira gehitzen du */
+		/* Objetua fitxategira gehitzen du */
 		
 		try (BufferedWriter out = new BufferedWriter(new FileWriter(PATH, true))) {
 			out.write(item.toFile()+"\n");
@@ -23,13 +23,13 @@ public abstract class FileHandler {
 	}
 	
 	public static void removeFromFile(Removeable item, String PATH) {
-			/* Emandako erabiltzialea izenarekin bilatzen du eta fitxategiatik kentzen du
+			/* Emandako erabiltzialea izenaren bidez bilatzen du eta fitxategiatik kentzen du
 			 * Ezabatu den edo ez adierazten duen mezu bat sortu beharko zen
 			 */
 			
 			try {
 				File srcFile = new File(PATH);	//Erabiltzaileen fitxategia
-				File dstFile = new File("res/files/tmp");	//Ezabatuko ez diren erabiltzaielak gordetzeko fitxategia
+				File dstFile = new File("res/files/tmp");	//Ezabatuko ez diren erabiltzaileak gordetzeko fitxategia
 				BufferedWriter dst = new BufferedWriter(new FileWriter(dstFile));
 				BufferedReader src = new BufferedReader(new FileReader(srcFile));
 				String line;
@@ -43,7 +43,7 @@ public abstract class FileHandler {
 				src.close();
 				dst.close();
 				srcFile.delete();	//Fitxategi zaharra ezabatu
-				dstFile.renameTo(srcFile);	//Sortutako fitxategi berriari aurreko fitxategiaren izena jarri
+				dstFile.renameTo(srcFile);	//Sortutako fitxategi berriari aurrekoaren izena jarri
 
 			} catch (IOException e) {
 				e.printStackTrace();

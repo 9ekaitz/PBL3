@@ -27,11 +27,11 @@ public class ListRenderer implements ListCellRenderer<Material> {
 		panel.add(label, BorderLayout.CENTER);
 		
 		JLabel icon;
-		/* Elementua aukeratzen denean ikonoa aldtzeko */
+		/* Elementua aukeratzen denean ikonoa aldatzeko */
 		if (value.isSelected()) icon = new JLabel(new ImageIcon("res/icons/valid.png"));
 		else icon = new JLabel(new ImageIcon("res/icons/error.png"));
 		
-		/* Elementua klikatzean atzeko planoaren kolorea alatzeko */
+		/* Elementua klikatzean atzeko planoaren kolorea aldatzeko */
 		if (cellHasFocus || isSelected) panel.setBackground(new Color(197, 229, 242));
 
 		panel.add(icon, BorderLayout.EAST);

@@ -47,7 +47,6 @@ public class MainFrame extends JFrame{
 		this.setIconImage(new ImageIcon("res/img/Logo-icon.png").getImage());
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.setUndecorated(true);
 		this.setVisible(true);
 	}
 
@@ -91,13 +90,6 @@ public class MainFrame extends JFrame{
 		return actualPanel;
 	}
 	
-	/* 
-	 * 
-	 * 
-	 * TODO: JPopupMenu 
-	 * 
-	 * 
-	 */
 	
 	private class MenuActions extends AbstractAction{
 		String command;
@@ -110,16 +102,16 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			switch (command) {
-			case "Logout":
-				Launcher l = new Launcher();
+			case "Logout":// Login pantailara itzultzeko
+				Launcher l = new Launcher(); 
 				MainFrame.this.dispose();	
 				break;
-			case "Exit app":
+			case "Exit app": // Programa amaitzeko
 				System.exit(0);
 				break;
 			case "Settings":
 				SettingsDialog d = new SettingsDialog(MainFrame.this, "Settings", true, session, controller.getPortManager());
-				controller.setPortManager(d.getPortManager());
+				controller.setPortManager(d.getPortManager()); // Portuen administratzailea kontroladorean gehitu
 				break;
 			default:
 				break;

@@ -23,9 +23,9 @@ public class Serial extends Thread{
 				try {
 					if (listener != null) {
 						for (int i = 0; i < 5; i++) {
-							port.writeByte((byte)(i+100));
+							port.writeByte((byte)(i+100));// 100-104 tarteko zenbaki bat bidaltzen du identifikatzaile gisa
 							Thread.sleep(20);
-							port.writeByte((byte)listener.getAngle(i));
+							port.writeByte((byte)listener.getAngle(i));// behatzen angeluak bidaltzen ditu
 							Thread.sleep(20);
 						}
 					}

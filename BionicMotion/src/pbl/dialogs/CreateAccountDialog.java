@@ -144,7 +144,7 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 		return data;
 	}
 	
-	public void saveUserCredentials() { ///////////////////////////////////////// TODO: excepciones
+	public void saveUserCredentials() { //////// TODO: Erabiltzaileen datuak jasotzeko
 		username = usernameField.getText();
 		passHash = String.valueOf(passwordField.getPassword()).hashCode();
 		userIsAdmin = isAdminCheckBox.isSelected();
@@ -165,7 +165,7 @@ public class CreateAccountDialog extends JDialog implements ActionListener{
 		
 	}
 
-	private void checkPasswordsEquals() {	
+	private void checkPasswordsEquals() {	//Pasahitza zuzena dela egiaztatzeko
 		String user = usernameField.getText();
 		String passw1 = String.valueOf(passwordField.getPassword());
 		String passw2 = String.valueOf(repeatPasswordField.getPassword());

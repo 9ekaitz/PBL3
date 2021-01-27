@@ -132,7 +132,6 @@ public class SettingsDialog extends JDialog {
 		JPanel azpiPanel = new JPanel();
 		ports = new JComboBox<String>(portManager.getAvaiblePorts());
 		ports.setForeground(Color.BLACK);
-//		ports.setBackground(Color.LIGHT_GRAY);
 		ports.setPreferredSize(new Dimension(150,30));
 		ports.addActionListener(controller);
 		azpiPanel.add(ports);
@@ -177,7 +176,7 @@ public class SettingsDialog extends JDialog {
 		panel.add(subPanel, subPanelKonst);
 	}
 	
-	public void refreshPorts() {
+	public void refreshPorts() { // Erabilgarri dauden portuen zerrenda eguneratzeko
 		ports.removeAllItems();
 		Arrays.stream(portManager.getAvaiblePorts()).forEach(p->ports.addItem(p));
 	}

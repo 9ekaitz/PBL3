@@ -130,7 +130,7 @@ public class ProcessView extends JPanel{
 		gbc_buttonPanel.gridy = 4;
 		add(buttonPanel, gbc_buttonPanel);
 		
-		
+		/*Prozesua hasteko botoia*/
 		startButton = new JButton("Start");
 		startButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		startButton.setForeground(Color.WHITE);
@@ -139,6 +139,7 @@ public class ProcessView extends JPanel{
 		startButton.addActionListener(viewController);
 		buttonPanel.add(startButton);
 		
+		/*Hurrengo materialera pasatzeko botoia*/
 		nextButton = new JButton("Next");
 		nextButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nextButton.setForeground(Color.WHITE);
@@ -148,7 +149,7 @@ public class ProcessView extends JPanel{
 		nextButton.addActionListener(viewController);
 		buttonPanel.add(nextButton);
 		
-		
+		/*Prozesua geldiarazteko botoia*/
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBackground(new Color(36, 123, 160));
 		btnCancel.setForeground(Color.WHITE);
@@ -183,7 +184,7 @@ public class ProcessView extends JPanel{
 	}
 
 
-	private void createProcessList() {
+	private void createProcessList() { // Produktuen zerrenda sortzeko
 		materialLst = new JList<>();
 		materialLst.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		materialLst.addListSelectionListener(viewController);

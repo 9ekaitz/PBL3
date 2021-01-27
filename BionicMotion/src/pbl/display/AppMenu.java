@@ -38,7 +38,7 @@ public class AppMenu extends JPanel{
 	Color darkBlue;
 	JList<Material> materialJList;
 	JList<Product> list_1;
-	PieChart chart;
+	PieChart chart; //Grafikoaren klasea
 	
 	public AppMenu(ViewController controller, MaterialModel materialModel, ProductModel productModel) {
 		this.controller = controller;

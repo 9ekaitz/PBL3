@@ -145,7 +145,7 @@ public class AddMaterialDialog extends JDialog implements ActionListener{
 	public void testFieldInput() {	
 		String materialName = materialField.getText();
 		
-		if (materialName.trim().isEmpty()) {
+		if (materialName.trim().isEmpty()) { // Balio duen izen bat sartu duzula ziurtatzeko
 			JOptionPane.showMessageDialog(frame, "You should enter a valid name!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(frame, "The material \""+materialName+"\" was successfully added!", "Success", JOptionPane.INFORMATION_MESSAGE);
