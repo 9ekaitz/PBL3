@@ -13,7 +13,7 @@ public class Product extends AbstractListModel<Material> implements Saveable{
 	private List<Material> lst;
 	private String name;
 	
-	public Product(String line) {
+	public Product(String line) {	//Konstruktore hau erabiltzen da fitxategietatik kargtzen denean
 		lst = new ArrayList<>();
 		String[] data = line.split("&");
 		this.name = data[0];
@@ -62,6 +62,7 @@ public class Product extends AbstractListModel<Material> implements Saveable{
 	
 	@Override
 	public String toFile() {
+		/* Produktua fitxategia batean gordetzeko formatua sortzen du */
 		StringBuilder materials = new StringBuilder();
 		lst.forEach((p)->materials.append(p.toFile()+"%"));
 		return name+"&"+materials;

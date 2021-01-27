@@ -14,23 +14,19 @@ import pbl.io.FileHandler;
 @SuppressWarnings("serial")
 public class ProductModel extends AbstractListModel<Product>{
 	
-	private final static String PATH = "res/files/products.txt";
+	private final static String PATH = "res/files/products.txt";	//Produktuak gordetzeko fitxategia
 	List<Product> lst;
 	
 	public ProductModel() {
 		lst = new ArrayList<>();
-		loadFromFile();
+		loadFromFile();	//Produktuak fitxategitik kargatu
 	}
-	
 	
 	private void loadFromFile() {
 		String line;
-		
 		try (BufferedReader in = new BufferedReader(new FileReader(PATH))) {
 			while((line = in.readLine())!=null){
-				if (!line.isEmpty()){
-					lst.add(new Product(line));
-				}
+				if (!line.isEmpty()) lst.add(new Product(line));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -38,10 +34,11 @@ public class ProductModel extends AbstractListModel<Product>{
 			e.printStackTrace();
 		}
 	}
+	
 	public void addProduct(Product p) {
 		lst.add(p);
 		fireContentsChanged(lst, 0, getSize());
-		FileHandler.saveToFile(p, PATH);
+		FileHandler.saveToFile(p, PATH);	//Produktu bakarra fitxategian gordetzeko
 	}
 	
 	public void removeProduct(Product m) {

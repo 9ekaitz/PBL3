@@ -69,6 +69,7 @@ public class MaterialModel extends AbstractListModel<Material>{
 	}
 
 	public void resetSelection() {
+		/* Material guztiak aukeratu gabe jartzeko */
 		materialList.forEach(m->m.setSelected(false));
 	}
 }

@@ -183,7 +183,7 @@ public class Launcher extends JFrame {
 		button.setForeground(Color.WHITE);
 		button.setBackground(new Color(36, 123, 160));
 
-		/* Botoiarentzat constraint-ak sortu eta goi margina ezarri */
+		/* Botoiarentzat konstraint-ak sortu eta goi margina ezarri */
 
 		GridBagConstraints buttonConst = new GridBagConstraints();
 		buttonConst.insets = new Insets(20, 0, 10, 0);
