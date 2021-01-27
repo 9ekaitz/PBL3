@@ -235,6 +235,8 @@ public class Launcher extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		Launcher l = new Launcher();
+		String[] data = {"user", "dddd", "T"};
+		MainFrame m = new MainFrame(new Session(data));
+//		Launcher l = new Launcher();
     }
 }

@@ -55,7 +55,7 @@ public class SampleListener extends Listener {
 					u.setY(q2.getY()-q1.getY());
 					u.setZ(q2.getZ()-q1.getZ());
 					
-					tmpAngle = Math.toDegrees(v.angleTo(u));
+					tmpAngle += Math.toDegrees(v.angleTo(u));
 				}
 				map(leftFinger, tmpAngle, j);			}
 		}
@@ -68,22 +68,31 @@ public class SampleListener extends Listener {
 		case TYPE_THUMB:
 			angle = (angle*60)/45;
 			if (angle > 60) angle = 60;
+			else if (angle < 5) angle = 0;
 			break;
 		case TYPE_INDEX:
-			angle = (angle*60)/80;
+			System.out.println("Angulo: "+(angle-20));
+			angle = ((angle-20)*60)/130;
 			if (angle > 60) angle = 60;
+			else if (angle < 5) angle = 0;
 			break;
 		case TYPE_MIDDLE:
-			angle = (angle*80)/85;
+			
+			angle = ((angle-20)*80)/130;
 			if (angle > 80) angle = 80;
+			else if (angle < 5) angle = 0;
 			break;
 		case TYPE_RING:
-			angle = (angle*70)/90;
+			
+			angle = ((angle-20)*70)/140;
 			if (angle > 70) angle = 70;
+			else if (angle < 5) angle = 0;
 			break;
 		case TYPE_PINKY:
-			angle = (angle*60)/80;
+			
+			angle = ((angle-20)*60)/130;
 			if (angle > 60) angle = 60;
+			else if (angle < 1) angle = 0;
 			break;
 		default:
 			break;
