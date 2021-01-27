@@ -17,7 +17,7 @@ import pbl.io.FileHandler;
 @SuppressWarnings("serial")
 public class MaterialModel extends AbstractListModel<Material>{
 
-	private final static String PATH = "res/files/materials.txt";
+	private final static String PATH = "res/files/materials.txt";	//MMateriale fitxategia
 	List<Material> materialList;
 	
 	public MaterialModel() {
@@ -30,9 +30,7 @@ public class MaterialModel extends AbstractListModel<Material>{
 		
 		try (BufferedReader in = new BufferedReader(new FileReader(PATH))) {
 			while((line = in.readLine())!=null){
-				if (!line.isEmpty()){
-					materialList.add(new Material(line));
-				}
+				if (!line.isEmpty()) materialList.add(new Material(line));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

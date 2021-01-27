@@ -9,7 +9,7 @@ public class Material implements Saveable, Removeable{
 	private MaterialType type;
 	boolean selected;
 	
-	public Material(String line) {
+	public Material(String line) {	//Konstrutore hau fitxategi batetik kargatzeko erabiltzen da
 		String[] data = line.split("[$]");
 		this.name = data[0];
 		this.type = MaterialType.valueOf(data[1]);
@@ -43,8 +43,6 @@ public class Material implements Saveable, Removeable{
 	public String getName() {
 		return name;
 	}
-	
-	
 	
 	public String getType() {
 		return String.valueOf(type);

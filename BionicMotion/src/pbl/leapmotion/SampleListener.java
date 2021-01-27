@@ -15,10 +15,8 @@ public class SampleListener extends Listener {
 	Type[] bones = Type.values();
 
 	public void onFrame(Controller controller) {
-		Frame frame = controller.frame();
-
-		// detectamos mano y entramos al bucle
-
+		Frame frame = controller.frame();	//Kontroladeratik fotograma hartzen dugu
+	
 		Hand leftHand = null, rightHand = null;
 
 		for (Hand hand : frame.hands()) { // Detektatutako eskuak sailkatu
