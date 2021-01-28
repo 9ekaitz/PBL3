@@ -1,6 +1,3 @@
 # Bionic Motion
-
-![Alt text](/LeapMotion/img/Logo-BionicMotion.png?raw=true)
-
-This is a Java project, lorem ipsum dolor sit amet consectetur adipiscing elit fringilla, natoque commodo cras eleifend magna vestibulum purus, mi ligula vivamus aliquam condimentum vitae aptent. Maecenas semper magnis phasellus ligula accumsan eleifend ridiculus, nisl conubia vulputate iaculis gravida velit.
-
+> Proiektu honek material arriskutsuekin egiten diren produktuen fabrikazioa erraztea dauka helburu. Horretarako Javan aplikazio grafiko hau garatu da, erabiltzaileak sortu beharreko produktuarekin gidatzeko eta prozezua bukatyu eta gero infromazioa eskaintzeko.
+<br/>Atal grafikoetaz aparte, langileen segurtasunerako prozezua hasten denean beso robotiko bat kontrolatzko aukera ematen du mugimendu sentsore baten bitartez. Sentsoreak eskuen posizioa jasotzen ditu eta linea serietik FPGA batera bidaltzen ditu beso robotikoa kontrolatzen duten serbomotorrek deskribatu behar duten angelua.
